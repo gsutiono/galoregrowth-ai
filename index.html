@@ -72,8 +72,15 @@ button, input, textarea { font: inherit; }
 .btn-small { min-height: 40px; padding: 0 14px; font-size: .9rem; }
 .btn-large { min-height: 56px; padding: 0 26px; }
 
-.hero { min-height: 660px; display: grid; grid-template-columns: 1fr; align-items: center; padding: 112px 0 92px; }
-.hero-copy { max-width: 980px; }
+.hero { min-height: 760px; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(320px,.62fr); gap: 58px; align-items: center; padding: 94px 0 82px; }
+.hero-copy { max-width: 780px; }
+.hero-media { display:flex; justify-content:center; align-items:center; }
+.hero-video-shell { width:min(390px,100%); padding:10px; border-radius:30px; border:1px solid rgba(255,255,255,.13); background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.025)); box-shadow:0 30px 80px rgba(0,0,0,.42),0 0 60px rgba(88,216,255,.09); position:relative; overflow:hidden; }
+.hero-video-shell:before { content:""; position:absolute; inset:-25%; background:radial-gradient(circle at 50% 30%,rgba(88,216,255,.16),transparent 46%); pointer-events:none; }
+.hero-video { width:100%; aspect-ratio:512/890; object-fit:cover; display:block; border-radius:22px; background:#05070b; position:relative; z-index:1; }
+.video-caption { position:absolute; z-index:2; left:22px; right:22px; bottom:20px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 12px; border:1px solid rgba(255,255,255,.12); border-radius:14px; background:rgba(6,8,13,.62); backdrop-filter:blur(12px); font-size:.76rem; color:#d9deed; }
+.video-caption strong { color:white; letter-spacing:.03em; }
+.video-caption span:last-child { color:var(--cyan); }
 .eyebrow { font-size: .78rem; letter-spacing: .15em; color: var(--gold); font-weight: 800; margin-bottom: 18px; }
 h1, h2, h3 { font-family: Manrope, Inter, sans-serif; margin: 0; }
 h1 { font-size: clamp(3.4rem, 7vw, 6.7rem); line-height: .98; letter-spacing: -.055em; max-width: 820px; }
@@ -192,7 +199,10 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 @media (max-width: 960px) {
   .site-header { grid-template-columns: 1fr auto; }
   .desktop-nav { display: none; }
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 80px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 72px; gap:44px; }
+  .hero-copy { max-width:none; }
+  .hero-media { order:-1; }
+  .hero-video-shell { width:min(340px,86vw); }
   .visual-card { min-height: 440px; }
   .visual-core { height: 285px; }
   .hero-logo-image { width: min(300px, 88%); }
@@ -212,7 +222,10 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   .brand-text { font-size: .93rem; }
   .brand-logo { width: 38px; height: 38px; }
   .header-actions .btn { display: none; }
-  .hero { padding: 54px 0 60px; gap: 42px; }
+  .hero { padding: 42px 0 60px; gap: 34px; }
+  .hero-video-shell { width:min(300px,82vw); border-radius:24px; padding:8px; }
+  .hero-video { border-radius:18px; }
+  .video-caption { left:16px; right:16px; bottom:14px; font-size:.68rem; }
   h1 { font-size: clamp(3rem, 15vw, 4.3rem); }
   .hero-lead { font-size: 1rem; }
   .hero-anxiety { font-size: .96rem; }
@@ -271,6 +284,18 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <a class="btn btn-secondary" href="#services" data-i18n="hero.cta2">Explore Services</a>
         </div>
         <div class="hero-note" data-i18n="hero.note">AI is the vehicle. Business transformation is the destination.</div>
+      </div>
+
+      <div class="hero-media reveal delay-1">
+        <div class="hero-video-shell">
+          <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="GaloreGrowth.ai AI business transformation short video">
+            <source id="heroVideoSource" src="galoregrowth-hero-en.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">
+            <strong data-i18n="hero.videoLabel">AI BUSINESS TRANSFORMATION</strong>
+            <span data-i18n="hero.videoTag">10-SECOND STORY</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -448,7 +473,7 @@ const translations = {
     'hero.title':'Turn AI into <span>real business growth.</span>',
     'hero.lead':'Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.',
     'hero.anxiety':'AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.',
-    'hero.cta1':'Book an AI Growth Consultation','hero.cta2':'Explore Services','hero.note':'AI is the vehicle. Business transformation is the destination.',
+    'hero.cta1':'Book an AI Growth Consultation','hero.cta2':'Explore Services','hero.note':'AI is the vehicle. Business transformation is the destination.','hero.videoLabel':'AI BUSINESS TRANSFORMATION','hero.videoTag':'10-SECOND STORY',
     'trust.1a':'Practical AI','trust.1b':'Focused on business outcomes','trust.2a':'Tool-Agnostic','trust.2b':'Use what works best','trust.3a':'Executive-Level','trust.3b':'Strategy to implementation','trust.4a':'Built to Evolve','trust.4b':'Designed for rapid AI change',
     'services.eyebrow':'WHAT WE DO','services.title':'AI should improve the business — not become another expensive IT project.','services.subtitle':'We focus on high-value use cases, fast implementation, and measurable operating impact.',
     'services.s1t':'AI Business Audit','services.s1d':'Identify where AI can remove friction, reduce cost, accelerate decisions, and improve customer experience.',
@@ -472,7 +497,7 @@ const translations = {
     'hero.title':'让 AI 变成<span>真正的业务增长。</span>',
     'hero.lead':'你的企业不需要更多 AI，而是需要更多客户、更高收入和更少业务摩擦。无论目标是每周多 10 个合格线索、更快跟进、更低获客成本，还是朝营收翻倍迈进，GaloreGrowth.ai 都从业务结果出发，再围绕这个结果组合最合适的增长系统。',
     'hero.anxiety':'AI 正在重新定义竞争速度。很多企业还在试验时，另一些企业已经用 AI 更快获客、即时回应客户、大规模个性化营销，并减少运营瓶颈。AI 本身不是终点；真正拉开差距的，是谁能更快、更有效地把 AI 转化为业务能力。每多等一个月，差距都可能继续扩大。',
-    'hero.cta1':'预约 AI 增长咨询','hero.cta2':'查看服务','hero.note':'AI 是载具，业务转型才是终点。',
+    'hero.cta1':'预约 AI 增长咨询','hero.cta2':'查看服务','hero.note':'AI 是载具，业务转型才是终点。','hero.videoLabel':'AI 商业转型','hero.videoTag':'10 秒故事',
     'trust.1a':'实用 AI','trust.1b':'以业务成果为核心','trust.2a':'工具中立','trust.2b':'选择最适合的方案','trust.3a':'管理层视角','trust.3b':'从战略到实施','trust.4a':'持续进化','trust.4b':'适应 AI 的高速变化',
     'services.eyebrow':'我们的服务','services.title':'AI 应该改善业务，而不是变成另一个昂贵的 IT 项目。','services.subtitle':'我们专注高价值场景、快速实施和可衡量的业务成果。',
     'services.s1t':'AI 业务审计','services.s1d':'找出 AI 最能减少摩擦、降低成本、加快决策并改善客户体验的环节。',
@@ -496,6 +521,8 @@ let currentLang = 'en';
 const toggle = document.getElementById('languageToggle');
 const bioToggle = document.getElementById('bioToggle');
 const bioDetail = document.getElementById('bioDetail');
+const heroVideo = document.getElementById('heroVideo');
+const heroVideoSource = document.getElementById('heroVideoSource');
 let bioExpanded = false;
 
 function refreshBioToggleText() {
@@ -514,6 +541,14 @@ function applyLanguage(lang) {
   });
   toggle.textContent = lang === 'en' ? '中文' : 'EN';
   refreshBioToggleText();
+
+  const nextVideo = lang === 'zh' ? 'galoregrowth-hero-zh.mp4' : 'galoregrowth-hero-en.mp4';
+  if (heroVideoSource && heroVideoSource.getAttribute('src') !== nextVideo) {
+    heroVideoSource.setAttribute('src', nextVideo);
+    heroVideo.load();
+    const playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+  }
 }
 
 toggle.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'zh' : 'en'));

@@ -1,1 +1,1 @@
-Upload/replace index.html at the ROOT of your galoregrowth-ai GitHub repository. This version is self-contained: logo, portrait, CSS and JavaScript are embedded in index.html. Cloudflare should redeploy automatically after the commit.
+Upload all three files to the ROOT of the galoregrowth-ai GitHub repository. Keep the filenames exactly as-is. The English hero video loads by default; switching to Chinese swaps to galoregrowth-hero-zh.mp4 and switching back restores the English video.
