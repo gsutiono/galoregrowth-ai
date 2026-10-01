@@ -112,6 +112,19 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 .section-heading p, .about-copy p, .cta-panel p { color: var(--muted); font-size: 1.04rem; }
 .card-grid { display: grid; gap: 18px; }
 .service-grid { grid-template-columns: repeat(3,1fr); }
+.topic-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; background: linear-gradient(135deg, rgba(88,216,255,.14), rgba(143,108,255,.13)); border: 1px solid rgba(123,200,255,.22); box-shadow: inset 0 0 24px rgba(88,216,255,.05), 0 12px 32px rgba(0,0,0,.16); color: #dff7ff; }
+.topic-icon svg { width: 25px; height: 25px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.service-top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.service-card h3 { margin-top: 30px !important; }
+.service-card.featured-short { grid-column: 1 / -1; min-height: auto; display:grid; grid-template-columns: auto 1fr; gap:22px; align-items:start; background: linear-gradient(135deg, rgba(88,216,255,.08), rgba(143,108,255,.08)); }
+.featured-short .feature-copy h3 { margin: 0 0 10px !important; }
+.featured-short .feature-copy p { max-width: 880px; }
+.trust-grid > div { position:relative; }
+.trust-icon { width:36px; height:36px; display:grid; place-items:center; border-radius:11px; margin-bottom:12px; background:rgba(88,216,255,.08); border:1px solid rgba(88,216,255,.15); color:var(--cyan); }
+.trust-icon svg { width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.step > span { font-weight:800; box-shadow: inset 0 0 18px rgba(143,108,255,.08); }
+.why-icon { width:52px; height:52px; display:grid; place-items:center; border-radius:15px; background:linear-gradient(135deg, rgba(88,216,255,.12), rgba(143,108,255,.1)); border:1px solid rgba(88,216,255,.17); margin-bottom:28px !important; }
+.why-icon svg { width:26px; height:26px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .service-card, .why-card, .founder-card, .bio-quick-panel, .bio-detail { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
 .service-card { padding: 30px; min-height: 260px; transition: .25s ease; }
 .service-card:hover { transform: translateY(-5px); border-color: rgba(88,216,255,.34); background: var(--panel-strong); }
@@ -184,6 +197,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   .visual-core { height: 285px; }
   .hero-logo-image { width: min(300px, 88%); }
   .service-grid, .why-grid { grid-template-columns: 1fr 1fr; }
+  .service-card.featured-short { grid-template-columns: auto 1fr; }
   .split-layout, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
   .founder-card { position: static; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
@@ -209,6 +223,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   .metric-grid { grid-template-columns: repeat(2,1fr); }
   .section { padding: 82px 0; }
   .service-grid, .why-grid, .trust-grid { grid-template-columns: 1fr; }
+  .service-card.featured-short { grid-template-columns: 1fr; }
   .trust-grid > div { border-right: 0; border-bottom: 1px solid var(--line); }
   .trust-grid > div:last-child { border-bottom: 0; }
   .service-card { min-height: 220px; }
@@ -261,10 +276,10 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 
     <section class="trust-strip">
       <div class="shell trust-grid">
-        <div><strong data-i18n="trust.1a">Practical AI</strong><span data-i18n="trust.1b">Focused on business outcomes</span></div>
-        <div><strong data-i18n="trust.2a">Tool-Agnostic</strong><span data-i18n="trust.2b">Use what works best</span></div>
-        <div><strong data-i18n="trust.3a">Executive-Level</strong><span data-i18n="trust.3b">Strategy to implementation</span></div>
-        <div><strong data-i18n="trust.4a">Built to Evolve</strong><span data-i18n="trust.4b">Designed for rapid AI change</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M8 15c-2-1-3-3-3-5a7 7 0 1114 0c0 2-1 4-3 5-1 1-1 2-1 3H9c0-1 0-2-1-3z"/></svg></div><strong data-i18n="trust.1a">Practical AI</strong><span data-i18n="trust.1b">Focused on business outcomes</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M14 6l4-4 4 4-4 4M3 21l8-8"/><path d="M13 3a6 6 0 00-7 7l4 4 7-7a6 6 0 00-4-4z"/></svg></div><strong data-i18n="trust.2a">Tool-Agnostic</strong><span data-i18n="trust.2b">Use what works best</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20v-7h4v7M14 20V8h4v12M10 20V4h4v16"/></svg></div><strong data-i18n="trust.3a">Executive-Level</strong><span data-i18n="trust.3b">Strategy to implementation</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9"/><path d="M16 3h5v5"/><path d="M8 12h8M12 8v8"/></svg></div><strong data-i18n="trust.4a">Built to Evolve</strong><span data-i18n="trust.4b">Designed for rapid AI change</span></div>
       </div>
     </section>
 
@@ -277,34 +292,42 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 
       <div class="card-grid service-grid">
         <article class="service-card reveal">
-          <span class="card-index">01</span>
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5M8 17h3"/><path d="M15 15l2 2 3-4"/></svg></div><span class="card-index">01</span></div>
           <h3 data-i18n="services.s1t">AI Business Audit</h3>
           <p data-i18n="services.s1d">Identify where AI can remove friction, reduce cost, accelerate decisions, and improve customer experience.</p>
         </article>
         <article class="service-card reveal delay-1">
-          <span class="card-index">02</span>
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><span class="card-index">02</span></div>
           <h3 data-i18n="services.s2t">AI Workflow Automation</h3>
           <p data-i18n="services.s2d">Automate repetitive work across sales, operations, finance, support, and internal knowledge processes.</p>
         </article>
         <article class="service-card reveal delay-2">
-          <span class="card-index">03</span>
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M9 12h.01M15 12h.01M9 15h6M12 4v3"/><circle cx="12" cy="3" r="1"/></svg></div><span class="card-index">03</span></div>
           <h3 data-i18n="services.s3t">AI Agent Implementation</h3>
           <p data-i18n="services.s3d">Deploy task-focused AI assistants and agents that work with your existing tools, data, and teams.</p>
         </article>
         <article class="service-card reveal">
-          <span class="card-index">04</span>
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l12-6v10L4 11z"/><path d="M7 13v5h3l1-4M18 9c1 1 1 5 0 6"/></svg></div><span class="card-index">04</span></div>
           <h3 data-i18n="services.s4t">Sales & Marketing AI</h3>
           <p data-i18n="services.s4d">Use AI to improve lead generation, personalization, content production, follow-up, and conversion workflows.</p>
         </article>
         <article class="service-card reveal delay-1">
-          <span class="card-index">05</span>
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div><span class="card-index">05</span></div>
           <h3 data-i18n="services.s5t">Executive AI Strategy</h3>
           <p data-i18n="services.s5d">Translate fast-moving AI capabilities into a practical roadmap for competitive advantage and operating leverage.</p>
         </article>
         <article class="service-card reveal delay-2">
-          <span class="card-index">06</span>
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4z"/><path d="M7 9v5c0 2 2 4 5 4s5-2 5-4V9M21 8v6"/></svg></div><span class="card-index">06</span></div>
           <h3 data-i18n="services.s6t">AI Training & Enablement</h3>
           <p data-i18n="services.s6d">Train leaders and teams to use AI effectively, responsibly, and with confidence inside real business workflows.</p>
+        </article>
+        <article class="service-card featured-short reveal">
+          <div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M10 8l5 4-5 4z"/></svg></div>
+          <div class="feature-copy">
+            <div class="card-index">07 • AI CONTENT STUDIO</div>
+            <h3 data-i18n="services.s7t">AI Shorts Strategy, Training & Production</h3>
+            <p data-i18n="services.s7d">Turn short-form video into a business growth channel. We help teams design episodic, story-driven AI shorts for marketing and outreach, train internal creators, or produce the content for you—at a speed and volume traditional production cannot match.</p>
+          </div>
         </article>
       </div>
     </section>
@@ -333,9 +356,9 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <p data-i18n="why.subtitle">Technology only matters when it improves decisions, productivity, growth, or customer experience.</p>
       </div>
       <div class="why-grid">
-        <article class="why-card reveal"><div class="why-icon">↗</div><h3 data-i18n="why.w1t">Outcome Focused</h3><p data-i18n="why.w1d">Every engagement starts with the business result, not the tool.</p></article>
-        <article class="why-card reveal delay-1"><div class="why-icon">∞</div><h3 data-i18n="why.w2t">Built for Change</h3><p data-i18n="why.w2d">We avoid unnecessary lock-in so your AI stack can evolve as the market changes.</p></article>
-        <article class="why-card reveal delay-2"><div class="why-icon">⌘</div><h3 data-i18n="why.w3t">Operator Mindset</h3><p data-i18n="why.w3d">Strategy is connected to implementation, workflow design, and real operating constraints.</p></article>
+        <article class="why-card reveal"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-5 4 3 7-9"/><path d="M15 7h5v5"/></svg></div><h3 data-i18n="why.w1t">Outcome Focused</h3><p data-i18n="why.w1d">Every engagement starts with the business result, not the tool.</p></article>
+        <article class="why-card reveal delay-1"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-5V2"/><path d="M20 7a8 8 0 10 1 8"/></svg></div><h3 data-i18n="why.w2t">Built for Change</h3><p data-i18n="why.w2d">We avoid unnecessary lock-in so your AI stack can evolve as the market changes.</p></article>
+        <article class="why-card reveal delay-2"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></svg></div><h3 data-i18n="why.w3t">Operator Mindset</h3><p data-i18n="why.w3d">Strategy is connected to implementation, workflow design, and real operating constraints.</p></article>
       </div>
     </section>
 
@@ -346,7 +369,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <h2 data-i18n="about.title">Enterprise rigor. Founder agility. Real-world AI execution.</h2>
           <div class="bio-quick-panel">
             <div class="bio-kicker" data-i18n="about.quicktitle">Principal AI Solutions Architect &amp; Co-Founder</div>
-            <p data-i18n="about.quickbio">Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At Galore.AI, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.</p>
+            <p data-i18n="about.quickbio">Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.</p>
             <button class="bio-toggle" id="bioToggle" type="button" data-i18n="about.expand">Read full bio</button>
           </div>
           <div class="bio-detail" id="bioDetail" hidden>
@@ -357,7 +380,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
               <li data-i18n="about.b2"><strong>Proven Founder &amp; Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.</li>
               <li data-i18n="about.b3"><strong>Operational Scale &amp; Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.</li>
             </ul>
-            <p data-i18n="about.longp2">As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At Galore.AI, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.</p>
+            <p data-i18n="about.longp2">As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.</p>
           </div>
         </div>
         <div class="founder-card reveal delay-1">
@@ -433,11 +456,11 @@ const translations = {
     'services.s3t':'AI Agent Implementation','services.s3d':'Deploy task-focused AI assistants and agents that work with your existing tools, data, and teams.',
     'services.s4t':'Sales & Marketing AI','services.s4d':'Use AI to improve lead generation, personalization, content production, follow-up, and conversion workflows.',
     'services.s5t':'Executive AI Strategy','services.s5d':'Translate fast-moving AI capabilities into a practical roadmap for competitive advantage and operating leverage.',
-    'services.s6t':'AI Training & Enablement','services.s6d':'Train leaders and teams to use AI effectively, responsibly, and with confidence inside real business workflows.',
+    'services.s6t':'AI Training & Enablement','services.s6d':'Train leaders and teams to use AI effectively, responsibly, and with confidence inside real business workflows.','services.s7t':'AI Shorts Strategy, Training & Production','services.s7d':'Turn short-form video into a business growth channel. We help teams design episodic, story-driven AI shorts for marketing and outreach, train internal creators, or produce the content for you—at a speed and volume traditional production cannot match.',
     'approach.eyebrow':'OUR APPROACH','approach.title':'AI is moving too fast to keep building yesterday’s technology.','approach.body':'The market now produces powerful new models, platforms, and automation tools at extraordinary speed. Instead of spending heavily to recreate capabilities that already exist, we help you assemble the right solutions around your business needs.',
     'approach.p1t':'Discover','approach.p1d':'Find the highest-value problems and opportunities.','approach.p2t':'Audit','approach.p2d':'Map workflows, data, bottlenecks, and existing systems.','approach.p3t':'Design','approach.p3d':'Select the right AI tools and define the implementation path.','approach.p4t':'Implement','approach.p4d':'Build practical solutions that fit the way your team works.','approach.p5t':'Optimize','approach.p5d':'Measure results, improve adoption, and expand what works.',
     'why.eyebrow':'WHY GALOREGROWTH.AI','why.title':'Business first. AI second.','why.subtitle':'Technology only matters when it improves decisions, productivity, growth, or customer experience.','why.w1t':'Outcome Focused','why.w1d':'Every engagement starts with the business result, not the tool.','why.w2t':'Built for Change','why.w2d':'We avoid unnecessary lock-in so your AI stack can evolve as the market changes.','why.w3t':'Operator Mindset','why.w3d':'Strategy is connected to implementation, workflow design, and real operating constraints.',
-    'about.eyebrow':'FOUNDER','about.title':'Enterprise rigor. Founder agility. Real-world AI execution.','about.quicktitle':'Principal AI Solutions Architect & Co-Founder','about.quickbio':'Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At Galore.AI, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.','about.expand':'Read full bio','about.collapse':'Show less','about.longtitle':'Co-Founder & Chief AI Solutions Architect','about.longp1':'Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.','about.b1':'<strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.','about.b2':'<strong>Proven Founder & Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.','about.b3':"<strong>Operational Scale & Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.",'about.longp2':'As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At Galore.AI, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.','about.role':'Principal AI Solutions Architect • Co-Founder','about.t1':'Former Adobe Division Managing Director','about.t2':'Founder with Successful Exit','about.t3':'500+ Agent Platform Builder','about.t4':'CFP® • ChFC®',
+    'about.eyebrow':'FOUNDER','about.title':'Enterprise rigor. Founder agility. Real-world AI execution.','about.quicktitle':'Principal AI Solutions Architect & Co-Founder','about.quickbio':'Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.','about.expand':'Read full bio','about.collapse':'Show less','about.longtitle':'Co-Founder & Chief AI Solutions Architect','about.longp1':'Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.','about.b1':'<strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.','about.b2':'<strong>Proven Founder & Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.','about.b3':"<strong>Operational Scale & Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.",'about.longp2':'As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.','about.role':'Principal AI Solutions Architect • Co-Founder','about.t1':'Former Adobe Division Managing Director','about.t2':'Founder with Successful Exit','about.t3':'500+ Agent Platform Builder','about.t4':'CFP® • ChFC®',
     'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
     'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
     'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation',
@@ -457,11 +480,11 @@ const translations = {
     'services.s3t':'AI Agent 落地','services.s3d':'部署面向具体任务的 AI 助手与智能体，并连接现有工具、数据与团队。',
     'services.s4t':'销售与营销 AI','services.s4d':'利用 AI 提升获客、个性化内容、跟进效率和转化流程。',
     'services.s5t':'管理层 AI 战略','services.s5d':'把快速变化的 AI 能力转化为切实可行的竞争优势和运营杠杆路线图。',
-    'services.s6t':'AI 培训与赋能','services.s6d':'帮助管理层和团队在真实业务流程中更有效、更负责任、更有信心地使用 AI。',
+    'services.s6t':'AI 培训与赋能','services.s6d':'帮助管理层和团队在真实业务流程中更有效、更负责任、更有信心地使用 AI。','services.s7t':'AI 短视频策略、培训与制作','services.s7d':'把短视频变成真正的业务增长渠道。我们帮助企业设计连续剧式、故事驱动的 AI 短视频用于营销与外联，也可以培训内部团队，或直接为企业制作内容——速度与产量远超传统制作方式。',
     'approach.eyebrow':'我们的方法','approach.title':'AI 发展太快，不应该继续投入巨资打造昨天的技术。','approach.body':'新的模型、平台和自动化工具正在高速涌现。与其重新开发市场上已经存在的能力，我们更重视围绕企业真实需求，组合最适合的现成技术并快速落地。',
     'approach.p1t':'发现','approach.p1d':'找出最具价值的问题与机会。','approach.p2t':'审计','approach.p2d':'梳理流程、数据、瓶颈和现有系统。','approach.p3t':'设计','approach.p3d':'选择合适的 AI 工具并制定实施路径。','approach.p4t':'实施','approach.p4d':'打造真正适合团队工作方式的实用方案。','approach.p5t':'优化','approach.p5d':'衡量成果、改善采用率，并扩大有效方案。',
     'why.eyebrow':'为什么选择 GALOREGROWTH.AI','why.title':'业务第一，AI 第二。','why.subtitle':'技术只有在改善决策、效率、增长或客户体验时才真正有价值。','why.w1t':'结果导向','why.w1d':'每个项目从业务成果出发，而不是从工具出发。','why.w2t':'为变化而设计','why.w2d':'避免不必要的技术锁定，让 AI 架构可以随着市场持续升级。','why.w3t':'运营者思维','why.w3d':'战略与实际实施、流程设计和企业现实条件紧密相连。',
-    'about.eyebrow':'创始人','about.title':'企业级历练、创业者速度、真正可落地的 AI 执行力。','about.quicktitle':'首席 AI 解决方案架构师兼联合创始人','about.quickbio':'Guno Sutiono 兼具《财富》500 强企业级整合的严谨经验，与连续创业者的敏捷执行力。他曾担任 Adobe 的事业部董事总经理，创办并成功出售一家移动软件顾问公司，也曾联合创办一家拥有 500 多名持牌代理人的经纪平台——并在 ChatGPT 发布仅 20 天后，将定制化的 ChatGPT 能力部署到整个销售团队。Guno 深知如何把前沿技术迅速转化为可立即产生效益的运营杠杆。在 Galore.AI，他负责甄选、测试并整合顶尖 AI 方案，打造模块化增长引擎，帮助企业在零技术负担下实现外联自动化、线索筛选与广告创意优化。','about.expand':'展开完整简介','about.collapse':'收起','about.longtitle':'联合创始人兼首席 AI 解决方案架构师','about.longp1':'企业主不需要自己变成 AI 工程师才能实现增长——他们需要的是一位真正理解企业系统、商业经济学和现实执行的人来带路。以类似 Andersen Consulting 的战略思维方式，Guno Sutiono 负责甄选、验证并组合全球领先的 AI 技术，把它们打造成能快速带来营收、执行轻盈且不增加技术负担的模块化增长引擎。','about.b1':'<strong>大规模企业级整合经验：</strong>曾任财富 500 强科技公司 Adobe 的事业部董事总经理，主导大型企业复杂的整合服务。','about.b2':'<strong>成功创业与退出经历：</strong>创办一家为多元商业行业提供关键任务型应用的移动软件顾问公司，并在五年后成功带领公司被更大的企业收购。','about.b3':'<strong>运营规模与闪电速度：</strong>联合创办一家支持 500 多名持牌代理人的人寿保险经纪平台，并亲自架构整个后台运营基础设施。ChatGPT 面世后，他在 20 天内就把生成式 AI 能力整合进代理人的原生移动应用，让一线团队远早于行业多数同行获得免费且即时的 AI 生产力。','about.longp2':'作为认证财务规划师（CFP®）和特许财务顾问（ChFC®），Guno 以严格的财务纪律看待 AI 采用。在 Galore.AI，他帮助企业避开现代 AI 的试错成本，编排最佳级别的工具——从可自动外呼和筛选潜客的语音智能体，到可显著降低获客成本的生成式内容流程——并以一个个高 ROI 模块的方式融入现有业务流程。','about.role':'首席 AI 解决方案架构师 • 联合创始人','about.t1':'前 Adobe 事业部董事总经理','about.t2':'成功创业并完成退出','about.t3':'500+ 代理人平台架构者','about.t4':'CFP® • ChFC®',
+    'about.eyebrow':'创始人','about.title':'企业级历练、创业者速度、真正可落地的 AI 执行力。','about.quicktitle':'首席 AI 解决方案架构师兼联合创始人','about.quickbio':'Guno Sutiono 兼具《财富》500 强企业级整合的严谨经验，与连续创业者的敏捷执行力。他曾担任 Adobe 的事业部董事总经理，创办并成功出售一家移动软件顾问公司，也曾联合创办一家拥有 500 多名持牌代理人的经纪平台——并在 ChatGPT 发布仅 20 天后，将定制化的 ChatGPT 能力部署到整个销售团队。Guno 深知如何把前沿技术迅速转化为可立即产生效益的运营杠杆。在 GaloreGrowth.ai，他负责甄选、测试并整合顶尖 AI 方案，打造模块化增长引擎，帮助企业在零技术负担下实现外联自动化、线索筛选与广告创意优化。','about.expand':'展开完整简介','about.collapse':'收起','about.longtitle':'联合创始人兼首席 AI 解决方案架构师','about.longp1':'企业主不需要自己变成 AI 工程师才能实现增长——他们需要的是一位真正理解企业系统、商业经济学和现实执行的人来带路。以类似 Andersen Consulting 的战略思维方式，Guno Sutiono 负责甄选、验证并组合全球领先的 AI 技术，把它们打造成能快速带来营收、执行轻盈且不增加技术负担的模块化增长引擎。','about.b1':'<strong>大规模企业级整合经验：</strong>曾任财富 500 强科技公司 Adobe 的事业部董事总经理，主导大型企业复杂的整合服务。','about.b2':'<strong>成功创业与退出经历：</strong>创办一家为多元商业行业提供关键任务型应用的移动软件顾问公司，并在五年后成功带领公司被更大的企业收购。','about.b3':'<strong>运营规模与闪电速度：</strong>联合创办一家支持 500 多名持牌代理人的人寿保险经纪平台，并亲自架构整个后台运营基础设施。ChatGPT 面世后，他在 20 天内就把生成式 AI 能力整合进代理人的原生移动应用，让一线团队远早于行业多数同行获得免费且即时的 AI 生产力。','about.longp2':'作为认证财务规划师（CFP®）和特许财务顾问（ChFC®），Guno 以严格的财务纪律看待 AI 采用。在 GaloreGrowth.ai，他帮助企业避开现代 AI 的试错成本，编排最佳级别的工具——从可自动外呼和筛选潜客的语音智能体，到可显著降低获客成本的生成式内容流程——并以一个个高 ROI 模块的方式融入现有业务流程。','about.role':'首席 AI 解决方案架构师 • 联合创始人','about.t1':'前 Adobe 事业部董事总经理','about.t2':'成功创业并完成退出','about.t3':'500+ 代理人平台架构者','about.t4':'CFP® • ChFC®',
     'cta.eyebrow':'先问对问题','cta.title':'AI 现在能在哪些地方为你的业务创造最大价值？','cta.body':'一次聚焦的讨论，通常就能找出 AI 最先应该解决的几个高价值环节。','cta.button':'预约咨询',
     'contact.eyebrow':'联系我们','contact.title':'不用浪费时间和资本，也能建立真正的 AI 优势。','contact.body':'告诉我们你最想改善什么，我们会一起判断 AI 最值得从哪里开始。','contact.note':'首次咨询 • 30 分钟 • 聚焦业务',
     'form.name':'姓名','form.email':'邮箱','form.company':'公司','form.challenge':'你希望 AI 改善什么？','form.submit':'申请咨询',
