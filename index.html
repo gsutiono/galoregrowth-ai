@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="GaloreGrowth.ai helps businesses turn practical AI into measurable growth through strategy, automation, integration and executive AI enablement." />
   <meta name="theme-color" content="#0b0b12" />
+  <link rel="icon" type="image/png" href="assets/galore-logo.png" />
+  <link rel="apple-touch-icon" href="assets/galore-logo.png" />
   <title>GaloreGrowth.ai — AI That Creates Real Business Growth</title>
   <style>
 :root {
@@ -63,7 +65,152 @@ button, input, textarea { font: inherit; }
 .desktop-nav { display: flex; gap: 30px; color: #d6d9e8; font-size: .94rem; }
 .desktop-nav a:hover { color: white; }
 .header-actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+
 .language-toggle { border: 1px solid var(--line); background: rgba(255,255,255,.04); color: white; border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+
+.menu-toggle {
+  display: none;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  color: white;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.menu-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+.mobile-nav {
+  position: fixed;
+  top: 71px; left: 14px; right: 14px;
+  z-index: 80;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(12,14,22,.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 70px rgba(0,0,0,.48);
+}
+.mobile-nav[hidden] { display: none !important; }
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 12px;
+  color: #e7eaf5;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+.mobile-nav a:last-child { border-bottom: 0; }
+.mobile-nav a:hover { background: rgba(255,255,255,.055); }
+.mobile-nav .mobile-cta {
+  margin-top: 10px;
+  justify-content: center;
+  color: #090a0f;
+  background: linear-gradient(135deg, #fff 0%, #d9e7ff 45%, #a6f0ff 100%);
+  font-weight: 800;
+}
+
+.section-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 6px;
+}
+.section-preview.center { justify-content: center; }
+.preview-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 999px;
+  background: rgba(255,255,255,.035);
+  color: #cbd1e2;
+  font-size: .82rem;
+}
+.preview-chip::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(242,202,122,.42);
+}
+
+.footer-inner { flex-wrap: wrap; }
+.footer-links {
+  display: flex; flex-wrap: wrap; gap: 14px 18px;
+  align-items: center;
+}
+.footer-links a, .legal-button {
+  color: #aeb5ca;
+  font-size: .84rem;
+  background: none; border: 0; padding: 0;
+  cursor: pointer; text-decoration: none;
+}
+.footer-links a:hover, .legal-button:hover { color: white; }
+.footer-contact {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-contact a { color: #c8cede; }
+.footer-contact a:hover { color: white; }
+
+.legal-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: 22px;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(10px);
+}
+.legal-modal[hidden] { display: none !important; }
+.legal-dialog {
+  width: min(900px, 100%);
+  max-height: min(84vh, 900px);
+  overflow: auto;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  background: #10121a;
+  box-shadow: 0 30px 100px rgba(0,0,0,.58);
+}
+.legal-header {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 24px;
+  background: rgba(16,18,26,.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.legal-header h2 { font-size: 1.45rem; margin: 0; }
+.legal-close {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  color: white; cursor: pointer; font-size: 1.2rem;
+}
+.legal-content { padding: 26px 28px 34px; color: #c7cddd; }
+.legal-content h3 { color: white; font-size: 1.05rem; margin: 26px 0 8px; }
+.legal-content p, .legal-content li { font-size: .92rem; }
+.legal-content a { color: var(--cyan); }
+.legal-meta { color: #8f96aa; font-size: .84rem; margin-bottom: 20px; }
+html[lang="zh-CN"] .legal-en { display: none; }
+html:not([lang="zh-CN"]) .legal-zh { display: none; }
+
+@media (max-width: 960px) {
+  .menu-toggle { display: inline-flex; }
+}
+@media (max-width: 640px) {
+  .footer-links, .footer-contact { justify-content: center; }
+  .legal-modal { padding: 10px; }
+  .legal-content { padding: 22px 18px 28px; }
+  .legal-header { padding: 16px 18px; }
+}
+
 
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 14px; border: 1px solid transparent; font-weight: 700; transition: .25s ease; cursor: pointer; }
 .btn:hover { transform: translateY(-2px); }
@@ -451,9 +598,21 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 
     <div class="header-actions">
       <button id="languageToggle" class="language-toggle" type="button" aria-label="Switch language">中文</button>
-      <a class="btn btn-small btn-primary" href="#contact" data-i18n="nav.cta">Book a Consultation</a>
+      <a class="btn btn-small btn-primary consultation-cta" href="#contact" data-i18n="nav.cta">Book a Consultation</a>
+      <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </header>
+
+  <nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#approach" data-i18n="nav.approach">Approach</a>
+    <a href="#why" data-i18n="nav.why">Why Us</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#podcast" data-i18n="nav.podcast">Podcast</a>
+    <a class="mobile-cta consultation-cta" href="#contact" data-i18n="nav.cta">Book a Consultation</a>
+  </nav>
 
   <main id="top">
     <section class="hero shell">
@@ -463,7 +622,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <p class="hero-lead" data-i18n="hero.lead">Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.</p>
         <p class="hero-anxiety" data-i18n="hero.anxiety">AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Book an AI Growth Consultation</a>
+          <a class="btn btn-primary consultation-cta" href="#contact" data-i18n="hero.cta1">Book an AI Growth Consultation</a>
           <a class="btn btn-secondary" href="#services" data-i18n="hero.cta2">Explore Services</a>
         </div>
         <div class="hero-note" data-i18n="hero.note">AI is the vehicle. Business transformation is the destination.</div>
@@ -500,6 +659,11 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <div class="eyebrow" data-i18n="services.eyebrow">WHAT WE DO</div>
         <h2 data-i18n="services.title">AI should improve the business — not become another expensive IT project.</h2>
         <p data-i18n="services.subtitle">We focus on high-value use cases, fast implementation, and measurable operating impact.</p>
+        <div class="section-preview">
+          <span class="preview-chip" data-i18n="preview.services1">Growth & lead generation</span>
+          <span class="preview-chip" data-i18n="preview.services2">Workflow automation</span>
+          <span class="preview-chip" data-i18n="preview.services3">AI shorts & outreach</span>
+        </div>
         <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="servicesDetail" aria-expanded="false"><span data-i18n="collapse.servicesOpen">Explore services</span><span class="chevron">⌄</span></button></div>
       </div>
 
@@ -549,6 +713,11 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <div class="section-heading reveal">
           <div class="eyebrow" data-i18n="approach.eyebrow">OUR APPROACH</div>
           <h2 data-i18n="approach.title">AI is moving too fast to keep building yesterday’s technology.</h2>
+          <div class="section-preview">
+            <span class="preview-chip" data-i18n="preview.approach1">Find the bottleneck</span>
+            <span class="preview-chip" data-i18n="preview.approach2">Assemble the right tools</span>
+            <span class="preview-chip" data-i18n="preview.approach3">Implement, measure, scale</span>
+          </div>
           <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="approachDetail" aria-expanded="false"><span data-i18n="collapse.approachOpen">See how we work</span><span class="chevron">⌄</span></button></div>
         </div>
         <div id="approachDetail" class="collapsible-detail" hidden>
@@ -569,6 +738,11 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <div class="eyebrow" data-i18n="why.eyebrow">WHY GALOREGROWTH.AI</div>
         <h2 data-i18n="why.title">Business first. AI second.</h2>
         <p data-i18n="why.subtitle">Technology only matters when it improves decisions, productivity, growth, or customer experience.</p>
+        <div class="section-preview center">
+          <span class="preview-chip" data-i18n="preview.why1">Outcome-focused</span>
+          <span class="preview-chip" data-i18n="preview.why2">Tool-agnostic</span>
+          <span class="preview-chip" data-i18n="preview.why3">Operator-led</span>
+        </div>
         <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="whyDetail" aria-expanded="false"><span data-i18n="collapse.whyOpen">Why GaloreGrowth.ai</span><span class="chevron">⌄</span></button></div>
       </div>
       <div id="whyDetail" class="why-grid collapsible-detail" hidden>
@@ -734,14 +908,150 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <img class="footer-logo" src="assets/galore-logo.png" alt="GaloreGrowth.ai logo" />
         <div><strong>GaloreGrowth.ai</strong><span data-i18n="footer.tagline">AI for measurable business growth.</span></div>
       </div>
-      <div class="footer-right">© <span id="year"></span> GaloreGrowth.ai</div>
+      <div class="footer-links">
+        <button class="legal-button" type="button" data-legal-open="privacy" data-i18n="footer.privacy">Privacy Policy</button>
+        <button class="legal-button" type="button" data-legal-open="terms" data-i18n="footer.terms">Terms of Use</button>
+        <span>© <span id="year"></span> GaloreGrowth.ai</span>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>
+        <a href="https://www.linkedin.com/in/guno-sutiono-2585531" target="_blank" rel="noopener noreferrer">LinkedIn — Guno Sutiono</a>
+      </div>
     </div>
   </footer>
+
+  <div id="privacyModal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" hidden>
+    <div class="legal-dialog">
+      <div class="legal-header">
+        <h2 id="privacyTitle" data-i18n="footer.privacy">Privacy Policy</h2>
+        <button class="legal-close" type="button" data-legal-close aria-label="Close">×</button>
+      </div>
+      <div class="legal-content">
+        <div class="legal-en">
+          <div class="legal-meta">Effective date: October 1, 2026</div>
+          <p>This Privacy Policy explains how GaloreGrowth.ai (“GaloreGrowth.ai,” “we,” “us,” or “our”) may collect, use, disclose, and protect information when you visit this website, request a consultation, apply to be a podcast guest, or otherwise communicate with us.</p>
+          <h3>1. Information We May Collect</h3>
+          <p>We may collect information you voluntarily provide, including your name, email address, company, title or role, industry, website or LinkedIn profile, business challenges, podcast topics, and other information you submit through forms or email. Our hosting and security providers may also process technical information such as IP address, browser type, device information, access time, and pages requested. If analytics or similar tools are enabled in the future, they may collect usage information as described in an updated version of this policy.</p>
+          <h3>2. How We Use Information</h3>
+          <p>We may use information to respond to inquiries, evaluate potential engagements and podcast guests, provide and improve services and website functionality, protect the website from abuse or security threats, maintain business records, and comply with applicable law.</p>
+          <h3>3. How We Share Information</h3>
+          <p>We may disclose information to service providers that help operate our website, communications, hosting, scheduling, CRM, analytics, or other business systems; to professional advisers; when required by law; or in connection with a corporate transaction. We do not currently sell personal information or share it for cross-context behavioral advertising.</p>
+          <h3>4. California Privacy Rights</h3>
+          <p>To the extent applicable law grants you rights, California residents may have rights to request access to, correction of, or deletion of personal information, and rights relating to certain sale or sharing practices and non-discrimination. To submit a privacy request, email <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>. We may need to verify your identity before completing a request.</p>
+          <h3>5. Data Retention and Security</h3>
+          <p>We retain information for as long as reasonably necessary for the purposes described above, legal obligations, dispute resolution, and legitimate business needs. We use reasonable administrative and technical safeguards, but no Internet transmission or storage system can be guaranteed to be completely secure.</p>
+          <h3>6. Cookies and Third-Party Services</h3>
+          <p>This website may use essential technologies needed for site functionality and may later use analytics or other third-party services. Third-party websites and services are governed by their own privacy practices.</p>
+          <h3>7. Children</h3>
+          <p>This website is intended for business and professional audiences and is not directed to children under 13. We do not knowingly seek personal information from children under 13.</p>
+          <h3>8. Changes</h3>
+          <p>We may update this Privacy Policy from time to time. The effective date above indicates the latest revision.</p>
+          <h3>9. Contact</h3>
+          <p>Questions or privacy requests may be sent to <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>.</p>
+        </div>
+
+        <div class="legal-zh">
+          <div class="legal-meta">生效日期：2026年10月1日</div>
+          <p>本隐私政策说明 GaloreGrowth.ai（“我们”）在您访问本网站、申请咨询、申请成为播客嘉宾或与我们联系时，可能如何收集、使用、披露和保护相关信息。</p>
+          <h3>1. 我们可能收集的信息</h3>
+          <p>我们可能收集您主动提供的信息，包括姓名、邮箱、公司、职务、行业、网站或 LinkedIn、业务挑战、播客主题，以及您通过表格或邮件提交的其他内容。网站托管与安全服务商也可能处理 IP 地址、浏览器、设备、访问时间及请求页面等技术信息。如果未来启用分析工具，我们会在更新后的政策中说明相关使用方式。</p>
+          <h3>2. 信息用途</h3>
+          <p>我们可能使用这些信息回复咨询、评估潜在合作及播客嘉宾、提供与改善服务和网站功能、防范滥用和安全风险、保存合理业务记录，以及遵守适用法律。</p>
+          <h3>3. 信息披露</h3>
+          <p>我们可能向协助网站托管、通讯、预约、CRM、分析或其他业务系统的服务商披露必要信息，也可能向专业顾问披露，或在法律要求及公司交易情况下披露。目前我们不出售个人信息，也不为跨情境行为广告目的分享个人信息。</p>
+          <h3>4. 加州隐私权</h3>
+          <p>在适用法律赋予相关权利的范围内，加州居民可能有权要求访问、更正或删除个人信息，并享有与某些“出售或分享”行为以及不受歧视相关的权利。隐私请求请发送至 <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>。处理请求前，我们可能需要核实身份。</p>
+          <h3>5. 保存与安全</h3>
+          <p>我们会在实现上述目的、履行法律义务、处理争议和合理业务需要所必需的期限内保存信息。我们会采取合理的行政和技术保护措施，但任何互联网传输或存储系统都无法保证绝对安全。</p>
+          <h3>6. Cookies 与第三方服务</h3>
+          <p>网站可能使用维持基本功能所需的技术，并可能在未来加入分析或其他第三方服务。第三方网站与服务受其自身隐私政策约束。</p>
+          <h3>7. 儿童</h3>
+          <p>本网站面向商业与专业人士，并非针对 13 岁以下儿童。我们不会主动收集 13 岁以下儿童的个人信息。</p>
+          <h3>8. 政策更新</h3>
+          <p>我们可能不时更新本隐私政策，以上生效日期代表最近一次修订。</p>
+          <h3>9. 联系我们</h3>
+          <p>任何隐私问题或请求，请发送至 <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="termsModal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" hidden>
+    <div class="legal-dialog">
+      <div class="legal-header">
+        <h2 id="termsTitle" data-i18n="footer.terms">Terms of Use</h2>
+        <button class="legal-close" type="button" data-legal-close aria-label="Close">×</button>
+      </div>
+      <div class="legal-content">
+        <div class="legal-en">
+          <div class="legal-meta">Effective date: October 1, 2026</div>
+          <p>These Terms of Use (“Terms”) govern your access to and use of the GaloreGrowth.ai website. By using this website, you agree to these Terms. If you do not agree, please do not use the website.</p>
+          <h3>1. Informational Website; Separate Service Agreements</h3>
+          <p>This website provides general information about GaloreGrowth.ai, AI strategy, implementation, training, media production, podcast content, and related services. Any paid consulting, implementation, production, training, or other engagement may be governed by a separate written agreement. If a separate agreement conflicts with these Terms, the separate agreement controls for that engagement.</p>
+          <h3>2. No Guaranteed Business Results</h3>
+          <p>Examples of potential improvements, including lead growth, revenue growth, productivity, cost reduction, or marketing performance, are illustrative goals rather than guarantees. Actual results depend on many factors outside our control, including market conditions, execution, data quality, offer quality, budget, competition, and third-party platforms.</p>
+          <h3>3. AI and Professional Advice Disclaimer</h3>
+          <p>AI systems and outputs can be incomplete, inaccurate, outdated, or unsuitable for a particular use. Website content and AI-related examples are not legal, tax, accounting, investment, medical, or other regulated professional advice. You are responsible for appropriate human review and professional advice before relying on AI-generated or website information for consequential decisions.</p>
+          <h3>4. Intellectual Property</h3>
+          <p>Unless otherwise stated, the website design, branding, text, graphics, videos, training materials, podcast materials, and other original content are owned by or licensed to GaloreGrowth.ai and are protected by applicable intellectual-property laws. You may view and use the website for lawful personal or internal business purposes, but may not copy, republish, sell, scrape, reverse engineer, or commercially exploit protected content without permission.</p>
+          <h3>5. User Submissions and Podcast Guest Applications</h3>
+          <p>You represent that information you submit is accurate and that you have the right to provide it. Submitting an inquiry or podcast guest application does not create a client relationship, partnership, employment relationship, or obligation for GaloreGrowth.ai to respond, engage, publish, or feature any person or organization. Any recording, publication, publicity, or content rights for an actual podcast appearance may be addressed separately with the guest.</p>
+          <h3>6. Acceptable Use</h3>
+          <p>You may not use the website to violate law, infringe rights, transmit malicious code, attempt unauthorized access, interfere with website operation, impersonate others, harvest data unlawfully, or misuse forms and communication channels.</p>
+          <h3>7. Third-Party Services and Links</h3>
+          <p>The website may reference or link to third-party platforms, AI tools, social networks, scheduling systems, hosting providers, or other services. We do not control those services and are not responsible for their availability, security, content, terms, or privacy practices.</p>
+          <h3>8. Disclaimer of Warranties</h3>
+          <p>To the fullest extent permitted by law, the website is provided “as is” and “as available,” without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, or uninterrupted availability.</p>
+          <h3>9. Limitation of Liability</h3>
+          <p>To the fullest extent permitted by law, GaloreGrowth.ai and its owners, personnel, contractors, and affiliates will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, revenue, data, goodwill, or business opportunities arising from or related to website use. To the extent liability cannot be excluded, aggregate liability arising solely from website use will not exceed the greater of US$100 or the amount you paid GaloreGrowth.ai specifically for access to this website during the preceding 12 months.</p>
+          <h3>10. Indemnification</h3>
+          <p>To the extent permitted by law, you agree to indemnify and hold harmless GaloreGrowth.ai and its owners, personnel, contractors, and affiliates from claims, losses, liabilities, and reasonable costs arising from your unlawful misuse of the website, your violation of these Terms, or your infringement of another party’s rights.</p>
+          <h3>11. Governing Law</h3>
+          <p>These Terms are governed by the laws of the State of California, without regard to conflict-of-law principles. Any dispute relating solely to website use will be brought in an appropriate state or federal court located in California, unless applicable law requires otherwise.</p>
+          <h3>12. Changes; Severability</h3>
+          <p>We may update these Terms from time to time. If any provision is held unenforceable, the remaining provisions remain in effect. Our failure to enforce a provision is not a waiver.</p>
+          <h3>13. Contact</h3>
+          <p>Questions about these Terms may be sent to <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>.</p>
+        </div>
+
+        <div class="legal-zh">
+          <div class="legal-meta">生效日期：2026年10月1日</div>
+          <p>本使用条款（“条款”）适用于您对 GaloreGrowth.ai 网站的访问和使用。使用本网站即表示您同意这些条款；如不同意，请停止使用本网站。</p>
+          <h3>1. 网站信息与独立服务协议</h3>
+          <p>本网站提供关于 GaloreGrowth.ai、AI 战略、实施、培训、媒体制作、播客内容及相关服务的一般信息。任何付费顾问、实施、制作、培训或其他合作可能由另行签署的书面协议管理；如书面协议与本条款冲突，则针对该项目以书面协议为准。</p>
+          <h3>2. 不保证商业结果</h3>
+          <p>网站中有关线索增长、营收增长、生产力、成本降低或营销表现的例子仅代表可能的目标，并不构成保证。实际结果受市场、执行、数据质量、产品/服务本身、预算、竞争和第三方平台等多种因素影响。</p>
+          <h3>3. AI 与专业意见免责声明</h3>
+          <p>AI 系统及其输出可能不完整、不准确、过时或不适合特定用途。网站内容及 AI 示例不构成法律、税务、会计、投资、医疗或其他受监管的专业意见。对于重要决策，您有责任进行适当的人类审核，并在需要时咨询相应专业人士。</p>
+          <h3>4. 知识产权</h3>
+          <p>除非另有说明，网站设计、品牌、文字、图像、视频、培训材料、播客材料及其他原创内容均由 GaloreGrowth.ai 所有或合法使用，并受相关知识产权法律保护。您可以为合法的个人或内部商业目的浏览和使用网站，但未经许可不得复制、再发布、销售、抓取、逆向工程或商业利用受保护内容。</p>
+          <h3>5. 用户提交与播客嘉宾申请</h3>
+          <p>您确认所提交的信息真实准确，并有权提供该信息。提交咨询或播客嘉宾申请不会自动建立客户、合伙、雇佣或其他关系，也不构成 GaloreGrowth.ai 必须回复、合作、发布或邀请的义务。实际播客录制、发布、宣传和内容权利可在确认嘉宾后另行约定。</p>
+          <h3>6. 可接受使用</h3>
+          <p>您不得利用本网站违法、侵犯他人权利、传播恶意代码、尝试未经授权访问、干扰网站运行、冒充他人、非法收集数据或滥用网站表格及沟通渠道。</p>
+          <h3>7. 第三方服务与链接</h3>
+          <p>本网站可能引用或链接第三方 AI 工具、社交平台、预约系统、托管服务或其他服务。我们无法控制这些第三方，也不对其可用性、安全性、内容、条款或隐私做法负责。</p>
+          <h3>8. 免责声明</h3>
+          <p>在法律允许的最大范围内，本网站按“现状”和“可用状态”提供，不提供任何明示或默示保证，包括适销性、特定用途适用性、不侵权、准确性或持续可用性的保证。</p>
+          <h3>9. 责任限制</h3>
+          <p>在法律允许的最大范围内，GaloreGrowth.ai 及其所有人、人员、承包商和关联方不对因网站使用产生的间接、附带、特殊、后果性、惩罚性损失，或利润、营收、数据、商誉及商业机会损失承担责任。对于法律不能排除的责任，仅因网站使用产生的累计责任以 100 美元或您过去 12 个月专门为访问本网站支付给 GaloreGrowth.ai 的金额（取较高者）为上限。</p>
+          <h3>10. 赔偿</h3>
+          <p>在法律允许范围内，因您违法使用本网站、违反本条款或侵犯第三方权利而产生的索赔、损失、责任和合理费用，您同意对 GaloreGrowth.ai 及其所有人、人员、承包商和关联方进行赔偿并使其免责。</p>
+          <h3>11. 适用法律</h3>
+          <p>本条款受美国加利福尼亚州法律管辖，不考虑法律冲突原则。仅与网站使用相关的争议，应提交加州有管辖权的州或联邦法院处理，但适用法律另有要求的除外。</p>
+          <h3>12. 修改与可分割性</h3>
+          <p>我们可能不时更新本条款。如任何条款被认定不可执行，其余条款仍继续有效。我们未执行某项条款不构成对该条款的放弃。</p>
+          <h3>13. 联系我们</h3>
+          <p>有关本条款的问题，请发送至 <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
 const translations = {
   en: {
-    'nav.services':'Services','nav.approach':'Approach','nav.why':'Why Us','nav.about':'About','nav.podcast':'Podcast','nav.cta':'Book a Consultation',
+    'nav.services':'Services','nav.approach':'Approach','nav.why':'Why Us','nav.about':'About','nav.podcast':'Podcast','nav.cta':'Book a Consultation','preview.services1':'Growth & lead generation','preview.services2':'Workflow automation','preview.services3':'AI shorts & outreach','preview.approach1':'Find the bottleneck','preview.approach2':'Assemble the right tools','preview.approach3':'Implement, measure, scale','preview.why1':'Outcome-focused','preview.why2':'Tool-agnostic','preview.why3':'Operator-led','footer.privacy':'Privacy Policy','footer.terms':'Terms of Use',
     'hero.eyebrow':'BUSINESS GROWTH • POWERED BY AI',
     'hero.title':'Turn AI into <span>real business growth.</span>',
     'hero.lead':'Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.',
@@ -766,7 +1076,7 @@ const translations = {
     'footer.tagline':'AI for measurable business growth.'
   },
   zh: {
-    'nav.services':'服务','nav.approach':'方法','nav.why':'为何选择我们','nav.about':'关于','nav.podcast':'播客','nav.cta':'预约咨询',
+    'nav.services':'服务','nav.approach':'方法','nav.why':'为何选择我们','nav.about':'关于','nav.podcast':'播客','nav.cta':'预约咨询','preview.services1':'增长与获客','preview.services2':'工作流自动化','preview.services3':'AI 短视频与外联','preview.approach1':'找出业务瓶颈','preview.approach2':'组合最合适的工具','preview.approach3':'实施、衡量、规模化','preview.why1':'结果导向','preview.why2':'工具中立','preview.why3':'运营者主导','footer.privacy':'隐私政策','footer.terms':'使用条款',
     'hero.eyebrow':'业务增长 • AI 驱动',
     'hero.title':'让 AI 变成<span>真正的业务增长。</span>',
     'hero.lead':'你的企业不需要更多 AI，而是需要更多客户、更高收入和更少业务摩擦。无论目标是每周多 10 个合格线索、更快跟进、更低获客成本，还是朝营收翻倍迈进，GaloreGrowth.ai 都从业务结果出发，再围绕这个结果组合最合适的增长系统。',
@@ -801,6 +1111,10 @@ const heroVideoSource = document.getElementById('heroVideoSource');
 const videoSoundToggle = document.getElementById('videoSoundToggle');
 const soundIconMuted = document.getElementById('soundIconMuted');
 const soundIconOn = document.getElementById('soundIconOn');
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav = document.getElementById('mobileNav');
+const contactFormDetail = document.getElementById('contactFormDetail');
+const contactToggle = document.querySelector('[data-collapse-target="contactFormDetail"]');
 let bioExpanded = false;
 
 function refreshBioToggleText() {
@@ -881,6 +1195,69 @@ document.querySelectorAll('[data-collapse-target]').forEach(btn => {
     if (detail) detail.hidden = !opening;
     refreshSectionToggleText();
   });
+});
+
+
+if (menuToggle && mobileNav) {
+  menuToggle.addEventListener('click', () => {
+    const opening = menuToggle.getAttribute('aria-expanded') !== 'true';
+    menuToggle.setAttribute('aria-expanded', String(opening));
+    mobileNav.hidden = !opening;
+    menuToggle.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+  });
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      mobileNav.hidden = true;
+      menuToggle.setAttribute('aria-label', 'Open menu');
+    });
+  });
+}
+
+document.querySelectorAll('.consultation-cta').forEach(link => {
+  link.addEventListener('click', () => {
+    if (contactToggle && contactFormDetail) {
+      contactToggle.setAttribute('aria-expanded', 'true');
+      contactFormDetail.hidden = false;
+      refreshSectionToggleText();
+    }
+  });
+});
+
+document.querySelectorAll('[data-legal-open]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modal = document.getElementById(btn.dataset.legalOpen + 'Modal');
+    if (modal) {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      const close = modal.querySelector('[data-legal-close]');
+      if (close) close.focus();
+    }
+  });
+});
+
+function closeLegalModal(modal) {
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-legal-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeLegalModal(btn.closest('.legal-modal')));
+});
+document.querySelectorAll('.legal-modal').forEach(modal => {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLegalModal(modal);
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.legal-modal:not([hidden])').forEach(closeLegalModal);
+    if (mobileNav && !mobileNav.hidden) {
+      mobileNav.hidden = true;
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
 });
 
 bioToggle.addEventListener('click', () => {
