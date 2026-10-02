@@ -420,33 +420,90 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   box-shadow: var(--shadow);
 }
 .podcast-screen {
-  min-height: 265px;
-  display: grid; place-items: center;
-  position: relative; overflow: hidden;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
   background:
-    linear-gradient(135deg, rgba(143,108,255,.18), rgba(88,216,255,.08)),
-    #10131c;
+    radial-gradient(circle at 50% 18%, rgba(88,216,255,.10), transparent 34%),
+    linear-gradient(135deg, rgba(143,108,255,.10), rgba(88,216,255,.045)),
+    #080a10;
 }
-.podcast-screen::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,.08) 45%, transparent 75%);
-  transform: translateX(-100%);
-  animation: podcastSheen 6s ease-in-out infinite;
+.podcast-video-wrap {
+  position: relative;
+  width: min(100%, 300px);
+  aspect-ratio: 512 / 892;
 }
-.podcast-play {
-  width: 74px; height: 74px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: rgba(255,255,255,.11);
-  border: 1px solid rgba(255,255,255,.18);
-  backdrop-filter: blur(12px);
-  position: relative; z-index: 2;
-  box-shadow: 0 14px 40px rgba(0,0,0,.3);
+.podcast-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #000;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 54px rgba(0,0,0,.48);
 }
-.podcast-play svg { width: 30px; height: 30px; margin-left: 4px; }
+.podcast-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  background:
+    linear-gradient(180deg, rgba(3,7,14,.08), rgba(3,7,14,.48)),
+    radial-gradient(circle at 50% 50%, rgba(62,166,216,.08), transparent 42%);
+  transition: background .2s ease, opacity .2s ease;
+}
+.podcast-play-overlay[hidden] { display: none !important; }
+.podcast-play-overlay:hover {
+  background:
+    linear-gradient(180deg, rgba(3,7,14,.04), rgba(3,7,14,.38)),
+    radial-gradient(circle at 50% 50%, rgba(62,166,216,.16), transparent 46%);
+}
+.podcast-play-button {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #07121a;
+  background: linear-gradient(135deg, #8de0ff, #3ea6d8);
+  border: 1px solid rgba(255,255,255,.65);
+  box-shadow: 0 14px 42px rgba(0,0,0,.42), 0 0 34px rgba(62,166,216,.24);
+  transform: scale(1);
+  transition: transform .2s ease;
+}
+.podcast-play-overlay:hover .podcast-play-button { transform: scale(1.06); }
+.podcast-play-button svg { width: 30px; height: 30px; margin-left: 4px; }
 .podcast-feature-copy { padding: 24px 26px 28px; }
 .podcast-feature-copy h3 { font-size: 1.35rem; margin-bottom: 8px; }
 .podcast-feature-copy p { color: var(--muted); margin: 0; }
+.podcast-interview-description {
+  position: relative;
+  margin-top: 4px;
+}
+.podcast-interview-description.is-collapsed .podcast-interview-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.podcast-interview-more {
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #78c9ed;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.podcast-interview-more:hover { color: #a5e3ff; }
 .podcast-topics-toggle-wrap { margin-top: 30px; }
 
 .podcast-library {
@@ -855,14 +912,27 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           </div>
 
           <div class="podcast-feature reveal delay-1">
-            <div class="podcast-screen" aria-label="Podcast video area">
-              <div class="podcast-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"/></svg>
+            <div class="podcast-screen" aria-label="Podcast interview with Samuel Hung">
+              <div class="podcast-video-wrap">
+                <video id="podcastInterviewVideo" class="podcast-video" playsinline preload="metadata">
+                  <source src="galoregrowth-podcast-preview.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <button id="podcastPlayOverlay" class="podcast-play-overlay" type="button" aria-label="Play interview">
+                  <span class="podcast-play-button" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M8.5 6.2v11.6L18 12 8.5 6.2Z" fill="currentColor"/>
+                    </svg>
+                  </span>
+                </button>
               </div>
             </div>
             <div class="podcast-feature-copy">
-              <h3 data-i18n="podcast.featureTitle">Future episodes will play right here.</h3>
-              <p data-i18n="podcast.featureBody">Watch full conversations, meet the leaders behind the stories, and take away practical lessons you can apply to your own business.</p>
+              <h3 data-i18n="podcast.featureTitle">Samuel Hung: Planning the AI-era One Person Company</h3>
+              <div id="podcastInterviewDescription" class="podcast-interview-description is-collapsed">
+                <p class="podcast-interview-text" data-i18n="podcast.featureBody">In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.</p>
+                <button id="podcastInterviewMore" class="podcast-interview-more" type="button" aria-expanded="false" data-i18n="podcast.readMore">Read more</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1134,7 +1204,7 @@ const translations = {
     'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
     'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
     'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation','form.sending':'Sending…','form.success':'Thank you. Your consultation request has been sent.','form.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','form.verify':'Please complete the security check and try again.','form.successTitle':'Request received','form.successBody':'Thank you. Your consultation request is safely in our inbox. We’ll review it and follow up at the email address you provided.','form.again':'Send another request',
-    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Future episodes will play right here.','podcast.featureBody':'Watch full conversations, meet the leaders behind the stories, and take away practical lessons you can apply to your own business.','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','guest.verify':'Please complete the security check and try again.','guest.successTitle':'Guest interest received','guest.successBody':'Thank you for sharing your story. We’ll review your submission and reach out if it is a fit for an upcoming conversation.','guest.again':'Submit another',
+    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Samuel Hung: Planning the AI-era One Person Company','podcast.featureBody':'In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.','podcast.readMore':'Read more','podcast.readLess':'Show less','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','guest.verify':'Please complete the security check and try again.','guest.successTitle':'Guest interest received','guest.successBody':'Thank you for sharing your story. We’ll review your submission and reach out if it is a fit for an upcoming conversation.','guest.again':'Submit another',
     'footer.tagline':'AI for measurable business growth.'
   },
   zh: {
@@ -1159,7 +1229,7 @@ const translations = {
     'cta.eyebrow':'先问对问题','cta.title':'AI 现在能在哪些地方为你的业务创造最大价值？','cta.body':'一次聚焦的讨论，通常就能找出 AI 最先应该解决的几个高价值环节。','cta.button':'预约咨询',
     'contact.eyebrow':'联系我们','contact.title':'不用浪费时间和资本，也能建立真正的 AI 优势。','contact.body':'告诉我们你最想改善什么，我们会一起判断 AI 最值得从哪里开始。','contact.note':'首次咨询 • 30 分钟 • 聚焦业务',
     'form.name':'姓名','form.email':'邮箱','form.company':'公司','form.challenge':'你希望 AI 改善什么？','form.submit':'申请咨询','form.sending':'发送中…','form.success':'谢谢，你的咨询申请已经发送。','form.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','form.verify':'请先完成安全验证后再提交。','form.successTitle':'申请已收到','form.successBody':'谢谢。你的咨询申请已经安全进入我们的邮箱，我们会查看内容，并通过你填写的邮箱与你联系。','form.again':'再提交一份',
-    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'为今天的商业世界，提供一张更清晰的地图和指南针。','podcast.body':'我们正在打造一个视频播客，邀请各行业领袖与企业主坦诚分享：什么正在奏效、什么正在改变、今天真正困难的是什么。我们的目标，是让观众更清楚地理解当下商业格局，并从真实经验中学会如何正确导航。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'观看完整对话，认识故事背后的商业领袖，并带走可以应用到自己企业中的实战启发。','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向','guest.sending':'发送中…','guest.success':'谢谢，你的播客嘉宾申请已经发送。','guest.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','guest.verify':'请先完成安全验证后再提交。','guest.successTitle':'嘉宾申请已收到','guest.successBody':'谢谢你分享自己的故事。我们会审核申请，如果适合未来的访谈主题，会与你联系。','guest.again':'再提交一份',
+    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'为今天的商业世界，提供一张更清晰的地图和指南针。','podcast.body':'我们正在打造一个视频播客，邀请各行业领袖与企业主坦诚分享：什么正在奏效、什么正在改变、今天真正困难的是什么。我们的目标，是让观众更清楚地理解当下商业格局，并从真实经验中学会如何正确导航。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'在这段访谈中，中国企业顾问与导师、畅销书作者洪豪泽（Samuel Hung）谈 AI 崛起如何改变创业方式，以及他为何正在帮助企业家规划 OPC（One Person Company，一人公司）。洪老师长期专注于销售技巧、团队建设与企业辅导，并活跃于演讲与培训领域。访谈进一步讨论：当 AI 把过去需要多人协作的工作逐步自动化，一个创业者如何把个人专业能力、AI 工具、流程与商业模式重新组合，形成更轻、更快、更具杠杆效应的公司结构；同时也探讨哪些能力仍必须由人来判断、沟通、建立信任与领导。重点不是为了用 AI 而用 AI，而是如何用 AI 重新设计一家真正围绕商业价值、可持续经营的 OPC。','podcast.readMore':'展开访谈介绍','podcast.readLess':'收起介绍','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向','guest.sending':'发送中…','guest.success':'谢谢，你的播客嘉宾申请已经发送。','guest.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','guest.verify':'请先完成安全验证后再提交。','guest.successTitle':'嘉宾申请已收到','guest.successBody':'谢谢你分享自己的故事。我们会审核申请，如果适合未来的访谈主题，会与你联系。','guest.again':'再提交一份',
     'footer.tagline':'用 AI 创造可衡量的业务增长。'
   }
 };
@@ -1488,6 +1558,83 @@ if (guestForm) {
 
 initTurnstile();
 
-  </script>
+  
+// Podcast interview: click-to-play with sound, pause when leaving the page/viewport,
+// and expandable bilingual description.
+const podcastInterviewVideo = document.getElementById('podcastInterviewVideo');
+const podcastPlayOverlay = document.getElementById('podcastPlayOverlay');
+const podcastInterviewDescription = document.getElementById('podcastInterviewDescription');
+const podcastInterviewMore = document.getElementById('podcastInterviewMore');
+
+function showPodcastPlayOverlay() {
+  if (podcastPlayOverlay) podcastPlayOverlay.hidden = false;
+}
+function hidePodcastPlayOverlay() {
+  if (podcastPlayOverlay) podcastPlayOverlay.hidden = true;
+}
+
+if (podcastInterviewVideo && podcastPlayOverlay) {
+  podcastInterviewVideo.muted = false;
+  podcastInterviewVideo.volume = 1;
+
+  podcastPlayOverlay.addEventListener('click', async () => {
+    try {
+      podcastInterviewVideo.muted = false;
+      podcastInterviewVideo.volume = 1;
+      podcastInterviewVideo.controls = true;
+      await podcastInterviewVideo.play();
+      hidePodcastPlayOverlay();
+    } catch (err) {
+      console.error('Podcast playback failed', err);
+    }
+  });
+
+  podcastInterviewVideo.addEventListener('playing', hidePodcastPlayOverlay);
+  podcastInterviewVideo.addEventListener('pause', () => {
+    if (!podcastInterviewVideo.ended) showPodcastPlayOverlay();
+  });
+  podcastInterviewVideo.addEventListener('ended', () => {
+    podcastInterviewVideo.currentTime = 0;
+    showPodcastPlayOverlay();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && !podcastInterviewVideo.paused) {
+      podcastInterviewVideo.pause();
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    const podcastObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting && !podcastInterviewVideo.paused) {
+          podcastInterviewVideo.pause();
+        }
+      });
+    }, { threshold: 0.15 });
+    podcastObserver.observe(podcastInterviewVideo);
+  }
+}
+
+function syncPodcastReadMoreLabel() {
+  if (!podcastInterviewMore || !podcastInterviewDescription) return;
+  const expanded = podcastInterviewMore.getAttribute('aria-expanded') === 'true';
+  const key = expanded ? 'podcast.readLess' : 'podcast.readMore';
+  if (translations[currentLang] && translations[currentLang][key]) {
+    podcastInterviewMore.textContent = translations[currentLang][key];
+  }
+}
+
+if (podcastInterviewMore && podcastInterviewDescription) {
+  podcastInterviewMore.addEventListener('click', () => {
+    const expanded = podcastInterviewMore.getAttribute('aria-expanded') === 'true';
+    podcastInterviewMore.setAttribute('aria-expanded', String(!expanded));
+    podcastInterviewDescription.classList.toggle('is-collapsed', expanded);
+    syncPodcastReadMoreLabel();
+  });
+  syncPodcastReadMoreLabel();
+}
+
+</script>
 </body>
 </html>
