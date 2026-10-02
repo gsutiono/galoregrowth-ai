@@ -1,138 +1,97 @@
-# GaloreGrowth.ai — Cloudflare Worker Backend
+# GaloreGrowth.ai v8 — Cloudflare Forms, Turnstile & Lead Analytics
 
-This project serves the static GaloreGrowth.ai website and adds two Cloudflare Worker API endpoints:
+This package keeps the working Cloudflare Email + Analytics Engine setup and adds:
 
-- `POST /api/contact`
-- `POST /api/podcast-guest`
+1. Cloudflare Turnstile support for both public forms.
+2. A polished bilingual thank-you state after successful submissions.
+3. A password-protected lead dashboard at `/admin/leads`.
 
-Both endpoints:
-1. validate the submitted form,
-2. reject simple bot/honeypot submissions,
-3. email the submission to `guno@galoregrowth.ai`,
-4. set Reply-To to the visitor's email,
-5. record privacy-conscious custom analytics in Workers Analytics Engine.
+The site **continues to work immediately after deployment** even before Turnstile/admin secrets are configured. Turnstile protection becomes enforced only after the Turnstile secret is added.
 
-The Analytics Engine dataset stores event metadata only (form type, language, success/failure, country, path, referrer host). It does NOT store the visitor's name, email, company, or message.
+## Existing email flow
 
-## Cloudflare setup before deploying
+- From: `contact@galoregrowth.ai`
+- To: `guno@galoregrowth.ai`
+- Reply-To: visitor's email
 
-### 1. Verify the destination inbox
-In Cloudflare Dashboard:
-**Email > Email Routing > Destination addresses**
+## Step A — Deploy this package first
 
-Add and verify:
-`guno@galoregrowth.ai`
+Keep the repository structure exactly as provided and push to GitHub. Cloudflare should redeploy automatically.
 
-Cloudflare requires the destination address to be verified before a `send_email` binding can send to it.
-
-### 2. Configure sending for galoregrowth.ai
-In Cloudflare Dashboard:
-**Compute / Email Service > Email Sending**
-
-Onboard `galoregrowth.ai` if the Email Sending option is available for your account. Cloudflare may add SPF/DKIM/DMARC-related DNS records automatically.
-
-The Worker sends website notifications as:
-`contact@galoregrowth.ai`
-
-The visitor's email is used as `Reply-To`, so pressing Reply in Gmail replies directly to the prospect.
-
-If the dashboard asks you to approve/allow the sender address, allow:
-`contact@galoregrowth.ai`
-
-### 3. GitHub repository structure
-
-Your repository should look like:
-
-```
-galoregrowth-ai/
-├── package.json
-├── wrangler.jsonc
-├── src/
-│   └── index.js
-└── public/
-    ├── index.html
-    ├── favicon.ico
-    ├── galoregrowth-hero-en.mp4
-    ├── galoregrowth-hero-zh.mp4
-    └── assets/
-        ├── galore-logo.png
-        └── guno-portrait.png
-```
-
-### 4. Cloudflare Git deployment settings
-
-Keep the GitHub repository connected to the existing Worker.
-
-Recommended settings:
-- Production branch: `main`
-- Build command: `npm install`
-- Deploy command: `npx wrangler deploy`
-- Root directory: `/`
-
-If Cloudflare automatically installs package dependencies, Build command may also be left blank. The critical deploy command is:
-`npx wrangler deploy`
-
-### 5. Test the backend
-
-After deployment, open:
+After deployment, test:
 
 `https://galoregrowth.ai/api/health`
 
-Expected JSON:
-```json
-{
-  "ok": true,
-  "service": "GaloreGrowth.ai",
-  "emailBinding": true,
-  "analyticsBinding": true
-}
-```
+The existing email and Analytics Engine bindings should remain `true`.
 
-Then submit one test consultation from the website.
+## Step B — Enable Turnstile
 
-## Analytics
+In Cloudflare Dashboard, open **Turnstile** and create a widget:
 
-Dataset:
-`galoregrowth_leads`
+- Widget name: `GaloreGrowth.ai Forms`
+- Hostname: `galoregrowth.ai`
+- Mode: Managed
 
-The dataset is automatically created after the first write.
+Cloudflare will give you a **Site Key** and **Secret Key**.
 
-Field mapping:
-- `blob1` = form type (`consultation` or `podcast_guest`)
-- `blob2` = language (`en` or `zh`)
-- `blob3` = outcome (`success`, `validation_error`, `email_error`, `honeypot`)
-- `blob4` = visitor country from Cloudflare request metadata
-- `blob5` = API path
-- `blob6` = referrer hostname or `direct`
-- `double1` = 1
-- `index1` = form type
+In **Workers & Pages → galoregrowth-ai → Settings → Variables and Secrets**, add:
 
-Example SQL — submissions by form and result:
+- Variable: `TURNSTILE_SITE_KEY` = your public site key
+- Secret: `TURNSTILE_SECRET_KEY` = your secret key
 
-```sql
-SELECT
-  blob1 AS form_type,
-  blob3 AS outcome,
-  SUM(_sample_interval * double1) AS events
-FROM galoregrowth_leads
-WHERE timestamp >= NOW() - INTERVAL '30' DAY
-GROUP BY form_type, outcome
-ORDER BY events DESC
-```
+Redeploy once after saving them.
 
-Example SQL — successful leads by language:
+The Worker validates every Turnstile token server-side with Cloudflare Siteverify. Failed verification is logged to Analytics Engine as `turnstile_failed`.
 
-```sql
-SELECT
-  blob2 AS language,
-  SUM(_sample_interval * double1) AS successful_leads
-FROM galoregrowth_leads
-WHERE blob3 = 'success'
-  AND timestamp >= NOW() - INTERVAL '30' DAY
-GROUP BY language
-ORDER BY successful_leads DESC
-```
+## Step C — Enable the private Lead Analytics dashboard
 
-## Recommended next security upgrade
+The dashboard queries your existing Analytics Engine dataset (`galoregrowth_leads`) through Cloudflare's SQL API.
 
-Once the forms are working, add Cloudflare Turnstile to both forms. The Worker already has honeypot protection, but Turnstile is the better defense once public traffic grows.
+### 1. Create an Analytics read API token
+
+Cloudflare Dashboard → **My Profile / API Tokens → Create Token → Create Custom Token**
+
+Permission:
+
+`Account → Account Analytics → Read`
+
+Restrict it to your GaloreGrowth.ai Cloudflare account if possible.
+
+### 2. Add three Worker variables/secrets
+
+Workers & Pages → `galoregrowth-ai` → Settings → Variables and Secrets:
+
+- Variable: `CF_ACCOUNT_ID` = your 32-character Cloudflare account ID
+- Secret: `CF_ANALYTICS_TOKEN` = the API token created above
+- Secret: `ADMIN_PASSWORD` = a strong password only you know
+
+Redeploy.
+
+### 3. Open the dashboard
+
+`https://galoregrowth.ai/admin/leads`
+
+Your browser will ask for Basic Auth:
+
+- Username: `guno`
+- Password: the value you set for `ADMIN_PASSWORD`
+
+The dashboard shows the last 30 days of:
+
+- successful consultation submissions
+- successful podcast guest submissions
+- English vs Chinese leads
+- daily successful lead trend
+- top visitor countries
+- success / validation / Turnstile / email-error outcomes
+
+No lead names, email addresses, companies, or message content are stored in Analytics Engine.
+
+## Health check
+
+`/api/health` now also reports:
+
+- `turnstileConfigured`
+- `adminAnalyticsConfigured`
+
+When everything is complete, both should be `true`.
