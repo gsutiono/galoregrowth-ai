@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "galoregrowth-ai",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "GaloreGrowth.ai@gmail.com"
+    }
+  ],
+  "analytics_engine_datasets": [
+    {
+      "binding": "LEADS_ANALYTICS",
+      "dataset": "galoregrowth_leads"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

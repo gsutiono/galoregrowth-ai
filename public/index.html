@@ -1,0 +1,1365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GaloreGrowth.ai helps businesses turn practical AI into measurable growth through strategy, automation, integration and executive AI enablement." />
+  <meta name="theme-color" content="#0b0b12" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/galore-logo.png" />
+  <link rel="apple-touch-icon" href="assets/galore-logo.png" />
+  <title>GaloreGrowth.ai — AI That Creates Real Business Growth</title>
+  <style>
+:root {
+  --bg: #090a0f;
+  --bg-2: #11131c;
+  --panel: rgba(255,255,255,.055);
+  --panel-strong: rgba(255,255,255,.08);
+  --text: #f7f8ff;
+  --muted: #a8adc2;
+  --line: rgba(255,255,255,.11);
+  --violet: #8f6cff;
+  --cyan: #58d8ff;
+  --gold: #f2ca7a;
+  --max: 1180px;
+  --radius: 24px;
+  --shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: .025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  z-index: 20;
+}
+.bg-orb { position: fixed; width: 500px; height: 500px; border-radius: 50%; filter: blur(100px); opacity: .12; pointer-events: none; }
+.orb-a { background: var(--violet); top: -180px; right: -80px; }
+.orb-b { background: var(--cyan); bottom: -220px; left: -120px; }
+
+.shell { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  width: 100%; padding: 18px max(20px, calc((100vw - var(--max))/2));
+  background: rgba(9,10,15,.72); backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+.brand-logo { width: 42px; height: 42px; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 30px rgba(88,216,255,.18); }
+.brand-text { font-family: Manrope, sans-serif; letter-spacing: -.02em; }
+.brand-text span { color: var(--cyan); }
+.desktop-nav { display: flex; gap: 30px; color: #d6d9e8; font-size: .94rem; }
+.desktop-nav a:hover { color: white; }
+.header-actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+
+.language-toggle { border: 1px solid var(--line); background: rgba(255,255,255,.04); color: white; border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+
+.menu-toggle {
+  display: none;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  color: white;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.menu-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+.mobile-nav {
+  position: fixed;
+  top: 71px; left: 14px; right: 14px;
+  z-index: 80;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(12,14,22,.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 70px rgba(0,0,0,.48);
+}
+.mobile-nav[hidden] { display: none !important; }
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 12px;
+  color: #e7eaf5;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+.mobile-nav a:last-child { border-bottom: 0; }
+.mobile-nav a:hover { background: rgba(255,255,255,.055); }
+.mobile-nav .mobile-cta {
+  margin-top: 10px;
+  justify-content: center;
+  color: #090a0f;
+  background: linear-gradient(135deg, #fff 0%, #d9e7ff 45%, #a6f0ff 100%);
+  font-weight: 800;
+}
+
+.section-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 6px;
+}
+.section-preview.center { justify-content: center; }
+.preview-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 999px;
+  background: rgba(255,255,255,.035);
+  color: #cbd1e2;
+  font-size: .82rem;
+}
+.preview-chip::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(242,202,122,.42);
+}
+
+.footer-inner { flex-wrap: wrap; }
+.footer-links {
+  display: flex; flex-wrap: wrap; gap: 14px 18px;
+  align-items: center;
+}
+.footer-links a, .legal-button {
+  color: #aeb5ca;
+  font-size: .84rem;
+  background: none; border: 0; padding: 0;
+  cursor: pointer; text-decoration: none;
+}
+.footer-links a:hover, .legal-button:hover { color: white; }
+.footer-contact {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-contact a { color: #c8cede; }
+.footer-contact a:hover { color: white; }
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.linkedin-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.legal-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: 22px;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(10px);
+}
+.legal-modal[hidden] { display: none !important; }
+.legal-dialog {
+  width: min(900px, 100%);
+  max-height: min(84vh, 900px);
+  overflow: auto;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  background: #10121a;
+  box-shadow: 0 30px 100px rgba(0,0,0,.58);
+}
+.legal-header {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 24px;
+  background: rgba(16,18,26,.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.legal-header h2 { font-size: 1.45rem; margin: 0; }
+.legal-close {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  color: white; cursor: pointer; font-size: 1.2rem;
+}
+.legal-content { padding: 26px 28px 34px; color: #c7cddd; }
+.legal-content h3 { color: white; font-size: 1.05rem; margin: 26px 0 8px; }
+.legal-content p, .legal-content li { font-size: .92rem; }
+.legal-content a { color: var(--cyan); }
+.legal-meta { color: #8f96aa; font-size: .84rem; margin-bottom: 20px; }
+html[lang="zh-CN"] .legal-en { display: none; }
+html:not([lang="zh-CN"]) .legal-zh { display: none; }
+
+@media (max-width: 960px) {
+  .menu-toggle { display: inline-flex; }
+}
+@media (max-width: 640px) {
+  .footer-links, .footer-contact { justify-content: center; }
+  .legal-modal { padding: 10px; }
+  .legal-content { padding: 22px 18px 28px; }
+  .legal-header { padding: 16px 18px; }
+}
+
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 14px; border: 1px solid transparent; font-weight: 700; transition: .25s ease; cursor: pointer; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { color: #090a0f; background: linear-gradient(135deg, #fff 0%, #d9e7ff 45%, #a6f0ff 100%); box-shadow: 0 12px 40px rgba(88,216,255,.16); }
+.btn-secondary { color: white; border-color: var(--line); background: rgba(255,255,255,.04); }
+.btn-small { min-height: 40px; padding: 0 14px; font-size: .9rem; }
+.btn-large { min-height: 56px; padding: 0 26px; }
+
+.hero { min-height: 760px; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(320px,.62fr); gap: 58px; align-items: center; padding: 94px 0 82px; }
+.hero-copy { max-width: 780px; }
+.hero-media { display:flex; justify-content:center; align-items:center; }
+.hero-video-shell { width:min(390px,100%); padding:10px; border-radius:30px; border:1px solid rgba(255,255,255,.13); background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.025)); box-shadow:0 30px 80px rgba(0,0,0,.42),0 0 60px rgba(88,216,255,.09); position:relative; overflow:hidden; }
+.hero-video-shell:before { content:""; position:absolute; inset:-25%; background:radial-gradient(circle at 50% 30%,rgba(88,216,255,.16),transparent 46%); pointer-events:none; }
+.hero-video { width:100%; aspect-ratio:512/890; object-fit:cover; display:block; border-radius:22px; background:#05070b; position:relative; z-index:1; }
+.video-caption { position:absolute; z-index:2; left:22px; right:22px; bottom:20px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 12px; border:1px solid rgba(255,255,255,.12); border-radius:14px; background:rgba(6,8,13,.62); backdrop-filter:blur(12px); font-size:.76rem; color:#d9deed; }
+.video-caption strong { color:white; letter-spacing:.03em; }
+.video-caption span:last-child { color:var(--cyan); }
+.video-sound-toggle { position:absolute; z-index:4; top:20px; right:20px; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.18); background:rgba(6,8,13,.68); backdrop-filter:blur(12px); color:white; display:grid; place-items:center; cursor:pointer; transition:.2s ease; box-shadow:0 10px 28px rgba(0,0,0,.28); }
+.video-sound-toggle:hover { transform:scale(1.06); background:rgba(16,20,30,.82); }
+.video-sound-toggle svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.section-toggle-wrap { margin-top:24px; }
+.section-toggle { min-height:44px; padding:0 18px; border-radius:12px; border:1px solid rgba(88,216,255,.26); background:rgba(88,216,255,.08); color:#dff7ff; font-weight:700; cursor:pointer; transition:.2s ease; }
+.section-toggle:hover { transform:translateY(-2px); background:rgba(88,216,255,.13); }
+.section-toggle .chevron { display:inline-block; margin-left:8px; transition:transform .25s ease; }
+.section-toggle[aria-expanded="true"] .chevron { transform:rotate(180deg); }
+.collapsible-detail[hidden] { display:none !important; }
+.collapsible-detail { animation:detailIn .28s ease; }
+@keyframes detailIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+.eyebrow { font-size: .78rem; letter-spacing: .15em; color: var(--gold); font-weight: 800; margin-bottom: 18px; }
+h1, h2, h3 { font-family: Manrope, Inter, sans-serif; margin: 0; }
+h1 { font-size: clamp(3.4rem, 7vw, 6.7rem); line-height: .98; letter-spacing: -.055em; max-width: 820px; }
+h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-lead { max-width: 900px; color: #d2d7e7; font-size: 1.18rem; margin: 28px 0 18px; }
+.hero-anxiety { max-width: 900px; color: #aeb5ca; font-size: 1.05rem; margin: 0 0 34px; padding-left: 18px; border-left: 2px solid rgba(242,202,122,.55); }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-note {
+  margin-top: 26px;
+  display: inline-block;
+  position: relative;
+  padding: 16px 24px;
+  font-size: clamp(1.02rem, 1.45vw, 1.32rem);
+  font-weight: 900;
+  letter-spacing: .01em;
+  line-height: 1.3;
+  color: #21170a;
+  background: linear-gradient(145deg, rgba(78,53,16,.88) 0%, rgba(170,122,35,.92) 18%, rgba(255,224,150,.98) 48%, rgba(191,138,41,.96) 70%, rgba(69,45,12,.92) 100%);
+  border: 1px solid rgba(255,223,151,.55);
+  border-radius: 18px;
+  box-shadow: 0 16px 38px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.35), inset 0 -2px 10px rgba(92,58,9,.35);
+  text-shadow: 0 1px 0 rgba(255,243,198,.30), 0 2px 3px rgba(75,47,8,.30);
+  overflow: hidden;
+}
+.hero-note::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,248,219,.26);
+  pointer-events: none;
+}
+.hero-note::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -35%;
+  width: 34%;
+  height: 100%;
+  background: linear-gradient(110deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.42) 46%, rgba(255,255,255,0) 100%);
+  transform: skewX(-22deg);
+  animation: plaqueShine 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-visual { display: flex; justify-content: center; }
+.visual-card { width: min(460px, 100%); min-height: 530px; padding: 22px; border-radius: 34px; border: 1px solid rgba(255,255,255,.12); background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02)); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.visual-card:before { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(88,216,255,.22), transparent 65%); top: 65px; left: 70px; }
+.visual-topline { display: flex; justify-content: space-between; font-size: .72rem; letter-spacing: .12em; color: #888ea4; position: relative; z-index: 2; }
+.status-dot { color: #80ffc2; }
+.visual-core { position: relative; height: 350px; display: grid; place-items: center; }
+.visual-core-logo { overflow: hidden; }
+.logo-halo { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(88,216,255,.28), rgba(88,216,255,.06) 45%, transparent 72%); filter: blur(8px); animation: pulse 5s infinite; }
+.hero-logo-image { position: relative; width: min(360px, 92%); aspect-ratio: 1/1; object-fit: contain; border-radius: 28px; z-index: 2; filter: drop-shadow(0 0 32px rgba(88,216,255,.28)); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; position: relative; z-index: 2; }
+.metric-grid div { padding: 12px 6px; border: 1px solid rgba(255,255,255,.07); border-radius: 14px; text-align: center; background: rgba(255,255,255,.025); }
+.metric-grid strong { display: block; font-size: .75rem; color: var(--cyan); }
+.metric-grid span { font-size: .72rem; color: #aab0c2; }
+
+.trust-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.025); }
+.trust-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+.trust-grid > div { padding: 24px 18px; border-right: 1px solid var(--line); }
+.trust-grid > div:last-child { border-right: 0; }
+.trust-grid strong { display: block; font-size: .92rem; }
+.trust-grid span { color: #777e95; font-size: .82rem; }
+
+.section { padding: 120px 0; }
+.section-dark { background: #0d0f16; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-heading { max-width: 760px; margin-bottom: 48px; }
+.section-heading.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-heading h2, .about-copy h2, .cta-panel h2 { font-size: clamp(2.25rem, 4.6vw, 4.6rem); line-height: 1.05; letter-spacing: -.045em; }
+.section-heading p, .about-copy p, .cta-panel p { color: var(--muted); font-size: 1.04rem; }
+.card-grid { display: grid; gap: 18px; }
+.service-grid { grid-template-columns: repeat(3,1fr); }
+.topic-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; background: linear-gradient(135deg, rgba(88,216,255,.14), rgba(143,108,255,.13)); border: 1px solid rgba(123,200,255,.22); box-shadow: inset 0 0 24px rgba(88,216,255,.05), 0 12px 32px rgba(0,0,0,.16); color: #dff7ff; }
+.topic-icon svg { width: 25px; height: 25px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.service-top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.service-card h3 { margin-top: 30px !important; }
+.service-card.featured-short { grid-column: 1 / -1; min-height: auto; display:grid; grid-template-columns: auto 1fr; gap:22px; align-items:start; background: linear-gradient(135deg, rgba(88,216,255,.08), rgba(143,108,255,.08)); }
+.featured-short .feature-copy h3 { margin: 0 0 10px !important; }
+.featured-short .feature-copy p { max-width: 880px; }
+.trust-grid > div { position:relative; }
+.trust-icon { width:36px; height:36px; display:grid; place-items:center; border-radius:11px; margin-bottom:12px; background:rgba(88,216,255,.08); border:1px solid rgba(88,216,255,.15); color:var(--cyan); }
+.trust-icon svg { width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.step > span { font-weight:800; box-shadow: inset 0 0 18px rgba(143,108,255,.08); }
+.why-icon { width:52px; height:52px; display:grid; place-items:center; border-radius:15px; background:linear-gradient(135deg, rgba(88,216,255,.12), rgba(143,108,255,.1)); border:1px solid rgba(88,216,255,.17); margin-bottom:28px !important; }
+.why-icon svg { width:26px; height:26px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.service-card, .why-card, .founder-card, .bio-quick-panel, .bio-detail { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.service-card { padding: 30px; min-height: 260px; transition: .25s ease; }
+.service-card:hover { transform: translateY(-5px); border-color: rgba(88,216,255,.34); background: var(--panel-strong); }
+.card-index { color: var(--gold); font-size: .76rem; letter-spacing: .15em; }
+.service-card h3 { margin: 56px 0 12px; font-size: 1.35rem; }
+.service-card p { color: var(--muted); margin: 0; }
+
+.split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
+.steps { display: grid; gap: 10px; }
+.step { display: grid; grid-template-columns: 58px 1fr; gap: 14px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.step > span { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: rgba(143,108,255,.12); color: #b8a8ff; font-size: .8rem; }
+.step h3 { font-size: 1.1rem; }
+.step p { color: var(--muted); margin: 4px 0 0; }
+
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.why-card { padding: 32px; }
+.why-icon { font-size: 2rem; color: var(--cyan); margin-bottom: 36px; }
+.why-card h3 { margin-bottom: 10px; }
+.why-card p { color: var(--muted); margin: 0; }
+
+.about-section { background: linear-gradient(180deg, transparent, rgba(143,108,255,.045)); }
+.about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; align-items: start; }
+.about-copy p { max-width: 760px; }
+.bio-quick-panel, .bio-detail { padding: 26px 28px; }
+.bio-kicker { color: #d8e8ff; font-size: .88rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 800; margin-bottom: 14px; }
+.bio-toggle { margin-top: 12px; min-height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid rgba(88,216,255,.26); background: rgba(88,216,255,.08); color: #dff7ff; font-weight: 700; cursor: pointer; }
+.bio-toggle:hover { transform: translateY(-2px); }
+.bio-detail { margin-top: 18px; }
+.bio-list { margin: 18px 0; padding-left: 20px; color: var(--muted); }
+.bio-list li { margin-bottom: 14px; }
+.bio-list strong { color: #f2f6ff; }
+.founder-card { padding: 34px; position: sticky; top: 100px; }
+.founder-photo-wrap { margin-bottom: 24px; }
+.founder-photo { width: 100%; max-width: 420px; display: block; border-radius: 24px; border: 1px solid rgba(255,255,255,.12); box-shadow: var(--shadow); }
+.founder-card h3 { font-size: 1.5rem; margin-bottom: 6px; }
+.founder-card p { color: var(--muted); }
+.founder-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.founder-tags span { font-size: .78rem; padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; color: #c7cbe0; }
+
+.cta-panel { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 50px; border-radius: 32px; background: linear-gradient(135deg, rgba(143,108,255,.16), rgba(88,216,255,.09)); border: 1px solid rgba(255,255,255,.11); }
+.cta-panel p { max-width: 720px; }
+
+
+.podcast-section {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(88,216,255,.08), transparent 28%),
+    radial-gradient(circle at 15% 85%, rgba(242,202,122,.06), transparent 30%),
+    #0b0d13;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.podcast-hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 46px;
+  align-items: center;
+}
+.podcast-intro p { color: var(--muted); font-size: 1.04rem; max-width: 760px; }
+.coming-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 999px;
+  border: 1px solid rgba(242,202,122,.35);
+  background: rgba(242,202,122,.08);
+  color: #f3d994; font-size: .8rem; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.podcast-feature {
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+  box-shadow: var(--shadow);
+}
+.podcast-screen {
+  min-height: 265px;
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(143,108,255,.18), rgba(88,216,255,.08)),
+    #10131c;
+}
+.podcast-screen::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,.08) 45%, transparent 75%);
+  transform: translateX(-100%);
+  animation: podcastSheen 6s ease-in-out infinite;
+}
+.podcast-play {
+  width: 74px; height: 74px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.11);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  position: relative; z-index: 2;
+  box-shadow: 0 14px 40px rgba(0,0,0,.3);
+}
+.podcast-play svg { width: 30px; height: 30px; margin-left: 4px; }
+.podcast-feature-copy { padding: 24px 26px 28px; }
+.podcast-feature-copy h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.podcast-feature-copy p { color: var(--muted); margin: 0; }
+.podcast-topics-toggle-wrap { margin-top: 30px; }
+
+.podcast-library {
+  margin-top: 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.episode-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 22px;
+  background: rgba(255,255,255,.035);
+}
+.episode-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  display: grid; place-items: center;
+  background: rgba(88,216,255,.08);
+  border: 1px solid rgba(88,216,255,.16);
+  margin-bottom: 24px;
+}
+.episode-icon svg { width: 22px; height: 22px; }
+.episode-card h3 { font-size: 1.08rem; margin-bottom: 7px; }
+.episode-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+.guest-panel {
+  margin-top: 34px;
+  border: 1px solid rgba(242,202,122,.24);
+  border-radius: 26px;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(242,202,122,.08), rgba(255,255,255,.025));
+}
+.guest-panel-top {
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.guest-panel h3 { font-size: 1.55rem; margin-bottom: 8px; }
+.guest-panel p { color: var(--muted); margin: 0; max-width: 800px; }
+.guest-form {
+  margin-top: 22px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.guest-form label { display: grid; gap: 7px; font-size: .84rem; color: #c9cde0; }
+.guest-form label.full { grid-column: 1 / -1; }
+.guest-form input, .guest-form textarea {
+  width: 100%; border: 1px solid rgba(255,255,255,.12);
+  background: #0b0d13; color: white; border-radius: 12px;
+  padding: 12px 13px; outline: none;
+}
+.guest-form input:focus, .guest-form textarea:focus {
+  border-color: rgba(242,202,122,.55);
+  box-shadow: 0 0 0 3px rgba(242,202,122,.06);
+}
+.guest-status { min-height: 22px; color: var(--gold); font-size: .9rem; grid-column: 1 / -1; margin: 0; }
+@keyframes podcastSheen {
+  0%, 68% { transform: translateX(-100%); opacity: 0; }
+  76% { opacity: .6; }
+  88%, 100% { transform: translateX(100%); opacity: 0; }
+}
+@media (max-width: 960px) {
+  .podcast-hero { grid-template-columns: 1fr; }
+  .podcast-library { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .podcast-library { grid-template-columns: 1fr; }
+  .guest-panel-top { grid-template-columns: 1fr; }
+  .guest-form { grid-template-columns: 1fr; }
+  .guest-form label.full { grid-column: auto; }
+}
+
+.contact-section { background: #0d0f16; border-top: 1px solid var(--line); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-note { margin-top: 26px; padding: 14px 16px; display: inline-block; border: 1px solid var(--line); border-radius: 12px; color: #cad0e1; font-size: .9rem; }
+.contact-form { display: grid; gap: 16px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.035); }
+.contact-form label { display: grid; gap: 8px; font-size: .85rem; color: #c9cde0; }
+.contact-form input, .contact-form textarea { width: 100%; border: 1px solid rgba(255,255,255,.12); background: #0b0d13; color: white; border-radius: 12px; padding: 13px 14px; outline: none; }
+.contact-form input:focus, .contact-form textarea:focus { border-color: rgba(88,216,255,.65); box-shadow: 0 0 0 3px rgba(88,216,255,.08); }
+.form-status { min-height: 24px; margin: 0; color: var(--cyan); font-size: .9rem; }
+
+.site-footer { border-top: 1px solid var(--line); padding: 28px 0; }
+.footer-inner { display: flex; justify-content: space-between; gap: 20px; color: #858ca4; font-size: .86rem; align-items: center; }
+.footer-branding { display: flex; align-items: center; gap: 12px; }
+.footer-logo { width: 34px; height: 34px; object-fit: contain; border-radius: 10px; }
+.footer-inner strong { color: white; margin-right: 12px; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: .09s; }
+.delay-2 { transition-delay: .18s; }
+
+@keyframes pulse { 50% { transform: scale(1.05); opacity: .7; } }
+@keyframes plaqueShine {
+  0%, 62% { left: -40%; opacity: 0; }
+  68% { opacity: .18; }
+  78% { left: 112%; opacity: .55; }
+  100% { left: 112%; opacity: 0; }
+}
+
+@media (max-width: 960px) {
+  .site-header { grid-template-columns: 1fr auto; }
+  .desktop-nav { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 72px; gap:44px; }
+  .hero-copy { max-width:none; }
+  .hero-media { order:-1; }
+  .hero-video-shell { width:min(340px,86vw); }
+  .visual-card { min-height: 440px; }
+  .visual-core { height: 285px; }
+  .hero-logo-image { width: min(300px, 88%); }
+  .service-grid, .why-grid { grid-template-columns: 1fr 1fr; }
+  .service-card.featured-short { grid-template-columns: auto 1fr; }
+  .split-layout, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+  .founder-card { position: static; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .trust-grid > div:nth-child(2) { border-right: 0; }
+  .trust-grid > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .cta-panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .shell { width: min(var(--max), calc(100% - 28px)); }
+  .site-header { padding: 14px; }
+  .brand-text { font-size: .93rem; }
+  .brand-logo { width: 38px; height: 38px; }
+  .header-actions .btn { display: none; }
+  .hero { padding: 42px 0 60px; gap: 34px; }
+  .hero-video-shell { width:min(300px,82vw); border-radius:24px; padding:8px; }
+  .hero-video { border-radius:18px; }
+  .video-caption { left:16px; right:16px; bottom:14px; font-size:.68rem; }
+  .video-sound-toggle { top:16px; right:16px; width:42px; height:42px; }
+  h1 { font-size: clamp(3rem, 15vw, 4.3rem); }
+  .hero-lead { font-size: 1rem; }
+  .hero-anxiety { font-size: .96rem; }
+  .hero-actions .btn { width: 100%; }
+  .hero-note { width: 100%; padding: 15px 18px; border-radius: 16px; }
+  .visual-card { min-height: 390px; border-radius: 26px; }
+  .visual-core { height: 250px; }
+  .hero-logo-image { width: min(250px, 86%); }
+  .metric-grid { grid-template-columns: repeat(2,1fr); }
+  .section { padding: 82px 0; }
+  .service-grid, .why-grid, .trust-grid { grid-template-columns: 1fr; }
+  .service-card.featured-short { grid-template-columns: 1fr; }
+  .trust-grid > div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .trust-grid > div:last-child { border-bottom: 0; }
+  .service-card { min-height: 220px; }
+  .service-card h3 { margin-top: 34px; }
+  .bio-quick-panel, .bio-detail, .founder-card { padding: 22px; }
+  .cta-panel { padding: 30px 22px; border-radius: 24px; }
+  .footer-inner { flex-direction: column; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="noise"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="GaloreGrowth.ai home">
+      <img class="brand-logo" src="assets/galore-logo.png" alt="GaloreGrowth.ai logo" />
+      <span class="brand-text">GaloreGrowth<span>.ai</span></span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#approach" data-i18n="nav.approach">Approach</a>
+      <a href="#why" data-i18n="nav.why">Why Us</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#podcast" data-i18n="nav.podcast">Podcast</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="languageToggle" class="language-toggle" type="button" aria-label="Switch language">中文</button>
+      <a class="btn btn-small btn-primary consultation-cta" href="#contact" data-i18n="nav.cta">Book a Consultation</a>
+      <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#approach" data-i18n="nav.approach">Approach</a>
+    <a href="#why" data-i18n="nav.why">Why Us</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#podcast" data-i18n="nav.podcast">Podcast</a>
+    <a class="mobile-cta consultation-cta" href="#contact" data-i18n="nav.cta">Book a Consultation</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <div class="eyebrow" data-i18n="hero.eyebrow">BUSINESS GROWTH • POWERED BY AI</div>
+        <h1 data-i18n="hero.title">Turn AI into <span>real business growth.</span></h1>
+        <p class="hero-lead" data-i18n="hero.lead">Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.</p>
+        <p class="hero-anxiety" data-i18n="hero.anxiety">AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary consultation-cta" href="#contact" data-i18n="hero.cta1">Book an AI Growth Consultation</a>
+          <a class="btn btn-secondary" href="#services" data-i18n="hero.cta2">Explore Services</a>
+        </div>
+        <div class="hero-note" data-i18n="hero.note">AI is the vehicle. Business transformation is the destination.</div>
+      </div>
+
+      <div class="hero-media reveal delay-1">
+        <div class="hero-video-shell">
+          <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="GaloreGrowth.ai AI business transformation short video">
+            <source id="heroVideoSource" src="galoregrowth-hero-en.mp4" type="video/mp4">
+          </video>
+          <button id="videoSoundToggle" class="video-sound-toggle" type="button" aria-label="Turn sound on" title="Turn sound on">
+            <svg id="soundIconMuted" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6.5 9H3v6h3.5L11 19z"/><path d="M16 9l5 6M21 9l-5 6"/></svg>
+            <svg id="soundIconOn" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M11 5L6.5 9H3v6h3.5L11 19z"/><path d="M15 9.5a4 4 0 010 5M17.5 7a7 7 0 010 10"/></svg>
+          </button>
+          <div class="video-caption">
+            <strong data-i18n="hero.videoLabel">AI BUSINESS TRANSFORMATION</strong>
+            <span data-i18n="hero.videoTag">10-SECOND STORY</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="shell trust-grid">
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M8 15c-2-1-3-3-3-5a7 7 0 1114 0c0 2-1 4-3 5-1 1-1 2-1 3H9c0-1 0-2-1-3z"/></svg></div><strong data-i18n="trust.1a">Practical AI</strong><span data-i18n="trust.1b">Focused on business outcomes</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M14 6l4-4 4 4-4 4M3 21l8-8"/><path d="M13 3a6 6 0 00-7 7l4 4 7-7a6 6 0 00-4-4z"/></svg></div><strong data-i18n="trust.2a">Tool-Agnostic</strong><span data-i18n="trust.2b">Use what works best</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20v-7h4v7M14 20V8h4v12M10 20V4h4v16"/></svg></div><strong data-i18n="trust.3a">Executive-Level</strong><span data-i18n="trust.3b">Strategy to implementation</span></div>
+        <div><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9"/><path d="M16 3h5v5"/><path d="M8 12h8M12 8v8"/></svg></div><strong data-i18n="trust.4a">Built to Evolve</strong><span data-i18n="trust.4b">Designed for rapid AI change</span></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="services">
+      <div class="section-heading reveal">
+        <div class="eyebrow" data-i18n="services.eyebrow">WHAT WE DO</div>
+        <h2 data-i18n="services.title">AI should improve the business — not become another expensive IT project.</h2>
+        <p data-i18n="services.subtitle">We focus on high-value use cases, fast implementation, and measurable operating impact.</p>
+        <div class="section-preview">
+          <span class="preview-chip" data-i18n="preview.services1">Growth & lead generation</span>
+          <span class="preview-chip" data-i18n="preview.services2">Workflow automation</span>
+          <span class="preview-chip" data-i18n="preview.services3">AI shorts & outreach</span>
+        </div>
+        <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="servicesDetail" aria-expanded="false"><span data-i18n="collapse.servicesOpen">Explore services</span><span class="chevron">⌄</span></button></div>
+      </div>
+
+      <div id="servicesDetail" class="card-grid service-grid collapsible-detail" hidden>
+        <article class="service-card reveal">
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5M8 17h3"/><path d="M15 15l2 2 3-4"/></svg></div><span class="card-index">01</span></div>
+          <h3 data-i18n="services.s1t">AI Business Audit</h3>
+          <p data-i18n="services.s1d">Identify where AI can remove friction, reduce cost, accelerate decisions, and improve customer experience.</p>
+        </article>
+        <article class="service-card reveal delay-1">
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><span class="card-index">02</span></div>
+          <h3 data-i18n="services.s2t">AI Workflow Automation</h3>
+          <p data-i18n="services.s2d">Automate repetitive work across sales, operations, finance, support, and internal knowledge processes.</p>
+        </article>
+        <article class="service-card reveal delay-2">
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="11" rx="3"/><path d="M9 12h.01M15 12h.01M9 15h6M12 4v3"/><circle cx="12" cy="3" r="1"/></svg></div><span class="card-index">03</span></div>
+          <h3 data-i18n="services.s3t">AI Agent Implementation</h3>
+          <p data-i18n="services.s3d">Deploy task-focused AI assistants and agents that work with your existing tools, data, and teams.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l12-6v10L4 11z"/><path d="M7 13v5h3l1-4M18 9c1 1 1 5 0 6"/></svg></div><span class="card-index">04</span></div>
+          <h3 data-i18n="services.s4t">Sales & Marketing AI</h3>
+          <p data-i18n="services.s4d">Use AI to improve lead generation, personalization, content production, follow-up, and conversion workflows.</p>
+        </article>
+        <article class="service-card reveal delay-1">
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div><span class="card-index">05</span></div>
+          <h3 data-i18n="services.s5t">Executive AI Strategy</h3>
+          <p data-i18n="services.s5d">Translate fast-moving AI capabilities into a practical roadmap for competitive advantage and operating leverage.</p>
+        </article>
+        <article class="service-card reveal delay-2">
+          <div class="service-top"><div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4z"/><path d="M7 9v5c0 2 2 4 5 4s5-2 5-4V9M21 8v6"/></svg></div><span class="card-index">06</span></div>
+          <h3 data-i18n="services.s6t">AI Training & Enablement</h3>
+          <p data-i18n="services.s6d">Train leaders and teams to use AI effectively, responsibly, and with confidence inside real business workflows.</p>
+        </article>
+        <article class="service-card featured-short reveal">
+          <div class="topic-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M10 8l5 4-5 4z"/></svg></div>
+          <div class="feature-copy">
+            <h3 data-i18n="services.s7t">AI Shorts Strategy, Training & Production</h3>
+            <p data-i18n="services.s7d">Turn short-form video into a business growth channel. We help teams design episodic, story-driven AI shorts for marketing and outreach, train internal creators, or produce the content for you—at a speed and volume traditional production cannot match.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="approach">
+      <div class="shell split-layout">
+        <div class="section-heading reveal">
+          <div class="eyebrow" data-i18n="approach.eyebrow">OUR APPROACH</div>
+          <h2 data-i18n="approach.title">AI is moving too fast to keep building yesterday’s technology.</h2>
+          <div class="section-preview">
+            <span class="preview-chip" data-i18n="preview.approach1">Find the bottleneck</span>
+            <span class="preview-chip" data-i18n="preview.approach2">Assemble the right tools</span>
+            <span class="preview-chip" data-i18n="preview.approach3">Implement, measure, scale</span>
+          </div>
+          <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="approachDetail" aria-expanded="false"><span data-i18n="collapse.approachOpen">See how we work</span><span class="chevron">⌄</span></button></div>
+        </div>
+        <div id="approachDetail" class="collapsible-detail" hidden>
+          <p data-i18n="approach.body">The market now produces powerful new models, platforms, and automation tools at extraordinary speed. Instead of spending heavily to recreate capabilities that already exist, we help you assemble the right solutions around your business needs.</p>
+          <div class="steps reveal delay-1">
+          <div class="step"><span>01</span><div><h3 data-i18n="approach.p1t">Discover</h3><p data-i18n="approach.p1d">Find the highest-value problems and opportunities.</p></div></div>
+          <div class="step"><span>02</span><div><h3 data-i18n="approach.p2t">Audit</h3><p data-i18n="approach.p2d">Map workflows, data, bottlenecks, and existing systems.</p></div></div>
+          <div class="step"><span>03</span><div><h3 data-i18n="approach.p3t">Design</h3><p data-i18n="approach.p3d">Select the right AI tools and define the implementation path.</p></div></div>
+          <div class="step"><span>04</span><div><h3 data-i18n="approach.p4t">Implement</h3><p data-i18n="approach.p4d">Build practical solutions that fit the way your team works.</p></div></div>
+          <div class="step"><span>05</span><div><h3 data-i18n="approach.p5t">Optimize</h3><p data-i18n="approach.p5d">Measure results, improve adoption, and expand what works.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="why">
+      <div class="section-heading center reveal">
+        <div class="eyebrow" data-i18n="why.eyebrow">WHY GALOREGROWTH.AI</div>
+        <h2 data-i18n="why.title">Business first. AI second.</h2>
+        <p data-i18n="why.subtitle">Technology only matters when it improves decisions, productivity, growth, or customer experience.</p>
+        <div class="section-preview center">
+          <span class="preview-chip" data-i18n="preview.why1">Outcome-focused</span>
+          <span class="preview-chip" data-i18n="preview.why2">Tool-agnostic</span>
+          <span class="preview-chip" data-i18n="preview.why3">Operator-led</span>
+        </div>
+        <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="whyDetail" aria-expanded="false"><span data-i18n="collapse.whyOpen">Why GaloreGrowth.ai</span><span class="chevron">⌄</span></button></div>
+      </div>
+      <div id="whyDetail" class="why-grid collapsible-detail" hidden>
+        <article class="why-card reveal"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-5 4 3 7-9"/><path d="M15 7h5v5"/></svg></div><h3 data-i18n="why.w1t">Outcome Focused</h3><p data-i18n="why.w1d">Every engagement starts with the business result, not the tool.</p></article>
+        <article class="why-card reveal delay-1"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-5V2"/><path d="M20 7a8 8 0 10 1 8"/></svg></div><h3 data-i18n="why.w2t">Built for Change</h3><p data-i18n="why.w2d">We avoid unnecessary lock-in so your AI stack can evolve as the market changes.</p></article>
+        <article class="why-card reveal delay-2"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/></svg></div><h3 data-i18n="why.w3t">Operator Mindset</h3><p data-i18n="why.w3d">Strategy is connected to implementation, workflow design, and real operating constraints.</p></article>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="shell about-grid">
+        <div class="about-copy reveal">
+          <div class="eyebrow" data-i18n="about.eyebrow">FOUNDER</div>
+          <h2 data-i18n="about.title">Enterprise rigor. Founder agility. Real-world AI execution.</h2>
+          <div class="bio-quick-panel">
+            <div class="bio-kicker" data-i18n="about.quicktitle">Principal AI Solutions Architect &amp; Founder</div>
+            <p data-i18n="about.quickbio">Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.</p>
+            <button class="bio-toggle" id="bioToggle" type="button" data-i18n="about.expand">Read full bio</button>
+          </div>
+          <div class="bio-detail" id="bioDetail" hidden>
+            <div class="bio-kicker" data-i18n="about.longtitle">Founder &amp; Chief AI Solutions Architect</div>
+            <p data-i18n="about.longp1">Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.</p>
+            <ul class="bio-list">
+              <li data-i18n="about.b1"><strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.</li>
+              <li data-i18n="about.b2"><strong>Proven Founder &amp; Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.</li>
+              <li data-i18n="about.b3"><strong>Operational Scale &amp; Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.</li>
+            </ul>
+            <p data-i18n="about.longp2">As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.</p>
+          </div>
+        </div>
+        <div class="founder-card reveal delay-1">
+          <div class="founder-photo-wrap">
+            <img class="founder-photo" src="assets/guno-portrait.png" alt="Guno Sutiono" />
+          </div>
+          <h3>Guno Sutiono</h3>
+          <p data-i18n="about.role">Principal AI Solutions Architect • Founder</p>
+          <div class="founder-tags">
+            <span data-i18n="about.t1">Former Adobe Division Managing Director</span>
+            <span data-i18n="about.t2">Founder with Successful Exit</span>
+            <span data-i18n="about.t3">500+ Agent Platform Builder</span>
+            <span data-i18n="about.t4">CFP® • ChFC®</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="cta-panel reveal">
+        <div>
+          <div class="eyebrow" data-i18n="cta.eyebrow">START WITH THE RIGHT QUESTION</div>
+          <h2 data-i18n="cta.title">Where can AI create the most value in your business right now?</h2>
+          <p data-i18n="cta.body">A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.</p>
+        </div>
+        <a class="btn btn-primary btn-large" href="#contact" data-i18n="cta.button">Book a Consultation</a>
+      </div>
+    </section>
+
+
+    <section class="section podcast-section" id="podcast">
+      <div class="shell">
+        <div class="podcast-hero">
+          <div class="podcast-intro reveal">
+            <div class="coming-badge" data-i18n="podcast.badge">Coming Soon • Leadership Podcast</div>
+            <div class="eyebrow" data-i18n="podcast.eyebrow">GALOREGROWTH.AI BUSINESS PODCAST</div>
+            <h2 data-i18n="podcast.title">A clearer compass for today’s business landscape.</h2>
+            <p data-i18n="podcast.body">We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.</p>
+          </div>
+
+          <div class="podcast-feature reveal delay-1">
+            <div class="podcast-screen" aria-label="Podcast video area">
+              <div class="podcast-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <div class="podcast-feature-copy">
+              <h3 data-i18n="podcast.featureTitle">Future episodes will play right here.</h3>
+              <p data-i18n="podcast.featureBody">Watch full conversations, meet the leaders behind the stories, and take away practical lessons you can apply to your own business.</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="podcast-topics-toggle-wrap reveal">
+          <button class="section-toggle" type="button" data-collapse-target="podcastTopicsDetail" aria-expanded="false">
+            <span data-i18n="collapse.podcastTopicsOpen">Explore podcast themes</span><span class="chevron">⌄</span>
+          </button>
+        </div>
+
+        <div id="podcastTopicsDetail" class="collapsible-detail" hidden>
+          <div class="podcast-library">
+            <article class="episode-card">
+              <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+              <h3 data-i18n="podcast.c1t">Success Patterns</h3>
+              <p data-i18n="podcast.c1d">How leaders create momentum, make decisions, and build durable advantage.</p>
+            </article>
+            <article class="episode-card">
+              <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18 10 13l3 3 6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <h3 data-i18n="podcast.c2t">Real Challenges</h3>
+              <p data-i18n="podcast.c2d">Honest conversations about pressure, uncertainty, talent, capital, competition, and change.</p>
+            </article>
+            <article class="episode-card">
+              <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 4.5 3.1 7.8 8 9 4.9-1.2 8-4.5 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <h3 data-i18n="podcast.c3t">A Better Business Compass</h3>
+              <p data-i18n="podcast.c3d">Context and perspective to help owners decide what matters — and what to ignore.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="guest-panel reveal">
+          <div class="guest-panel-top">
+            <div>
+              <div class="eyebrow" data-i18n="podcast.guestEyebrow">SHARE YOUR STORY</div>
+              <h3 data-i18n="podcast.guestTitle">Would you like to be a future podcast guest?</h3>
+              <p data-i18n="podcast.guestBody">We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.</p>
+            </div>
+            <button class="section-toggle" type="button" data-collapse-target="guestFormDetail" aria-expanded="false">
+              <span data-i18n="collapse.guestOpen">Apply to be a guest</span><span class="chevron">⌄</span>
+            </button>
+          </div>
+          <div id="guestFormDetail" class="collapsible-detail" hidden>
+            <form class="guest-form" id="guestForm" action="/api/podcast-guest" method="POST">
+<input type="hidden" name="language" value="en" class="form-language" />
+              <input type="hidden" name="page_url" value="" class="form-page-url" />
+              <input type="hidden" name="referrer" value="" class="form-referrer" />
+              <input type="hidden" name="language" value="en" class="form-language" />
+          <input type="hidden" name="page_url" value="" class="form-page-url" />
+          <input type="hidden" name="referrer" value="" class="form-referrer" />
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+              <label><span data-i18n="guest.name">Name</span><input type="text" name="name" required></label>
+              <label><span data-i18n="guest.email">Email</span><input type="email" name="email" required></label>
+              <label><span data-i18n="guest.company">Company</span><input type="text" name="company" required></label>
+              <label><span data-i18n="guest.title">Title / Role</span><input type="text" name="title" required></label>
+              <label><span data-i18n="guest.industry">Industry</span><input type="text" name="industry"></label>
+              <label><span data-i18n="guest.link">Website / LinkedIn</span><input type="text" name="link"></label>
+              <label class="full"><span data-i18n="guest.story">What business lesson, success, challenge, or point of view would you like to share?</span><textarea name="story" rows="5" required></textarea></label>
+              <button class="btn btn-primary" type="submit" data-i18n="guest.submit">Submit Guest Interest</button>
+              <p class="guest-status" id="guestStatus"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="shell contact-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow" data-i18n="contact.eyebrow">LET'S TALK</div>
+          <h2 data-i18n="contact.title">Build an AI advantage without wasting time or capital.</h2>
+          <p data-i18n="contact.body">Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.</p>
+          <div class="contact-note" data-i18n="contact.note">Initial consultation • 30 minutes • Business-focused</div>
+        </div>
+        <div class="reveal delay-1">
+          <button class="section-toggle" type="button" data-collapse-target="contactFormDetail" aria-expanded="false"><span data-i18n="collapse.contactOpen">Open consultation form</span><span class="chevron">⌄</span></button>
+          <div id="contactFormDetail" class="collapsible-detail" hidden>
+        <form class="contact-form" id="leadForm" action="/api/contact" method="POST">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+          <label><span data-i18n="form.name">Name</span><input type="text" name="name" required /></label>
+          <label><span data-i18n="form.email">Email</span><input type="email" name="email" required /></label>
+          <label><span data-i18n="form.company">Company</span><input type="text" name="company" /></label>
+          <label><span data-i18n="form.challenge">What would you like AI to improve?</span><textarea name="challenge" rows="5" required></textarea></label>
+          <button class="btn btn-primary" type="submit" data-i18n="form.submit">Request Consultation</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-branding">
+        <img class="footer-logo" src="assets/galore-logo.png" alt="GaloreGrowth.ai logo" />
+        <div><strong>GaloreGrowth.ai</strong><span data-i18n="footer.tagline">AI for measurable business growth.</span></div>
+      </div>
+      <div class="footer-links">
+        <button class="legal-button" type="button" data-legal-open="privacy" data-i18n="footer.privacy">Privacy Policy</button>
+        <button class="legal-button" type="button" data-legal-open="terms" data-i18n="footer.terms">Terms of Use</button>
+        <span>© <span id="year"></span> GaloreGrowth.ai</span>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>
+        <a class="linkedin-link" href="https://www.linkedin.com/in/guno-sutiono-2585531" target="_blank" rel="noopener noreferrer" aria-label="Guno Sutiono on LinkedIn">
+          <svg class="linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.5 8.2H3.4V21h3.1V8.2Zm.2-4A1.8 1.8 0 1 0 3.1 4.2a1.8 1.8 0 0 0 3.6 0ZM21 13.7c0-3.8-2-5.6-4.7-5.6-2.2 0-3.2 1.2-3.7 2v-1.9H9.5V21h3.1v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21H21v-7.3Z" fill="currentColor"/>
+          </svg>
+          <span>Guno Sutiono</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="privacyModal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" hidden>
+    <div class="legal-dialog">
+      <div class="legal-header">
+        <h2 id="privacyTitle" data-i18n="footer.privacy">Privacy Policy</h2>
+        <button class="legal-close" type="button" data-legal-close aria-label="Close">×</button>
+      </div>
+      <div class="legal-content">
+        <div class="legal-en">
+          <div class="legal-meta">Effective date: October 1, 2026</div>
+          <p>This Privacy Policy explains how GaloreGrowth.ai (“GaloreGrowth.ai,” “we,” “us,” or “our”) may collect, use, disclose, and protect information when you visit this website, request a consultation, apply to be a podcast guest, or otherwise communicate with us.</p>
+          <h3>1. Information We May Collect</h3>
+          <p>We may collect information you voluntarily provide, including your name, email address, company, title or role, industry, website or LinkedIn profile, business challenges, podcast topics, and other information you submit through forms or email. Our hosting and security providers may also process technical information such as IP address, browser type, device information, access time, and pages requested. If analytics or similar tools are enabled in the future, they may collect usage information as described in an updated version of this policy.</p>
+          <h3>2. How We Use Information</h3>
+          <p>We may use information to respond to inquiries, evaluate potential engagements and podcast guests, provide and improve services and website functionality, protect the website from abuse or security threats, maintain business records, and comply with applicable law.</p>
+          <h3>3. How We Share Information</h3>
+          <p>We may disclose information to service providers that help operate our website, communications, hosting, scheduling, CRM, analytics, or other business systems; to professional advisers; when required by law; or in connection with a corporate transaction. We do not currently sell personal information or share it for cross-context behavioral advertising.</p>
+          <h3>4. California Privacy Rights</h3>
+          <p>To the extent applicable law grants you rights, California residents may have rights to request access to, correction of, or deletion of personal information, and rights relating to certain sale or sharing practices and non-discrimination. To submit a privacy request, email <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>. We may need to verify your identity before completing a request.</p>
+          <h3>5. Data Retention and Security</h3>
+          <p>We retain information for as long as reasonably necessary for the purposes described above, legal obligations, dispute resolution, and legitimate business needs. We use reasonable administrative and technical safeguards, but no Internet transmission or storage system can be guaranteed to be completely secure.</p>
+          <h3>6. Cookies and Third-Party Services</h3>
+          <p>This website may use essential technologies needed for site functionality and may later use analytics or other third-party services. Third-party websites and services are governed by their own privacy practices.</p>
+          <h3>7. Children</h3>
+          <p>This website is intended for business and professional audiences and is not directed to children under 13. We do not knowingly seek personal information from children under 13.</p>
+          <h3>8. Changes</h3>
+          <p>We may update this Privacy Policy from time to time. The effective date above indicates the latest revision.</p>
+          <h3>9. Contact</h3>
+          <p>Questions or privacy requests may be sent to <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>.</p>
+        </div>
+
+        <div class="legal-zh">
+          <div class="legal-meta">生效日期：2026年10月1日</div>
+          <p>本隐私政策说明 GaloreGrowth.ai（“我们”）在您访问本网站、申请咨询、申请成为播客嘉宾或与我们联系时，可能如何收集、使用、披露和保护相关信息。</p>
+          <h3>1. 我们可能收集的信息</h3>
+          <p>我们可能收集您主动提供的信息，包括姓名、邮箱、公司、职务、行业、网站或 LinkedIn、业务挑战、播客主题，以及您通过表格或邮件提交的其他内容。网站托管与安全服务商也可能处理 IP 地址、浏览器、设备、访问时间及请求页面等技术信息。如果未来启用分析工具，我们会在更新后的政策中说明相关使用方式。</p>
+          <h3>2. 信息用途</h3>
+          <p>我们可能使用这些信息回复咨询、评估潜在合作及播客嘉宾、提供与改善服务和网站功能、防范滥用和安全风险、保存合理业务记录，以及遵守适用法律。</p>
+          <h3>3. 信息披露</h3>
+          <p>我们可能向协助网站托管、通讯、预约、CRM、分析或其他业务系统的服务商披露必要信息，也可能向专业顾问披露，或在法律要求及公司交易情况下披露。目前我们不出售个人信息，也不为跨情境行为广告目的分享个人信息。</p>
+          <h3>4. 加州隐私权</h3>
+          <p>在适用法律赋予相关权利的范围内，加州居民可能有权要求访问、更正或删除个人信息，并享有与某些“出售或分享”行为以及不受歧视相关的权利。隐私请求请发送至 <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>。处理请求前，我们可能需要核实身份。</p>
+          <h3>5. 保存与安全</h3>
+          <p>我们会在实现上述目的、履行法律义务、处理争议和合理业务需要所必需的期限内保存信息。我们会采取合理的行政和技术保护措施，但任何互联网传输或存储系统都无法保证绝对安全。</p>
+          <h3>6. Cookies 与第三方服务</h3>
+          <p>网站可能使用维持基本功能所需的技术，并可能在未来加入分析或其他第三方服务。第三方网站与服务受其自身隐私政策约束。</p>
+          <h3>7. 儿童</h3>
+          <p>本网站面向商业与专业人士，并非针对 13 岁以下儿童。我们不会主动收集 13 岁以下儿童的个人信息。</p>
+          <h3>8. 政策更新</h3>
+          <p>我们可能不时更新本隐私政策，以上生效日期代表最近一次修订。</p>
+          <h3>9. 联系我们</h3>
+          <p>任何隐私问题或请求，请发送至 <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="termsModal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" hidden>
+    <div class="legal-dialog">
+      <div class="legal-header">
+        <h2 id="termsTitle" data-i18n="footer.terms">Terms of Use</h2>
+        <button class="legal-close" type="button" data-legal-close aria-label="Close">×</button>
+      </div>
+      <div class="legal-content">
+        <div class="legal-en">
+          <div class="legal-meta">Effective date: October 1, 2026</div>
+          <p>These Terms of Use (“Terms”) govern your access to and use of the GaloreGrowth.ai website. By using this website, you agree to these Terms. If you do not agree, please do not use the website.</p>
+          <h3>1. Informational Website; Separate Service Agreements</h3>
+          <p>This website provides general information about GaloreGrowth.ai, AI strategy, implementation, training, media production, podcast content, and related services. Any paid consulting, implementation, production, training, or other engagement may be governed by a separate written agreement. If a separate agreement conflicts with these Terms, the separate agreement controls for that engagement.</p>
+          <h3>2. No Guaranteed Business Results</h3>
+          <p>Examples of potential improvements, including lead growth, revenue growth, productivity, cost reduction, or marketing performance, are illustrative goals rather than guarantees. Actual results depend on many factors outside our control, including market conditions, execution, data quality, offer quality, budget, competition, and third-party platforms.</p>
+          <h3>3. AI and Professional Advice Disclaimer</h3>
+          <p>AI systems and outputs can be incomplete, inaccurate, outdated, or unsuitable for a particular use. Website content and AI-related examples are not legal, tax, accounting, investment, medical, or other regulated professional advice. You are responsible for appropriate human review and professional advice before relying on AI-generated or website information for consequential decisions.</p>
+          <h3>4. Intellectual Property</h3>
+          <p>Unless otherwise stated, the website design, branding, text, graphics, videos, training materials, podcast materials, and other original content are owned by or licensed to GaloreGrowth.ai and are protected by applicable intellectual-property laws. You may view and use the website for lawful personal or internal business purposes, but may not copy, republish, sell, scrape, reverse engineer, or commercially exploit protected content without permission.</p>
+          <h3>5. User Submissions and Podcast Guest Applications</h3>
+          <p>You represent that information you submit is accurate and that you have the right to provide it. Submitting an inquiry or podcast guest application does not create a client relationship, partnership, employment relationship, or obligation for GaloreGrowth.ai to respond, engage, publish, or feature any person or organization. Any recording, publication, publicity, or content rights for an actual podcast appearance may be addressed separately with the guest.</p>
+          <h3>6. Acceptable Use</h3>
+          <p>You may not use the website to violate law, infringe rights, transmit malicious code, attempt unauthorized access, interfere with website operation, impersonate others, harvest data unlawfully, or misuse forms and communication channels.</p>
+          <h3>7. Third-Party Services and Links</h3>
+          <p>The website may reference or link to third-party platforms, AI tools, social networks, scheduling systems, hosting providers, or other services. We do not control those services and are not responsible for their availability, security, content, terms, or privacy practices.</p>
+          <h3>8. Disclaimer of Warranties</h3>
+          <p>To the fullest extent permitted by law, the website is provided “as is” and “as available,” without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, or uninterrupted availability.</p>
+          <h3>9. Limitation of Liability</h3>
+          <p>To the fullest extent permitted by law, GaloreGrowth.ai and its owners, personnel, contractors, and affiliates will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, revenue, data, goodwill, or business opportunities arising from or related to website use. To the extent liability cannot be excluded, aggregate liability arising solely from website use will not exceed the greater of US$100 or the amount you paid GaloreGrowth.ai specifically for access to this website during the preceding 12 months.</p>
+          <h3>10. Indemnification</h3>
+          <p>To the extent permitted by law, you agree to indemnify and hold harmless GaloreGrowth.ai and its owners, personnel, contractors, and affiliates from claims, losses, liabilities, and reasonable costs arising from your unlawful misuse of the website, your violation of these Terms, or your infringement of another party’s rights.</p>
+          <h3>11. Governing Law</h3>
+          <p>These Terms are governed by the laws of the State of California, without regard to conflict-of-law principles. Any dispute relating solely to website use will be brought in an appropriate state or federal court located in California, unless applicable law requires otherwise.</p>
+          <h3>12. Changes; Severability</h3>
+          <p>We may update these Terms from time to time. If any provision is held unenforceable, the remaining provisions remain in effect. Our failure to enforce a provision is not a waiver.</p>
+          <h3>13. Contact</h3>
+          <p>Questions about these Terms may be sent to <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>.</p>
+        </div>
+
+        <div class="legal-zh">
+          <div class="legal-meta">生效日期：2026年10月1日</div>
+          <p>本使用条款（“条款”）适用于您对 GaloreGrowth.ai 网站的访问和使用。使用本网站即表示您同意这些条款；如不同意，请停止使用本网站。</p>
+          <h3>1. 网站信息与独立服务协议</h3>
+          <p>本网站提供关于 GaloreGrowth.ai、AI 战略、实施、培训、媒体制作、播客内容及相关服务的一般信息。任何付费顾问、实施、制作、培训或其他合作可能由另行签署的书面协议管理；如书面协议与本条款冲突，则针对该项目以书面协议为准。</p>
+          <h3>2. 不保证商业结果</h3>
+          <p>网站中有关线索增长、营收增长、生产力、成本降低或营销表现的例子仅代表可能的目标，并不构成保证。实际结果受市场、执行、数据质量、产品/服务本身、预算、竞争和第三方平台等多种因素影响。</p>
+          <h3>3. AI 与专业意见免责声明</h3>
+          <p>AI 系统及其输出可能不完整、不准确、过时或不适合特定用途。网站内容及 AI 示例不构成法律、税务、会计、投资、医疗或其他受监管的专业意见。对于重要决策，您有责任进行适当的人类审核，并在需要时咨询相应专业人士。</p>
+          <h3>4. 知识产权</h3>
+          <p>除非另有说明，网站设计、品牌、文字、图像、视频、培训材料、播客材料及其他原创内容均由 GaloreGrowth.ai 所有或合法使用，并受相关知识产权法律保护。您可以为合法的个人或内部商业目的浏览和使用网站，但未经许可不得复制、再发布、销售、抓取、逆向工程或商业利用受保护内容。</p>
+          <h3>5. 用户提交与播客嘉宾申请</h3>
+          <p>您确认所提交的信息真实准确，并有权提供该信息。提交咨询或播客嘉宾申请不会自动建立客户、合伙、雇佣或其他关系，也不构成 GaloreGrowth.ai 必须回复、合作、发布或邀请的义务。实际播客录制、发布、宣传和内容权利可在确认嘉宾后另行约定。</p>
+          <h3>6. 可接受使用</h3>
+          <p>您不得利用本网站违法、侵犯他人权利、传播恶意代码、尝试未经授权访问、干扰网站运行、冒充他人、非法收集数据或滥用网站表格及沟通渠道。</p>
+          <h3>7. 第三方服务与链接</h3>
+          <p>本网站可能引用或链接第三方 AI 工具、社交平台、预约系统、托管服务或其他服务。我们无法控制这些第三方，也不对其可用性、安全性、内容、条款或隐私做法负责。</p>
+          <h3>8. 免责声明</h3>
+          <p>在法律允许的最大范围内，本网站按“现状”和“可用状态”提供，不提供任何明示或默示保证，包括适销性、特定用途适用性、不侵权、准确性或持续可用性的保证。</p>
+          <h3>9. 责任限制</h3>
+          <p>在法律允许的最大范围内，GaloreGrowth.ai 及其所有人、人员、承包商和关联方不对因网站使用产生的间接、附带、特殊、后果性、惩罚性损失，或利润、营收、数据、商誉及商业机会损失承担责任。对于法律不能排除的责任，仅因网站使用产生的累计责任以 100 美元或您过去 12 个月专门为访问本网站支付给 GaloreGrowth.ai 的金额（取较高者）为上限。</p>
+          <h3>10. 赔偿</h3>
+          <p>在法律允许范围内，因您违法使用本网站、违反本条款或侵犯第三方权利而产生的索赔、损失、责任和合理费用，您同意对 GaloreGrowth.ai 及其所有人、人员、承包商和关联方进行赔偿并使其免责。</p>
+          <h3>11. 适用法律</h3>
+          <p>本条款受美国加利福尼亚州法律管辖，不考虑法律冲突原则。仅与网站使用相关的争议，应提交加州有管辖权的州或联邦法院处理，但适用法律另有要求的除外。</p>
+          <h3>12. 修改与可分割性</h3>
+          <p>我们可能不时更新本条款。如任何条款被认定不可执行，其余条款仍继续有效。我们未执行某项条款不构成对该条款的放弃。</p>
+          <h3>13. 联系我们</h3>
+          <p>有关本条款的问题，请发送至 <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+const translations = {
+  en: {
+    'nav.services':'Services','nav.approach':'Approach','nav.why':'Why Us','nav.about':'About','nav.podcast':'Podcast','nav.cta':'Book a Consultation','preview.services1':'Growth & lead generation','preview.services2':'Workflow automation','preview.services3':'AI shorts & outreach','preview.approach1':'Find the bottleneck','preview.approach2':'Assemble the right tools','preview.approach3':'Implement, measure, scale','preview.why1':'Outcome-focused','preview.why2':'Tool-agnostic','preview.why3':'Operator-led','footer.privacy':'Privacy Policy','footer.terms':'Terms of Use',
+    'hero.eyebrow':'BUSINESS GROWTH • POWERED BY AI',
+    'hero.title':'Turn AI into <span>real business growth.</span>',
+    'hero.lead':'Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.',
+    'hero.anxiety':'AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.',
+    'hero.cta1':'Book an AI Growth Consultation','hero.cta2':'Explore Services','hero.note':'AI is the vehicle. Business transformation is the destination.','hero.videoLabel':'AI BUSINESS TRANSFORMATION','hero.videoTag':'10-SECOND STORY','collapse.servicesOpen':'Explore services','collapse.servicesClose':'Hide services','collapse.approachOpen':'See how we work','collapse.approachClose':'Hide details','collapse.whyOpen':'Why GaloreGrowth.ai','collapse.whyClose':'Hide details','collapse.contactOpen':'Open consultation form','collapse.contactClose':'Close form','sound.on':'Turn sound on','sound.off':'Mute sound',
+    'trust.1a':'Practical AI','trust.1b':'Focused on business outcomes','trust.2a':'Tool-Agnostic','trust.2b':'Use what works best','trust.3a':'Executive-Level','trust.3b':'Strategy to implementation','trust.4a':'Built to Evolve','trust.4b':'Designed for rapid AI change',
+    'services.eyebrow':'WHAT WE DO','services.title':'AI should improve the business — not become another expensive IT project.','services.subtitle':'We focus on high-value use cases, fast implementation, and measurable operating impact.',
+    'services.s1t':'AI Business Audit','services.s1d':'Identify where AI can remove friction, reduce cost, accelerate decisions, and improve customer experience.',
+    'services.s2t':'AI Workflow Automation','services.s2d':'Automate repetitive work across sales, operations, finance, support, and internal knowledge processes.',
+    'services.s3t':'AI Agent Implementation','services.s3d':'Deploy task-focused AI assistants and agents that work with your existing tools, data, and teams.',
+    'services.s4t':'Sales & Marketing AI','services.s4d':'Use AI to improve lead generation, personalization, content production, follow-up, and conversion workflows.',
+    'services.s5t':'Executive AI Strategy','services.s5d':'Translate fast-moving AI capabilities into a practical roadmap for competitive advantage and operating leverage.',
+    'services.s6t':'AI Training & Enablement','services.s6d':'Train leaders and teams to use AI effectively, responsibly, and with confidence inside real business workflows.','services.s7t':'AI Shorts Strategy, Training & Production','services.s7d':'Turn short-form video into a business growth channel. We help teams design episodic, story-driven AI shorts for marketing and outreach, train internal creators, or produce the content for you—at a speed and volume traditional production cannot match.',
+    'approach.eyebrow':'OUR APPROACH','approach.title':'AI is moving too fast to keep building yesterday’s technology.','approach.body':'The market now produces powerful new models, platforms, and automation tools at extraordinary speed. Instead of spending heavily to recreate capabilities that already exist, we help you assemble the right solutions around your business needs.',
+    'approach.p1t':'Discover','approach.p1d':'Find the highest-value problems and opportunities.','approach.p2t':'Audit','approach.p2d':'Map workflows, data, bottlenecks, and existing systems.','approach.p3t':'Design','approach.p3d':'Select the right AI tools and define the implementation path.','approach.p4t':'Implement','approach.p4d':'Build practical solutions that fit the way your team works.','approach.p5t':'Optimize','approach.p5d':'Measure results, improve adoption, and expand what works.',
+    'why.eyebrow':'WHY GALOREGROWTH.AI','why.title':'Business first. AI second.','why.subtitle':'Technology only matters when it improves decisions, productivity, growth, or customer experience.','why.w1t':'Outcome Focused','why.w1d':'Every engagement starts with the business result, not the tool.','why.w2t':'Built for Change','why.w2d':'We avoid unnecessary lock-in so your AI stack can evolve as the market changes.','why.w3t':'Operator Mindset','why.w3d':'Strategy is connected to implementation, workflow design, and real operating constraints.',
+    'about.eyebrow':'FOUNDER','about.title':'Enterprise rigor. Founder agility. Real-world AI execution.','about.quicktitle':'Principal AI Solutions Architect & Founder','about.quickbio':'Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.','about.expand':'Read full bio','about.collapse':'Show less','about.longtitle':'Founder & Chief AI Solutions Architect','about.longp1':'Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.','about.b1':'<strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.','about.b2':'<strong>Proven Founder & Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.','about.b3':"<strong>Operational Scale & Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.",'about.longp2':'As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.','about.role':'Principal AI Solutions Architect • Founder','about.t1':'Former Adobe Division Managing Director','about.t2':'Founder with Successful Exit','about.t3':'500+ Agent Platform Builder','about.t4':'CFP® • ChFC®',
+    'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
+    'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
+    'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation','form.sending':'Sending…','form.success':'Thank you. Your consultation request has been sent.','form.error':'We could not send your request. Please email GaloreGrowth.ai@gmail.com directly.',
+    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Future episodes will play right here.','podcast.featureBody':'Watch full conversations, meet the leaders behind the stories, and take away practical lessons you can apply to your own business.','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email GaloreGrowth.ai@gmail.com directly.',
+    'footer.tagline':'AI for measurable business growth.'
+  },
+  zh: {
+    'nav.services':'服务','nav.approach':'方法','nav.why':'为何选择我们','nav.about':'关于','nav.podcast':'播客','nav.cta':'预约咨询','preview.services1':'增长与获客','preview.services2':'工作流自动化','preview.services3':'AI 短视频与外联','preview.approach1':'找出业务瓶颈','preview.approach2':'组合最合适的工具','preview.approach3':'实施、衡量、规模化','preview.why1':'结果导向','preview.why2':'工具中立','preview.why3':'运营者主导','footer.privacy':'隐私政策','footer.terms':'使用条款',
+    'hero.eyebrow':'业务增长 • AI 驱动',
+    'hero.title':'让 AI 变成<span>真正的业务增长。</span>',
+    'hero.lead':'你的企业不需要更多 AI，而是需要更多客户、更高收入和更少业务摩擦。无论目标是每周多 10 个合格线索、更快跟进、更低获客成本，还是朝营收翻倍迈进，GaloreGrowth.ai 都从业务结果出发，再围绕这个结果组合最合适的增长系统。',
+    'hero.anxiety':'AI 正在重新定义竞争速度。很多企业还在试验时，另一些企业已经用 AI 更快获客、即时回应客户、大规模个性化营销，并减少运营瓶颈。AI 本身不是终点；真正拉开差距的，是谁能更快、更有效地把 AI 转化为业务能力。每多等一个月，差距都可能继续扩大。',
+    'hero.cta1':'预约 AI 增长咨询','hero.cta2':'查看服务','hero.note':'AI 是载具，业务转型才是终点。','hero.videoLabel':'AI 商业转型','hero.videoTag':'10 秒故事','collapse.servicesOpen':'查看服务详情','collapse.servicesClose':'收起服务','collapse.approachOpen':'查看我们如何实施','collapse.approachClose':'收起详情','collapse.whyOpen':'为什么选择 GaloreGrowth.ai','collapse.whyClose':'收起详情','collapse.contactOpen':'展开咨询表格','collapse.contactClose':'收起表格','sound.on':'打开声音','sound.off':'静音',
+    'trust.1a':'实用 AI','trust.1b':'以业务成果为核心','trust.2a':'工具中立','trust.2b':'选择最适合的方案','trust.3a':'管理层视角','trust.3b':'从战略到实施','trust.4a':'持续进化','trust.4b':'适应 AI 的高速变化',
+    'services.eyebrow':'我们的服务','services.title':'AI 应该改善业务，而不是变成另一个昂贵的 IT 项目。','services.subtitle':'我们专注高价值场景、快速实施和可衡量的业务成果。',
+    'services.s1t':'AI 业务审计','services.s1d':'找出 AI 最能减少摩擦、降低成本、加快决策并改善客户体验的环节。',
+    'services.s2t':'AI 工作流自动化','services.s2d':'把销售、运营、财务、客服及内部知识流程中的重复工作自动化。',
+    'services.s3t':'AI Agent 落地','services.s3d':'部署面向具体任务的 AI 助手与智能体，并连接现有工具、数据与团队。',
+    'services.s4t':'销售与营销 AI','services.s4d':'利用 AI 提升获客、个性化内容、跟进效率和转化流程。',
+    'services.s5t':'管理层 AI 战略','services.s5d':'把快速变化的 AI 能力转化为切实可行的竞争优势和运营杠杆路线图。',
+    'services.s6t':'AI 培训与赋能','services.s6d':'帮助管理层和团队在真实业务流程中更有效、更负责任、更有信心地使用 AI。','services.s7t':'AI 短视频策略、培训与制作','services.s7d':'把短视频变成真正的业务增长渠道。我们帮助企业设计连续剧式、故事驱动的 AI 短视频用于营销与外联，也可以培训内部团队，或直接为企业制作内容——速度与产量远超传统制作方式。',
+    'approach.eyebrow':'我们的方法','approach.title':'AI 发展太快，不应该继续投入巨资打造昨天的技术。','approach.body':'新的模型、平台和自动化工具正在高速涌现。与其重新开发市场上已经存在的能力，我们更重视围绕企业真实需求，组合最适合的现成技术并快速落地。',
+    'approach.p1t':'发现','approach.p1d':'找出最具价值的问题与机会。','approach.p2t':'审计','approach.p2d':'梳理流程、数据、瓶颈和现有系统。','approach.p3t':'设计','approach.p3d':'选择合适的 AI 工具并制定实施路径。','approach.p4t':'实施','approach.p4d':'打造真正适合团队工作方式的实用方案。','approach.p5t':'优化','approach.p5d':'衡量成果、改善采用率，并扩大有效方案。',
+    'why.eyebrow':'为什么选择 GALOREGROWTH.AI','why.title':'业务第一，AI 第二。','why.subtitle':'技术只有在改善决策、效率、增长或客户体验时才真正有价值。','why.w1t':'结果导向','why.w1d':'每个项目从业务成果出发，而不是从工具出发。','why.w2t':'为变化而设计','why.w2d':'避免不必要的技术锁定，让 AI 架构可以随着市场持续升级。','why.w3t':'运营者思维','why.w3d':'战略与实际实施、流程设计和企业现实条件紧密相连。',
+    'about.eyebrow':'创始人','about.title':'企业级历练、创业者速度、真正可落地的 AI 执行力。','about.quicktitle':'首席 AI 解决方案架构师兼创始人','about.quickbio':'Guno Sutiono 兼具《财富》500 强企业级整合的严谨经验，与连续创业者的敏捷执行力。他曾担任 Adobe 的事业部董事总经理，创办并成功出售一家移动软件顾问公司，也曾联合创办一家拥有 500 多名持牌代理人的经纪平台——并在 ChatGPT 发布仅 20 天后，将定制化的 ChatGPT 能力部署到整个销售团队。Guno 深知如何把前沿技术迅速转化为可立即产生效益的运营杠杆。在 GaloreGrowth.ai，他负责甄选、测试并整合顶尖 AI 方案，打造模块化增长引擎，帮助企业在零技术负担下实现外联自动化、线索筛选与广告创意优化。','about.expand':'展开完整简介','about.collapse':'收起','about.longtitle':'创始人兼首席 AI 解决方案架构师','about.longp1':'企业主不需要自己变成 AI 工程师才能实现增长——他们需要的是一位真正理解企业系统、商业经济学和现实执行的人来带路。以类似 Andersen Consulting 的战略思维方式，Guno Sutiono 负责甄选、验证并组合全球领先的 AI 技术，把它们打造成能快速带来营收、执行轻盈且不增加技术负担的模块化增长引擎。','about.b1':'<strong>大规模企业级整合经验：</strong>曾任财富 500 强科技公司 Adobe 的事业部董事总经理，主导大型企业复杂的整合服务。','about.b2':'<strong>成功创业与退出经历：</strong>创办一家为多元商业行业提供关键任务型应用的移动软件顾问公司，并在五年后成功带领公司被更大的企业收购。','about.b3':'<strong>运营规模与闪电速度：</strong>联合创办一家支持 500 多名持牌代理人的人寿保险经纪平台，并亲自架构整个后台运营基础设施。ChatGPT 面世后，他在 20 天内就把生成式 AI 能力整合进代理人的原生移动应用，让一线团队远早于行业多数同行获得免费且即时的 AI 生产力。','about.longp2':'作为认证财务规划师（CFP®）和特许财务顾问（ChFC®），Guno 以严格的财务纪律看待 AI 采用。在 GaloreGrowth.ai，他帮助企业避开现代 AI 的试错成本，编排最佳级别的工具——从可自动外呼和筛选潜客的语音智能体，到可显著降低获客成本的生成式内容流程——并以一个个高 ROI 模块的方式融入现有业务流程。','about.role':'首席 AI 解决方案架构师 • 创始人','about.t1':'前 Adobe 事业部董事总经理','about.t2':'成功创业并完成退出','about.t3':'500+ 代理人平台架构者','about.t4':'CFP® • ChFC®',
+    'cta.eyebrow':'先问对问题','cta.title':'AI 现在能在哪些地方为你的业务创造最大价值？','cta.body':'一次聚焦的讨论，通常就能找出 AI 最先应该解决的几个高价值环节。','cta.button':'预约咨询',
+    'contact.eyebrow':'联系我们','contact.title':'不用浪费时间和资本，也能建立真正的 AI 优势。','contact.body':'告诉我们你最想改善什么，我们会一起判断 AI 最值得从哪里开始。','contact.note':'首次咨询 • 30 分钟 • 聚焦业务',
+    'form.name':'姓名','form.email':'邮箱','form.company':'公司','form.challenge':'你希望 AI 改善什么？','form.submit':'申请咨询','form.sending':'发送中…','form.success':'谢谢，你的咨询申请已经发送。','form.error':'暂时无法发送，请直接邮件至 GaloreGrowth.ai@gmail.com。',
+    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'为今天的商业世界，提供一张更清晰的地图和指南针。','podcast.body':'我们正在打造一个视频播客，邀请各行业领袖与企业主坦诚分享：什么正在奏效、什么正在改变、今天真正困难的是什么。我们的目标，是让观众更清楚地理解当下商业格局，并从真实经验中学会如何正确导航。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'观看完整对话，认识故事背后的商业领袖，并带走可以应用到自己企业中的实战启发。','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向','guest.sending':'发送中…','guest.success':'谢谢，你的播客嘉宾申请已经发送。','guest.error':'暂时无法发送，请直接邮件至 GaloreGrowth.ai@gmail.com。',
+    'footer.tagline':'用 AI 创造可衡量的业务增长。'
+  }
+};
+
+let currentLang = 'en';
+const toggle = document.getElementById('languageToggle');
+const bioToggle = document.getElementById('bioToggle');
+const bioDetail = document.getElementById('bioDetail');
+const heroVideo = document.getElementById('heroVideo');
+const heroVideoSource = document.getElementById('heroVideoSource');
+const videoSoundToggle = document.getElementById('videoSoundToggle');
+const soundIconMuted = document.getElementById('soundIconMuted');
+const soundIconOn = document.getElementById('soundIconOn');
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav = document.getElementById('mobileNav');
+const contactFormDetail = document.getElementById('contactFormDetail');
+const contactToggle = document.querySelector('[data-collapse-target="contactFormDetail"]');
+let bioExpanded = false;
+
+function refreshBioToggleText() {
+  const key = bioExpanded ? 'about.collapse' : 'about.expand';
+  bioToggle.innerHTML = translations[currentLang][key];
+}
+
+
+function refreshSectionToggleText() {
+  document.querySelectorAll('[data-collapse-target]').forEach(btn => {
+    const target = btn.dataset.collapseTarget;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    const map = {
+      servicesDetail: expanded ? 'collapse.servicesClose' : 'collapse.servicesOpen',
+      approachDetail: expanded ? 'collapse.approachClose' : 'collapse.approachOpen',
+      whyDetail: expanded ? 'collapse.whyClose' : 'collapse.whyOpen',
+      contactFormDetail: expanded ? 'collapse.contactClose' : 'collapse.contactOpen',
+      guestFormDetail: expanded ? 'collapse.guestClose' : 'collapse.guestOpen',
+      podcastTopicsDetail: expanded ? 'collapse.podcastTopicsClose' : 'collapse.podcastTopicsOpen'
+    };
+    const label = btn.querySelector('[data-i18n]');
+    if (label && map[target]) label.innerHTML = translations[currentLang][map[target]];
+  });
+}
+
+function refreshSoundButton() {
+  if (!videoSoundToggle || !heroVideo) return;
+  const muted = heroVideo.muted;
+  soundIconMuted.hidden = !muted;
+  soundIconOn.hidden = muted;
+  const key = muted ? 'sound.on' : 'sound.off';
+  const label = translations[currentLang][key];
+  videoSoundToggle.setAttribute('aria-label', label);
+  videoSoundToggle.setAttribute('title', label);
+}
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (el === bioToggle) return;
+    const value = translations[lang][key];
+    if (value !== undefined) el.innerHTML = value;
+  });
+  toggle.textContent = lang === 'en' ? '中文' : 'EN';
+  refreshBioToggleText();
+  refreshSectionToggleText();
+  refreshSoundButton();
+
+  const nextVideo = lang === 'zh' ? 'galoregrowth-hero-zh.mp4' : 'galoregrowth-hero-en.mp4';
+  if (heroVideoSource && heroVideoSource.getAttribute('src') !== nextVideo) {
+    heroVideoSource.setAttribute('src', nextVideo);
+    heroVideo.load();
+    const playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+  }
+}
+
+toggle.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'zh' : 'en'));
+
+if (videoSoundToggle) {
+  videoSoundToggle.addEventListener('click', () => {
+    heroVideo.muted = !heroVideo.muted;
+    refreshSoundButton();
+    if (!heroVideo.muted) {
+      const p = heroVideo.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+  });
+}
+
+document.querySelectorAll('[data-collapse-target]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const detail = document.getElementById(btn.dataset.collapseTarget);
+    const opening = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', String(opening));
+    if (detail) detail.hidden = !opening;
+    refreshSectionToggleText();
+  });
+});
+
+
+if (menuToggle && mobileNav) {
+  menuToggle.addEventListener('click', () => {
+    const opening = menuToggle.getAttribute('aria-expanded') !== 'true';
+    menuToggle.setAttribute('aria-expanded', String(opening));
+    mobileNav.hidden = !opening;
+    menuToggle.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+  });
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      mobileNav.hidden = true;
+      menuToggle.setAttribute('aria-label', 'Open menu');
+    });
+  });
+}
+
+document.querySelectorAll('.consultation-cta').forEach(link => {
+  link.addEventListener('click', () => {
+    if (contactToggle && contactFormDetail) {
+      contactToggle.setAttribute('aria-expanded', 'true');
+      contactFormDetail.hidden = false;
+      refreshSectionToggleText();
+    }
+  });
+});
+
+document.querySelectorAll('[data-legal-open]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modal = document.getElementById(btn.dataset.legalOpen + 'Modal');
+    if (modal) {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      const close = modal.querySelector('[data-legal-close]');
+      if (close) close.focus();
+    }
+  });
+});
+
+function closeLegalModal(modal) {
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-legal-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeLegalModal(btn.closest('.legal-modal')));
+});
+document.querySelectorAll('.legal-modal').forEach(modal => {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLegalModal(modal);
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.legal-modal:not([hidden])').forEach(closeLegalModal);
+    if (mobileNav && !mobileNav.hidden) {
+      mobileNav.hidden = true;
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
+
+bioToggle.addEventListener('click', () => {
+  bioExpanded = !bioExpanded;
+  bioDetail.hidden = !bioExpanded;
+  refreshBioToggleText();
+});
+
+refreshBioToggleText();
+refreshSectionToggleText();
+refreshSoundButton();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: .12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+async function submitEmailForm(formEl, statusEl, sendingKey, successKey, errorKey) {
+  const submitBtn = formEl.querySelector('button[type="submit"]');
+  const originalLabel = submitBtn ? submitBtn.textContent : '';
+
+  formEl.querySelectorAll('.form-language').forEach(el => el.value = currentLang);
+  formEl.querySelectorAll('.form-page-url').forEach(el => el.value = window.location.href);
+  formEl.querySelectorAll('.form-referrer').forEach(el => el.value = document.referrer || '');
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = translations[currentLang][sendingKey] || 'Sending…';
+  }
+  statusEl.textContent = translations[currentLang][sendingKey] || 'Sending…';
+
+  try {
+    const response = await fetch(formEl.action, {
+      method: 'POST',
+      body: new FormData(formEl),
+      headers: { 'Accept': 'application/json' }
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.success) throw new Error(result.error || 'Submission failed');
+    statusEl.textContent = translations[currentLang][successKey] || 'Thank you. Your message has been sent.';
+    formEl.reset();
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = translations[currentLang][errorKey] || 'Unable to send. Please email GaloreGrowth.ai@gmail.com directly.';
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      const key = formEl.id === 'guestForm' ? 'guest.submit' : 'form.submit';
+      submitBtn.textContent = translations[currentLang][key] || originalLabel;
+    }
+  }
+}
+
+const form = document.getElementById('leadForm');
+const formStatus = document.getElementById('formStatus');
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitEmailForm(form, formStatus, 'form.sending', 'form.success', 'form.error');
+  });
+}
+
+const guestForm = document.getElementById('guestForm');
+const guestStatus = document.getElementById('guestStatus');
+if (guestForm) {
+  guestForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitEmailForm(guestForm, guestStatus, 'guest.sending', 'guest.success', 'guest.error');
+  });
+}
+
+  </script>
+</body>
+</html>
