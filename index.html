@@ -158,6 +158,16 @@ button, input, textarea { font: inherit; }
 }
 .footer-contact a { color: #c8cede; }
 .footer-contact a:hover { color: white; }
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.linkedin-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
 
 .legal-modal {
   position: fixed; inset: 0; z-index: 200;
@@ -915,7 +925,12 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
       </div>
       <div class="footer-contact">
         <a href="mailto:GaloreGrowth.ai@gmail.com">GaloreGrowth.ai@gmail.com</a>
-        <a href="https://www.linkedin.com/in/guno-sutiono-2585531" target="_blank" rel="noopener noreferrer">LinkedIn — Guno Sutiono</a>
+        <a class="linkedin-link" href="https://www.linkedin.com/in/guno-sutiono-2585531" target="_blank" rel="noopener noreferrer" aria-label="Guno Sutiono on LinkedIn">
+          <svg class="linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.5 8.2H3.4V21h3.1V8.2Zm.2-4A1.8 1.8 0 1 0 3.1 4.2a1.8 1.8 0 0 0 3.6 0ZM21 13.7c0-3.8-2-5.6-4.7-5.6-2.2 0-3.2 1.2-3.7 2v-1.9H9.5V21h3.1v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V21H21v-7.3Z" fill="currentColor"/>
+          </svg>
+          <span>Guno Sutiono</span>
+        </a>
       </div>
     </div>
   </footer>
