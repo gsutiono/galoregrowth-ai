@@ -299,8 +299,31 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   margin-bottom: 24px;
 }
 .episode-icon svg { width: 22px; height: 22px; }
-.episode-card h3 { font-size: 1.08rem; margin-bottom: 7px; }
-.episode-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+.episode-card h3 { font-size: 1.08rem; margin: 0; }
+.episode-card p { margin: 14px 0 0; color: var(--muted); font-size: .93rem; }
+.episode-toggle {
+  width: 100%;
+  display: block;
+  text-align: left;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.episode-toggle .episode-icon { margin-bottom: 18px; }
+.episode-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.episode-head .chevron {
+  transition: transform .25s ease;
+  color: var(--gold);
+  font-size: 1.15rem;
+}
+.episode-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
 .guest-panel {
   margin-top: 34px;
   border: 1px solid rgba(242,202,122,.24);
@@ -649,19 +672,40 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 
         <div class="podcast-library">
           <article class="episode-card reveal">
-            <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <h3 data-i18n="podcast.c1t">Success Patterns</h3>
-            <p data-i18n="podcast.c1d">How leaders create momentum, make decisions, and build durable advantage.</p>
+            <button class="episode-toggle" type="button" data-collapse-target="podcastCard1" aria-expanded="false">
+              <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+              <div class="episode-head">
+                <h3 data-i18n="podcast.c1t">Success Patterns</h3>
+                <span class="chevron">⌄</span>
+              </div>
+            </button>
+            <div id="podcastCard1" class="collapsible-detail" hidden>
+              <p data-i18n="podcast.c1d">How leaders create momentum, make decisions, and build durable advantage.</p>
+            </div>
           </article>
           <article class="episode-card reveal delay-1">
-            <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18 10 13l3 3 6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3 data-i18n="podcast.c2t">Real Challenges</h3>
-            <p data-i18n="podcast.c2d">Honest conversations about pressure, uncertainty, talent, capital, competition, and change.</p>
+            <button class="episode-toggle" type="button" data-collapse-target="podcastCard2" aria-expanded="false">
+              <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18 10 13l3 3 6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="episode-head">
+                <h3 data-i18n="podcast.c2t">Real Challenges</h3>
+                <span class="chevron">⌄</span>
+              </div>
+            </button>
+            <div id="podcastCard2" class="collapsible-detail" hidden>
+              <p data-i18n="podcast.c2d">Honest conversations about pressure, uncertainty, talent, capital, competition, and change.</p>
+            </div>
           </article>
           <article class="episode-card reveal delay-2">
-            <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 4.5 3.1 7.8 8 9 4.9-1.2 8-4.5 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3 data-i18n="podcast.c3t">A Better Business Compass</h3>
-            <p data-i18n="podcast.c3d">Context and perspective to help owners decide what matters — and what to ignore.</p>
+            <button class="episode-toggle" type="button" data-collapse-target="podcastCard3" aria-expanded="false">
+              <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 4.5 3.1 7.8 8 9 4.9-1.2 8-4.5 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="episode-head">
+                <h3 data-i18n="podcast.c3t">A Better Business Compass</h3>
+                <span class="chevron">⌄</span>
+              </div>
+            </button>
+            <div id="podcastCard3" class="collapsible-detail" hidden>
+              <p data-i18n="podcast.c3d">Context and perspective to help owners decide what matters — and what to ignore.</p>
+            </div>
           </article>
         </div>
 
