@@ -13,7 +13,7 @@
   "send_email": [
     {
       "name": "EMAIL",
-      "destination_address": "GaloreGrowth.ai@gmail.com"
+      "destination_address": "guno@galoregrowth.ai"
     }
   ],
   "analytics_engine_datasets": [

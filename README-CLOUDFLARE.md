@@ -8,7 +8,7 @@ This project serves the static GaloreGrowth.ai website and adds two Cloudflare W
 Both endpoints:
 1. validate the submitted form,
 2. reject simple bot/honeypot submissions,
-3. email the submission to `GaloreGrowth.ai@gmail.com`,
+3. email the submission to `guno@galoregrowth.ai`,
 4. set Reply-To to the visitor's email,
 5. record privacy-conscious custom analytics in Workers Analytics Engine.
 
@@ -21,7 +21,7 @@ In Cloudflare Dashboard:
 **Email > Email Routing > Destination addresses**
 
 Add and verify:
-`GaloreGrowth.ai@gmail.com`
+`guno@galoregrowth.ai`
 
 Cloudflare requires the destination address to be verified before a `send_email` binding can send to it.
 
@@ -32,12 +32,12 @@ In Cloudflare Dashboard:
 Onboard `galoregrowth.ai` if the Email Sending option is available for your account. Cloudflare may add SPF/DKIM/DMARC-related DNS records automatically.
 
 The Worker sends website notifications as:
-`website@galoregrowth.ai`
+`contact@galoregrowth.ai`
 
 The visitor's email is used as `Reply-To`, so pressing Reply in Gmail replies directly to the prospect.
 
 If the dashboard asks you to approve/allow the sender address, allow:
-`website@galoregrowth.ai`
+`contact@galoregrowth.ai`
 
 ### 3. GitHub repository structure
 

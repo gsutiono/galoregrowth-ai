@@ -3,8 +3,8 @@ const JSON_HEADERS = {
   "cache-control": "no-store",
 };
 
-const EMAIL_TO = "GaloreGrowth.ai@gmail.com";
-const EMAIL_FROM = "website@galoregrowth.ai";
+const EMAIL_TO = "guno@galoregrowth.ai";
+const EMAIL_FROM = "contact@galoregrowth.ai";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
