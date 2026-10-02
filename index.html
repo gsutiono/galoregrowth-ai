@@ -222,6 +222,129 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 .cta-panel { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 50px; border-radius: 32px; background: linear-gradient(135deg, rgba(143,108,255,.16), rgba(88,216,255,.09)); border: 1px solid rgba(255,255,255,.11); }
 .cta-panel p { max-width: 720px; }
 
+
+.podcast-section {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(88,216,255,.08), transparent 28%),
+    radial-gradient(circle at 15% 85%, rgba(242,202,122,.06), transparent 30%),
+    #0b0d13;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.podcast-hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 46px;
+  align-items: center;
+}
+.podcast-intro p { color: var(--muted); font-size: 1.04rem; max-width: 760px; }
+.coming-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 999px;
+  border: 1px solid rgba(242,202,122,.35);
+  background: rgba(242,202,122,.08);
+  color: #f3d994; font-size: .8rem; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.podcast-feature {
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+  box-shadow: var(--shadow);
+}
+.podcast-screen {
+  min-height: 265px;
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(143,108,255,.18), rgba(88,216,255,.08)),
+    #10131c;
+}
+.podcast-screen::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,.08) 45%, transparent 75%);
+  transform: translateX(-100%);
+  animation: podcastSheen 6s ease-in-out infinite;
+}
+.podcast-play {
+  width: 74px; height: 74px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.11);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  position: relative; z-index: 2;
+  box-shadow: 0 14px 40px rgba(0,0,0,.3);
+}
+.podcast-play svg { width: 30px; height: 30px; margin-left: 4px; }
+.podcast-feature-copy { padding: 24px 26px 28px; }
+.podcast-feature-copy h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.podcast-feature-copy p { color: var(--muted); margin: 0; }
+.podcast-library {
+  margin-top: 34px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.episode-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 22px;
+  background: rgba(255,255,255,.035);
+}
+.episode-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  display: grid; place-items: center;
+  background: rgba(88,216,255,.08);
+  border: 1px solid rgba(88,216,255,.16);
+  margin-bottom: 24px;
+}
+.episode-icon svg { width: 22px; height: 22px; }
+.episode-card h3 { font-size: 1.08rem; margin-bottom: 7px; }
+.episode-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+.guest-panel {
+  margin-top: 34px;
+  border: 1px solid rgba(242,202,122,.24);
+  border-radius: 26px;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(242,202,122,.08), rgba(255,255,255,.025));
+}
+.guest-panel-top {
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.guest-panel h3 { font-size: 1.55rem; margin-bottom: 8px; }
+.guest-panel p { color: var(--muted); margin: 0; max-width: 800px; }
+.guest-form {
+  margin-top: 22px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.guest-form label { display: grid; gap: 7px; font-size: .84rem; color: #c9cde0; }
+.guest-form label.full { grid-column: 1 / -1; }
+.guest-form input, .guest-form textarea {
+  width: 100%; border: 1px solid rgba(255,255,255,.12);
+  background: #0b0d13; color: white; border-radius: 12px;
+  padding: 12px 13px; outline: none;
+}
+.guest-form input:focus, .guest-form textarea:focus {
+  border-color: rgba(242,202,122,.55);
+  box-shadow: 0 0 0 3px rgba(242,202,122,.06);
+}
+.guest-status { min-height: 22px; color: var(--gold); font-size: .9rem; grid-column: 1 / -1; margin: 0; }
+@keyframes podcastSheen {
+  0%, 68% { transform: translateX(-100%); opacity: 0; }
+  76% { opacity: .6; }
+  88%, 100% { transform: translateX(100%); opacity: 0; }
+}
+@media (max-width: 960px) {
+  .podcast-hero { grid-template-columns: 1fr; }
+  .podcast-library { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .podcast-library { grid-template-columns: 1fr; }
+  .guest-panel-top { grid-template-columns: 1fr; }
+  .guest-form { grid-template-columns: 1fr; }
+  .guest-form label.full { grid-column: auto; }
+}
+
 .contact-section { background: #0d0f16; border-top: 1px solid var(--line); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .contact-note { margin-top: 26px; padding: 14px 16px; display: inline-block; border: 1px solid var(--line); border-radius: 12px; color: #cad0e1; font-size: .9rem; }
@@ -320,6 +443,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
       <a href="#approach" data-i18n="nav.approach">Approach</a>
       <a href="#why" data-i18n="nav.why">Why Us</a>
       <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#podcast" data-i18n="nav.podcast">Podcast</a>
     </nav>
 
     <div class="header-actions">
@@ -457,12 +581,12 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <div class="eyebrow" data-i18n="about.eyebrow">FOUNDER</div>
           <h2 data-i18n="about.title">Enterprise rigor. Founder agility. Real-world AI execution.</h2>
           <div class="bio-quick-panel">
-            <div class="bio-kicker" data-i18n="about.quicktitle">Principal AI Solutions Architect &amp; Co-Founder</div>
+            <div class="bio-kicker" data-i18n="about.quicktitle">Principal AI Solutions Architect &amp; Founder</div>
             <p data-i18n="about.quickbio">Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.</p>
             <button class="bio-toggle" id="bioToggle" type="button" data-i18n="about.expand">Read full bio</button>
           </div>
           <div class="bio-detail" id="bioDetail" hidden>
-            <div class="bio-kicker" data-i18n="about.longtitle">Co-Founder &amp; Chief AI Solutions Architect</div>
+            <div class="bio-kicker" data-i18n="about.longtitle">Founder &amp; Chief AI Solutions Architect</div>
             <p data-i18n="about.longp1">Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.</p>
             <ul class="bio-list">
               <li data-i18n="about.b1"><strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.</li>
@@ -477,7 +601,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
             <img class="founder-photo" src="assets/guno-portrait.png" alt="Guno Sutiono" />
           </div>
           <h3>Guno Sutiono</h3>
-          <p data-i18n="about.role">Principal AI Solutions Architect • Co-Founder</p>
+          <p data-i18n="about.role">Principal AI Solutions Architect • Founder</p>
           <div class="founder-tags">
             <span data-i18n="about.t1">Former Adobe Division Managing Director</span>
             <span data-i18n="about.t2">Founder with Successful Exit</span>
@@ -496,6 +620,76 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <p data-i18n="cta.body">A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.</p>
         </div>
         <a class="btn btn-primary btn-large" href="#contact" data-i18n="cta.button">Book a Consultation</a>
+      </div>
+    </section>
+
+
+    <section class="section podcast-section" id="podcast">
+      <div class="shell">
+        <div class="podcast-hero">
+          <div class="podcast-intro reveal">
+            <div class="coming-badge" data-i18n="podcast.badge">Coming Soon • Leadership Podcast</div>
+            <div class="eyebrow" data-i18n="podcast.eyebrow">GALOREGROWTH.AI BUSINESS PODCAST</div>
+            <h2 data-i18n="podcast.title">A clearer compass for today’s business landscape.</h2>
+            <p data-i18n="podcast.body">We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.</p>
+          </div>
+
+          <div class="podcast-feature reveal delay-1">
+            <div class="podcast-screen" aria-label="Podcast video area">
+              <div class="podcast-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l10-6.5L8 5.5Z" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <div class="podcast-feature-copy">
+              <h3 data-i18n="podcast.featureTitle">Future episodes will play right here.</h3>
+              <p data-i18n="podcast.featureBody">Each episode page can host a full video interview, guest profile, key takeaways, industry tags, and related resources.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="podcast-library">
+          <article class="episode-card reveal">
+            <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="podcast.c1t">Success Patterns</h3>
+            <p data-i18n="podcast.c1d">How leaders create momentum, make decisions, and build durable advantage.</p>
+          </article>
+          <article class="episode-card reveal delay-1">
+            <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18 10 13l3 3 6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 data-i18n="podcast.c2t">Real Challenges</h3>
+            <p data-i18n="podcast.c2d">Honest conversations about pressure, uncertainty, talent, capital, competition, and change.</p>
+          </article>
+          <article class="episode-card reveal delay-2">
+            <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 4.5 3.1 7.8 8 9 4.9-1.2 8-4.5 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 data-i18n="podcast.c3t">A Better Business Compass</h3>
+            <p data-i18n="podcast.c3d">Context and perspective to help owners decide what matters — and what to ignore.</p>
+          </article>
+        </div>
+
+        <div class="guest-panel reveal">
+          <div class="guest-panel-top">
+            <div>
+              <div class="eyebrow" data-i18n="podcast.guestEyebrow">SHARE YOUR STORY</div>
+              <h3 data-i18n="podcast.guestTitle">Would you like to be a future podcast guest?</h3>
+              <p data-i18n="podcast.guestBody">We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.</p>
+            </div>
+            <button class="section-toggle" type="button" data-collapse-target="guestFormDetail" aria-expanded="false">
+              <span data-i18n="collapse.guestOpen">Apply to be a guest</span><span class="chevron">⌄</span>
+            </button>
+          </div>
+          <div id="guestFormDetail" class="collapsible-detail" hidden>
+            <form class="guest-form" id="guestForm">
+              <label><span data-i18n="guest.name">Name</span><input type="text" name="name" required></label>
+              <label><span data-i18n="guest.email">Email</span><input type="email" name="email" required></label>
+              <label><span data-i18n="guest.company">Company</span><input type="text" name="company" required></label>
+              <label><span data-i18n="guest.title">Title / Role</span><input type="text" name="title" required></label>
+              <label><span data-i18n="guest.industry">Industry</span><input type="text" name="industry"></label>
+              <label><span data-i18n="guest.link">Website / LinkedIn</span><input type="text" name="link"></label>
+              <label class="full"><span data-i18n="guest.story">What business lesson, success, challenge, or point of view would you like to share?</span><textarea name="story" rows="5" required></textarea></label>
+              <button class="btn btn-primary" type="submit" data-i18n="guest.submit">Submit Guest Interest</button>
+              <p class="guest-status" id="guestStatus"></p>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -535,7 +729,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   <script>
 const translations = {
   en: {
-    'nav.services':'Services','nav.approach':'Approach','nav.why':'Why Us','nav.about':'About','nav.cta':'Book a Consultation',
+    'nav.services':'Services','nav.approach':'Approach','nav.why':'Why Us','nav.about':'About','nav.podcast':'Podcast','nav.cta':'Book a Consultation',
     'hero.eyebrow':'BUSINESS GROWTH • POWERED BY AI',
     'hero.title':'Turn AI into <span>real business growth.</span>',
     'hero.lead':'Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.',
@@ -552,14 +746,15 @@ const translations = {
     'approach.eyebrow':'OUR APPROACH','approach.title':'AI is moving too fast to keep building yesterday’s technology.','approach.body':'The market now produces powerful new models, platforms, and automation tools at extraordinary speed. Instead of spending heavily to recreate capabilities that already exist, we help you assemble the right solutions around your business needs.',
     'approach.p1t':'Discover','approach.p1d':'Find the highest-value problems and opportunities.','approach.p2t':'Audit','approach.p2d':'Map workflows, data, bottlenecks, and existing systems.','approach.p3t':'Design','approach.p3d':'Select the right AI tools and define the implementation path.','approach.p4t':'Implement','approach.p4d':'Build practical solutions that fit the way your team works.','approach.p5t':'Optimize','approach.p5d':'Measure results, improve adoption, and expand what works.',
     'why.eyebrow':'WHY GALOREGROWTH.AI','why.title':'Business first. AI second.','why.subtitle':'Technology only matters when it improves decisions, productivity, growth, or customer experience.','why.w1t':'Outcome Focused','why.w1d':'Every engagement starts with the business result, not the tool.','why.w2t':'Built for Change','why.w2d':'We avoid unnecessary lock-in so your AI stack can evolve as the market changes.','why.w3t':'Operator Mindset','why.w3d':'Strategy is connected to implementation, workflow design, and real operating constraints.',
-    'about.eyebrow':'FOUNDER','about.title':'Enterprise rigor. Founder agility. Real-world AI execution.','about.quicktitle':'Principal AI Solutions Architect & Co-Founder','about.quickbio':'Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.','about.expand':'Read full bio','about.collapse':'Show less','about.longtitle':'Co-Founder & Chief AI Solutions Architect','about.longp1':'Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.','about.b1':'<strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.','about.b2':'<strong>Proven Founder & Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.','about.b3':"<strong>Operational Scale & Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.",'about.longp2':'As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.','about.role':'Principal AI Solutions Architect • Co-Founder','about.t1':'Former Adobe Division Managing Director','about.t2':'Founder with Successful Exit','about.t3':'500+ Agent Platform Builder','about.t4':'CFP® • ChFC®',
+    'about.eyebrow':'FOUNDER','about.title':'Enterprise rigor. Founder agility. Real-world AI execution.','about.quicktitle':'Principal AI Solutions Architect & Founder','about.quickbio':'Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.','about.expand':'Read full bio','about.collapse':'Show less','about.longtitle':'Founder & Chief AI Solutions Architect','about.longp1':'Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.','about.b1':'<strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.','about.b2':'<strong>Proven Founder & Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.','about.b3':"<strong>Operational Scale & Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.",'about.longp2':'As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.','about.role':'Principal AI Solutions Architect • Founder','about.t1':'Former Adobe Division Managing Director','about.t2':'Founder with Successful Exit','about.t3':'500+ Agent Platform Builder','about.t4':'CFP® • ChFC®',
     'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
     'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
     'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation',
+    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Future episodes will play right here.','podcast.featureBody':'Each episode page can host a full video interview, guest profile, key takeaways, industry tags, and related resources.','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest',
     'footer.tagline':'AI for measurable business growth.'
   },
   zh: {
-    'nav.services':'服务','nav.approach':'方法','nav.why':'为何选择我们','nav.about':'关于','nav.cta':'预约咨询',
+    'nav.services':'服务','nav.approach':'方法','nav.why':'为何选择我们','nav.about':'关于','nav.podcast':'播客','nav.cta':'预约咨询',
     'hero.eyebrow':'业务增长 • AI 驱动',
     'hero.title':'让 AI 变成<span>真正的业务增长。</span>',
     'hero.lead':'你的企业不需要更多 AI，而是需要更多客户、更高收入和更少业务摩擦。无论目标是每周多 10 个合格线索、更快跟进、更低获客成本，还是朝营收翻倍迈进，GaloreGrowth.ai 都从业务结果出发，再围绕这个结果组合最合适的增长系统。',
@@ -576,10 +771,11 @@ const translations = {
     'approach.eyebrow':'我们的方法','approach.title':'AI 发展太快，不应该继续投入巨资打造昨天的技术。','approach.body':'新的模型、平台和自动化工具正在高速涌现。与其重新开发市场上已经存在的能力，我们更重视围绕企业真实需求，组合最适合的现成技术并快速落地。',
     'approach.p1t':'发现','approach.p1d':'找出最具价值的问题与机会。','approach.p2t':'审计','approach.p2d':'梳理流程、数据、瓶颈和现有系统。','approach.p3t':'设计','approach.p3d':'选择合适的 AI 工具并制定实施路径。','approach.p4t':'实施','approach.p4d':'打造真正适合团队工作方式的实用方案。','approach.p5t':'优化','approach.p5d':'衡量成果、改善采用率，并扩大有效方案。',
     'why.eyebrow':'为什么选择 GALOREGROWTH.AI','why.title':'业务第一，AI 第二。','why.subtitle':'技术只有在改善决策、效率、增长或客户体验时才真正有价值。','why.w1t':'结果导向','why.w1d':'每个项目从业务成果出发，而不是从工具出发。','why.w2t':'为变化而设计','why.w2d':'避免不必要的技术锁定，让 AI 架构可以随着市场持续升级。','why.w3t':'运营者思维','why.w3d':'战略与实际实施、流程设计和企业现实条件紧密相连。',
-    'about.eyebrow':'创始人','about.title':'企业级历练、创业者速度、真正可落地的 AI 执行力。','about.quicktitle':'首席 AI 解决方案架构师兼联合创始人','about.quickbio':'Guno Sutiono 兼具《财富》500 强企业级整合的严谨经验，与连续创业者的敏捷执行力。他曾担任 Adobe 的事业部董事总经理，创办并成功出售一家移动软件顾问公司，也曾联合创办一家拥有 500 多名持牌代理人的经纪平台——并在 ChatGPT 发布仅 20 天后，将定制化的 ChatGPT 能力部署到整个销售团队。Guno 深知如何把前沿技术迅速转化为可立即产生效益的运营杠杆。在 GaloreGrowth.ai，他负责甄选、测试并整合顶尖 AI 方案，打造模块化增长引擎，帮助企业在零技术负担下实现外联自动化、线索筛选与广告创意优化。','about.expand':'展开完整简介','about.collapse':'收起','about.longtitle':'联合创始人兼首席 AI 解决方案架构师','about.longp1':'企业主不需要自己变成 AI 工程师才能实现增长——他们需要的是一位真正理解企业系统、商业经济学和现实执行的人来带路。以类似 Andersen Consulting 的战略思维方式，Guno Sutiono 负责甄选、验证并组合全球领先的 AI 技术，把它们打造成能快速带来营收、执行轻盈且不增加技术负担的模块化增长引擎。','about.b1':'<strong>大规模企业级整合经验：</strong>曾任财富 500 强科技公司 Adobe 的事业部董事总经理，主导大型企业复杂的整合服务。','about.b2':'<strong>成功创业与退出经历：</strong>创办一家为多元商业行业提供关键任务型应用的移动软件顾问公司，并在五年后成功带领公司被更大的企业收购。','about.b3':'<strong>运营规模与闪电速度：</strong>联合创办一家支持 500 多名持牌代理人的人寿保险经纪平台，并亲自架构整个后台运营基础设施。ChatGPT 面世后，他在 20 天内就把生成式 AI 能力整合进代理人的原生移动应用，让一线团队远早于行业多数同行获得免费且即时的 AI 生产力。','about.longp2':'作为认证财务规划师（CFP®）和特许财务顾问（ChFC®），Guno 以严格的财务纪律看待 AI 采用。在 GaloreGrowth.ai，他帮助企业避开现代 AI 的试错成本，编排最佳级别的工具——从可自动外呼和筛选潜客的语音智能体，到可显著降低获客成本的生成式内容流程——并以一个个高 ROI 模块的方式融入现有业务流程。','about.role':'首席 AI 解决方案架构师 • 联合创始人','about.t1':'前 Adobe 事业部董事总经理','about.t2':'成功创业并完成退出','about.t3':'500+ 代理人平台架构者','about.t4':'CFP® • ChFC®',
+    'about.eyebrow':'创始人','about.title':'企业级历练、创业者速度、真正可落地的 AI 执行力。','about.quicktitle':'首席 AI 解决方案架构师兼创始人','about.quickbio':'Guno Sutiono 兼具《财富》500 强企业级整合的严谨经验，与连续创业者的敏捷执行力。他曾担任 Adobe 的事业部董事总经理，创办并成功出售一家移动软件顾问公司，也曾联合创办一家拥有 500 多名持牌代理人的经纪平台——并在 ChatGPT 发布仅 20 天后，将定制化的 ChatGPT 能力部署到整个销售团队。Guno 深知如何把前沿技术迅速转化为可立即产生效益的运营杠杆。在 GaloreGrowth.ai，他负责甄选、测试并整合顶尖 AI 方案，打造模块化增长引擎，帮助企业在零技术负担下实现外联自动化、线索筛选与广告创意优化。','about.expand':'展开完整简介','about.collapse':'收起','about.longtitle':'创始人兼首席 AI 解决方案架构师','about.longp1':'企业主不需要自己变成 AI 工程师才能实现增长——他们需要的是一位真正理解企业系统、商业经济学和现实执行的人来带路。以类似 Andersen Consulting 的战略思维方式，Guno Sutiono 负责甄选、验证并组合全球领先的 AI 技术，把它们打造成能快速带来营收、执行轻盈且不增加技术负担的模块化增长引擎。','about.b1':'<strong>大规模企业级整合经验：</strong>曾任财富 500 强科技公司 Adobe 的事业部董事总经理，主导大型企业复杂的整合服务。','about.b2':'<strong>成功创业与退出经历：</strong>创办一家为多元商业行业提供关键任务型应用的移动软件顾问公司，并在五年后成功带领公司被更大的企业收购。','about.b3':'<strong>运营规模与闪电速度：</strong>联合创办一家支持 500 多名持牌代理人的人寿保险经纪平台，并亲自架构整个后台运营基础设施。ChatGPT 面世后，他在 20 天内就把生成式 AI 能力整合进代理人的原生移动应用，让一线团队远早于行业多数同行获得免费且即时的 AI 生产力。','about.longp2':'作为认证财务规划师（CFP®）和特许财务顾问（ChFC®），Guno 以严格的财务纪律看待 AI 采用。在 GaloreGrowth.ai，他帮助企业避开现代 AI 的试错成本，编排最佳级别的工具——从可自动外呼和筛选潜客的语音智能体，到可显著降低获客成本的生成式内容流程——并以一个个高 ROI 模块的方式融入现有业务流程。','about.role':'首席 AI 解决方案架构师 • 创始人','about.t1':'前 Adobe 事业部董事总经理','about.t2':'成功创业并完成退出','about.t3':'500+ 代理人平台架构者','about.t4':'CFP® • ChFC®',
     'cta.eyebrow':'先问对问题','cta.title':'AI 现在能在哪些地方为你的业务创造最大价值？','cta.body':'一次聚焦的讨论，通常就能找出 AI 最先应该解决的几个高价值环节。','cta.button':'预约咨询',
     'contact.eyebrow':'联系我们','contact.title':'不用浪费时间和资本，也能建立真正的 AI 优势。','contact.body':'告诉我们你最想改善什么，我们会一起判断 AI 最值得从哪里开始。','contact.note':'首次咨询 • 30 分钟 • 聚焦业务',
     'form.name':'姓名','form.email':'邮箱','form.company':'公司','form.challenge':'你希望 AI 改善什么？','form.submit':'申请咨询',
+    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'为今天的商业世界，提供一张更清晰的地图和指南针。','podcast.body':'我们正在打造一个视频播客，邀请各行业领袖与企业主坦诚分享：什么正在奏效、什么正在改变、今天真正困难的是什么。我们的目标，是让观众更清楚地理解当下商业格局，并从真实经验中学会如何正确导航。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'每期页面可呈现完整视频、嘉宾简介、重点摘要、行业标签与相关资源。','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向',
     'footer.tagline':'用 AI 创造可衡量的业务增长。'
   }
 };
@@ -609,7 +805,8 @@ function refreshSectionToggleText() {
       servicesDetail: expanded ? 'collapse.servicesClose' : 'collapse.servicesOpen',
       approachDetail: expanded ? 'collapse.approachClose' : 'collapse.approachOpen',
       whyDetail: expanded ? 'collapse.whyClose' : 'collapse.whyOpen',
-      contactFormDetail: expanded ? 'collapse.contactClose' : 'collapse.contactOpen'
+      contactFormDetail: expanded ? 'collapse.contactClose' : 'collapse.contactOpen',
+      guestFormDetail: expanded ? 'collapse.guestClose' : 'collapse.guestOpen'
     };
     const label = btn.querySelector('[data-i18n]');
     if (label && map[target]) label.innerHTML = translations[currentLang][map[target]];
@@ -703,6 +900,17 @@ form.addEventListener('submit', (e) => {
     ? 'Form layout is ready. Connect it to your email, CRM, Calendly, or Cloudflare backend before launch.'
     : '表单界面已经完成。正式上线前可连接邮箱、CRM、Calendly 或 Cloudflare 后端。';
 });
+
+const guestForm = document.getElementById('guestForm');
+const guestStatus = document.getElementById('guestStatus');
+if (guestForm) {
+  guestForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    guestStatus.textContent = currentLang === 'en'
+      ? 'Guest application layout is ready. Connect this form to email, CRM, or a Cloudflare backend before public launch.'
+      : '嘉宾申请表格已经完成。正式公开前可连接邮箱、CRM 或 Cloudflare 后端。';
+  });
+}
 
   </script>
 </body>
