@@ -281,8 +281,10 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 .podcast-feature-copy { padding: 24px 26px 28px; }
 .podcast-feature-copy h3 { font-size: 1.35rem; margin-bottom: 8px; }
 .podcast-feature-copy p { color: var(--muted); margin: 0; }
+.podcast-topics-toggle-wrap { margin-top: 30px; }
+
 .podcast-library {
-  margin-top: 34px;
+  margin-top: 20px;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
 }
 .episode-card {
@@ -299,31 +301,9 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
   margin-bottom: 24px;
 }
 .episode-icon svg { width: 22px; height: 22px; }
-.episode-card h3 { font-size: 1.08rem; margin: 0; }
-.episode-card p { margin: 14px 0 0; color: var(--muted); font-size: .93rem; }
-.episode-toggle {
-  width: 100%;
-  display: block;
-  text-align: left;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-}
-.episode-toggle .episode-icon { margin-bottom: 18px; }
-.episode-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-}
-.episode-head .chevron {
-  transition: transform .25s ease;
-  color: var(--gold);
-  font-size: 1.15rem;
-}
-.episode-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+.episode-card h3 { font-size: 1.08rem; margin-bottom: 7px; }
+.episode-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+
 .guest-panel {
   margin-top: 34px;
   border: 1px solid rgba(242,202,122,.24);
@@ -670,43 +650,31 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           </div>
         </div>
 
-        <div class="podcast-library">
-          <article class="episode-card reveal">
-            <button class="episode-toggle" type="button" data-collapse-target="podcastCard1" aria-expanded="false">
+
+        <div class="podcast-topics-toggle-wrap reveal">
+          <button class="section-toggle" type="button" data-collapse-target="podcastTopicsDetail" aria-expanded="false">
+            <span data-i18n="collapse.podcastTopicsOpen">Explore podcast themes</span><span class="chevron">⌄</span>
+          </button>
+        </div>
+
+        <div id="podcastTopicsDetail" class="collapsible-detail" hidden>
+          <div class="podcast-library">
+            <article class="episode-card">
               <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <div class="episode-head">
-                <h3 data-i18n="podcast.c1t">Success Patterns</h3>
-                <span class="chevron">⌄</span>
-              </div>
-            </button>
-            <div id="podcastCard1" class="collapsible-detail" hidden>
+              <h3 data-i18n="podcast.c1t">Success Patterns</h3>
               <p data-i18n="podcast.c1d">How leaders create momentum, make decisions, and build durable advantage.</p>
-            </div>
-          </article>
-          <article class="episode-card reveal delay-1">
-            <button class="episode-toggle" type="button" data-collapse-target="podcastCard2" aria-expanded="false">
+            </article>
+            <article class="episode-card">
               <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 18 10 13l3 3 6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="episode-head">
-                <h3 data-i18n="podcast.c2t">Real Challenges</h3>
-                <span class="chevron">⌄</span>
-              </div>
-            </button>
-            <div id="podcastCard2" class="collapsible-detail" hidden>
+              <h3 data-i18n="podcast.c2t">Real Challenges</h3>
               <p data-i18n="podcast.c2d">Honest conversations about pressure, uncertainty, talent, capital, competition, and change.</p>
-            </div>
-          </article>
-          <article class="episode-card reveal delay-2">
-            <button class="episode-toggle" type="button" data-collapse-target="podcastCard3" aria-expanded="false">
+            </article>
+            <article class="episode-card">
               <div class="episode-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 4.5 3.1 7.8 8 9 4.9-1.2 8-4.5 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="episode-head">
-                <h3 data-i18n="podcast.c3t">A Better Business Compass</h3>
-                <span class="chevron">⌄</span>
-              </div>
-            </button>
-            <div id="podcastCard3" class="collapsible-detail" hidden>
+              <h3 data-i18n="podcast.c3t">A Better Business Compass</h3>
               <p data-i18n="podcast.c3d">Context and perspective to help owners decide what matters — and what to ignore.</p>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
 
         <div class="guest-panel reveal">
@@ -794,7 +762,7 @@ const translations = {
     'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
     'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
     'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation',
-    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Future episodes will play right here.','podcast.featureBody':'Each episode page can host a full video interview, guest profile, key takeaways, industry tags, and related resources.','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest',
+    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Future episodes will play right here.','podcast.featureBody':'Each episode page can host a full video interview, guest profile, key takeaways, industry tags, and related resources.','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest',
     'footer.tagline':'AI for measurable business growth.'
   },
   zh: {
@@ -819,7 +787,7 @@ const translations = {
     'cta.eyebrow':'先问对问题','cta.title':'AI 现在能在哪些地方为你的业务创造最大价值？','cta.body':'一次聚焦的讨论，通常就能找出 AI 最先应该解决的几个高价值环节。','cta.button':'预约咨询',
     'contact.eyebrow':'联系我们','contact.title':'不用浪费时间和资本，也能建立真正的 AI 优势。','contact.body':'告诉我们你最想改善什么，我们会一起判断 AI 最值得从哪里开始。','contact.note':'首次咨询 • 30 分钟 • 聚焦业务',
     'form.name':'姓名','form.email':'邮箱','form.company':'公司','form.challenge':'你希望 AI 改善什么？','form.submit':'申请咨询',
-    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'为今天的商业世界，提供一张更清晰的地图和指南针。','podcast.body':'我们正在打造一个视频播客，邀请各行业领袖与企业主坦诚分享：什么正在奏效、什么正在改变、今天真正困难的是什么。我们的目标，是让观众更清楚地理解当下商业格局，并从真实经验中学会如何正确导航。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'每期页面可呈现完整视频、嘉宾简介、重点摘要、行业标签与相关资源。','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向',
+    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'为今天的商业世界，提供一张更清晰的地图和指南针。','podcast.body':'我们正在打造一个视频播客，邀请各行业领袖与企业主坦诚分享：什么正在奏效、什么正在改变、今天真正困难的是什么。我们的目标，是让观众更清楚地理解当下商业格局，并从真实经验中学会如何正确导航。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'每期页面可呈现完整视频、嘉宾简介、重点摘要、行业标签与相关资源。','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向',
     'footer.tagline':'用 AI 创造可衡量的业务增长。'
   }
 };
@@ -850,7 +818,8 @@ function refreshSectionToggleText() {
       approachDetail: expanded ? 'collapse.approachClose' : 'collapse.approachOpen',
       whyDetail: expanded ? 'collapse.whyClose' : 'collapse.whyOpen',
       contactFormDetail: expanded ? 'collapse.contactClose' : 'collapse.contactOpen',
-      guestFormDetail: expanded ? 'collapse.guestClose' : 'collapse.guestOpen'
+      guestFormDetail: expanded ? 'collapse.guestClose' : 'collapse.guestOpen',
+      podcastTopicsDetail: expanded ? 'collapse.podcastTopicsClose' : 'collapse.podcastTopicsOpen'
     };
     const label = btn.querySelector('[data-i18n]');
     if (label && map[target]) label.innerHTML = translations[currentLang][map[target]];
