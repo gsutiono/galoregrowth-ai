@@ -616,6 +616,180 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 .why-card h3 { margin-bottom: 10px; }
 .why-card p { color: var(--muted); margin: 0; }
 
+
+/* Conversion proof + engagement model */
+.case-study-section {
+  background:
+    radial-gradient(circle at 10% 15%, rgba(88,216,255,.07), transparent 30%),
+    radial-gradient(circle at 88% 75%, rgba(242,202,122,.06), transparent 30%);
+}
+.case-intro {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 18px;
+}
+.case-card {
+  position: relative;
+  overflow: hidden;
+  padding: 26px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
+  box-shadow: 0 20px 55px rgba(0,0,0,.18);
+}
+.case-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -45% 30%;
+  height: 180px;
+  background: radial-gradient(circle, rgba(88,216,255,.09), transparent 68%);
+  pointer-events: none;
+}
+.case-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 15px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(88,216,255,.18);
+  background: rgba(88,216,255,.065);
+  color: #86dcff;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.case-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+.case-card p {
+  color: #b9c0d2;
+}
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 9px;
+  margin: 20px 0 16px;
+}
+.case-metric {
+  padding: 13px 12px;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,.075);
+  background: rgba(0,0,0,.18);
+}
+.case-metric strong {
+  display: block;
+  color: white;
+  font-size: .97rem;
+  line-height: 1.15;
+}
+.case-metric span {
+  display: block;
+  margin-top: 5px;
+  color: #8e97ac;
+  font-size: .72rem;
+  line-height: 1.35;
+}
+.case-result {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,.075);
+  color: #d9deec;
+  font-size: .9rem;
+}
+.case-result strong { color: var(--gold); }
+
+.industry-note {
+  margin: 19px 0 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.075);
+  background: rgba(255,255,255,.028);
+  color: #aab2c6;
+  font-size: .84rem;
+  line-height: 1.5;
+}
+.industry-note strong { color: #dfe5f3; }
+
+.engagement-section {
+  border-top: 1px solid rgba(255,255,255,.055);
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+.engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 13px;
+  margin-top: 26px;
+}
+.engagement-card {
+  padding: 20px;
+  border-radius: 19px;
+  border: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.03);
+}
+.engagement-card span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 13px;
+  border-radius: 50%;
+  color: #081219;
+  background: linear-gradient(135deg,#88ddff,#4fb5df);
+  font-weight: 900;
+  font-size: .78rem;
+}
+.engagement-card h3 {
+  margin: 0 0 7px;
+  font-size: 1rem;
+}
+.engagement-card p {
+  margin: 0;
+  color: #aeb6c9;
+  font-size: .84rem;
+}
+.engagement-note {
+  margin-top: 18px;
+  color: #9ba4b8;
+  font-size: .9rem;
+}
+
+/* On desktop, core persuasion content is visible by default. */
+@media (min-width: 901px) {
+  #services .section-toggle-wrap,
+  #approach .section-toggle-wrap,
+  #why .section-toggle-wrap {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .case-grid { grid-template-columns: 1fr; }
+  .engagement-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .case-card { padding: 20px; }
+  .case-metrics {
+    grid-template-columns: 1fr;
+  }
+  .case-metric {
+    display: grid;
+    grid-template-columns: minmax(90px,.45fr) 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+  .case-metric span { margin-top: 0; }
+  .engagement-grid { grid-template-columns: 1fr; }
+}
+
 .about-section { background: linear-gradient(180deg, transparent, rgba(143,108,255,.045)); }
 .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; align-items: start; }
 .about-copy p { max-width: 760px; }
@@ -1038,6 +1212,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 
         <div class="operator-tools-wrap reveal delay-1">
           <p class="operator-tools-intro" data-i18n="operator.toolsIntro">Five tools I recently built for real operating needs:</p>
+          <div class="industry-note" data-i18n="operator.industryNote"><strong>These examples come from industries I know deeply.</strong> The implementation method is not insurance-specific — the same approach applies to professional services, education, sales organizations, operations, and other owner-led businesses.</div>
           <p class="operator-mobile-hint" data-i18n="operator.swipeHint">Swipe to see all five →</p>
 
           <div class="operator-tools" aria-label="Five real AI-enabled business tools">
@@ -1166,6 +1341,62 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <div class="step"><span>05</span><div><h3 data-i18n="approach.p5t">Optimize</h3><p data-i18n="approach.p5d">Measure results, improve adoption, and expand what works.</p></div></div>
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <section class="section case-study-section" id="results">
+      <div class="shell">
+        <div class="section-heading case-intro reveal">
+          <div class="eyebrow" data-i18n="cases.eyebrow">REAL WORK • REAL BUSINESS PROBLEMS</div>
+          <h2 data-i18n="cases.title">AI matters when it changes what becomes possible.</h2>
+          <p data-i18n="cases.subtitle">These are not hypothetical demos. They are examples of AI being used to create reach, opportunity, learning, and new business models.</p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card reveal">
+            <div class="case-tag" data-i18n="cases.c1tag">AI DIGITAL TWIN • CONTENT → BUSINESS</div>
+            <h3 data-i18n="cases.c1title">From AI-generated financial content to a high-value inbound business opportunity.</h3>
+            <p data-i18n="cases.c1body">I began using an AI digital twin to publish financial education videos consistently without filming myself every day. About one week after starting, a CCTV financial-business channel in Beijing reached out about a possible interview. In less than two months, a breakout short video generated an inbound inquiry from a completely new market. The prospect was itself an AI technology company developing solutions for a commercial sector — and that inbound conversation ultimately became a consulting engagement to help structure the company’s Buy-Sell Agreement.</p>
+            <div class="case-metrics">
+              <div class="case-metric"><strong data-i18n="cases.c1m1a">~1 week</strong><span data-i18n="cases.c1m1b">Media outreach about an interview</span></div>
+              <div class="case-metric"><strong data-i18n="cases.c1m2a">&lt; 2 months</strong><span data-i18n="cases.c1m2b">Breakout short video created a new-market inbound lead</span></div>
+              <div class="case-metric"><strong data-i18n="cases.c1m3a">Real engagement</strong><span data-i18n="cases.c1m3b">An AI technology company became a consulting client</span></div>
+            </div>
+            <div class="case-result" data-i18n="cases.c1result"><strong>What it proved:</strong> AI content can do more than increase output. Used strategically, it can build authority, reach new markets, and turn attention into real business.</div>
+          </article>
+
+          <article class="case-card reveal delay-1">
+            <div class="case-tag" data-i18n="cases.c2tag">AI DIGITAL TWIN • EDUCATION</div>
+            <h3 data-i18n="cases.c2title">A one-day workshop turned AI avatar creation into a new early-education idea.</h3>
+            <p data-i18n="cases.c2body">In a one-day in-person workshop, I taught participants how to create short videos with AI digital twins. A kindergarten principal attended and quickly began applying the method to scenario-based children’s education. She is now exploring a collaboration to teach parents how to create short educational videos with their children, making learning more engaging and easier to absorb.</p>
+            <div class="case-metrics">
+              <div class="case-metric"><strong data-i18n="cases.c2m1a">1 day</strong><span data-i18n="cases.c2m1b">Hands-on AI digital-twin workshop</span></div>
+              <div class="case-metric"><strong data-i18n="cases.c2m2a">Applied immediately</strong><span data-i18n="cases.c2m2b">Scenario-based children’s education content</span></div>
+              <div class="case-metric"><strong data-i18n="cases.c2m3a">New opportunity</strong><span data-i18n="cases.c2m3b">Exploring parent-and-child short-video classes</span></div>
+            </div>
+            <div class="case-result" data-i18n="cases.c2result"><strong>Participant feedback:</strong> she felt the practical usefulness and value-for-money of the workshop significantly exceeded what she had received from previous instructors.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section engagement-section" id="engagement">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div class="eyebrow" data-i18n="engage.eyebrow">HOW ENGAGEMENTS WORK</div>
+          <h2 data-i18n="engage.title">Start with one real problem. Prove value. Expand what works.</h2>
+          <p data-i18n="engage.subtitle">You do not need to commit to a giant AI transformation before knowing whether it works. Most engagements begin with a focused business problem and a measurable next step.</p>
+        </div>
+
+        <div class="engagement-grid">
+          <article class="engagement-card"><span>01</span><h3 data-i18n="engage.e1t">30-Minute Reality Check</h3><p data-i18n="engage.e1d">We identify the bottleneck, desired business result, current tools, and constraints.</p></article>
+          <article class="engagement-card"><span>02</span><h3 data-i18n="engage.e2t">Focused Diagnostic</h3><p data-i18n="engage.e2d">We determine whether AI can realistically improve the workflow and what should be tested first.</p></article>
+          <article class="engagement-card"><span>03</span><h3 data-i18n="engage.e3t">Rapid Prototype or Build</h3><p data-i18n="engage.e3d">When it makes sense, we scope a practical implementation with clear deliverables and agreed fees before work starts.</p></article>
+          <article class="engagement-card"><span>04</span><h3 data-i18n="engage.e4t">Measure & Expand</h3><p data-i18n="engage.e4d">If it creates value, we improve adoption, automate more of the process, or extend the solution.</p></article>
+        </div>
+
+        <p class="engagement-note" data-i18n="engage.note">The goal is to avoid expensive AI experimentation for its own sake. Start small enough to learn quickly, but important enough to matter.</p>
       </div>
     </section>
 
@@ -1342,8 +1573,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <div class="contact-note" data-i18n="contact.note">Initial consultation • 30 minutes • Business-focused</div>
         </div>
         <div class="reveal delay-1">
-          <button class="section-toggle" type="button" data-collapse-target="contactFormDetail" aria-expanded="false"><span data-i18n="collapse.contactOpen">Open consultation form</span><span class="chevron">⌄</span></button>
-          <div id="contactFormDetail" class="collapsible-detail" hidden>
+          <div id="contactFormDetail">
         <form class="contact-form" id="leadForm" action="/api/contact" method="POST">
           <input type="hidden" name="language" value="en" class="form-language" />
           <input type="hidden" name="page_url" value="" class="form-page-url" />
@@ -1546,6 +1776,33 @@ const translations = {
     'operator.tool3t':'P&C Online Application & Quote','operator.tool3d':'Moves insurance intake and quoting from manual back-and-forth into a guided online flow.','operator.tool3o':'Less friction. Faster quoting.',
     'operator.tool4t':'AI Agent Workflow Assistant','operator.tool4d':'A smart field assistant that helps agents navigate everyday workflows and tasks.','operator.tool4o':'Less searching. More selling time.',
     'operator.tool5t':'Guaranteed Retirement Income Calculator','operator.tool5d':'Turns retirement-income assumptions into a clearer guaranteed-income planning view.','operator.tool5o':'Complex planning made easier to understand.',
+    'operator.industryNote':'<strong>These examples come from industries I know deeply.</strong> The implementation method is not insurance-specific — the same approach applies to professional services, education, sales organizations, operations, and other owner-led businesses.',
+    'cases.eyebrow':'REAL WORK • REAL BUSINESS PROBLEMS',
+    'cases.title':'AI matters when it changes what becomes possible.',
+    'cases.subtitle':'These are not hypothetical demos. They are examples of AI being used to create reach, opportunity, learning, and new business models.',
+    'cases.c1tag':'AI DIGITAL TWIN • CONTENT → BUSINESS',
+    'cases.c1title':'From AI-generated financial content to a high-value inbound business opportunity.',
+    'cases.c1body':'I began using an AI digital twin to publish financial education videos consistently without filming myself every day. About one week after starting, a CCTV financial-business channel in Beijing reached out about a possible interview. In less than two months, a breakout short video generated an inbound inquiry from a completely new market. The prospect was itself an AI technology company developing solutions for a commercial sector — and that inbound conversation ultimately became a consulting engagement to help structure the company’s Buy-Sell Agreement.',
+    'cases.c1m1a':'~1 week','cases.c1m1b':'Media outreach about an interview',
+    'cases.c1m2a':'< 2 months','cases.c1m2b':'Breakout short video created a new-market inbound lead',
+    'cases.c1m3a':'Real engagement','cases.c1m3b':'An AI technology company became a consulting client',
+    'cases.c1result':'<strong>What it proved:</strong> AI content can do more than increase output. Used strategically, it can build authority, reach new markets, and turn attention into real business.',
+    'cases.c2tag':'AI DIGITAL TWIN • EDUCATION',
+    'cases.c2title':'A one-day workshop turned AI avatar creation into a new early-education idea.',
+    'cases.c2body':'In a one-day in-person workshop, I taught participants how to create short videos with AI digital twins. A kindergarten principal attended and quickly began applying the method to scenario-based children’s education. She is now exploring a collaboration to teach parents how to create short educational videos with their children, making learning more engaging and easier to absorb.',
+    'cases.c2m1a':'1 day','cases.c2m1b':'Hands-on AI digital-twin workshop',
+    'cases.c2m2a':'Applied immediately','cases.c2m2b':'Scenario-based children’s education content',
+    'cases.c2m3a':'New opportunity','cases.c2m3b':'Exploring parent-and-child short-video classes',
+    'cases.c2result':'<strong>Participant feedback:</strong> she felt the practical usefulness and value-for-money of the workshop significantly exceeded what she had received from previous instructors.',
+    'engage.eyebrow':'HOW ENGAGEMENTS WORK',
+    'engage.title':'Start with one real problem. Prove value. Expand what works.',
+    'engage.subtitle':'You do not need to commit to a giant AI transformation before knowing whether it works. Most engagements begin with a focused business problem and a measurable next step.',
+    'engage.e1t':'30-Minute Reality Check','engage.e1d':'We identify the bottleneck, desired business result, current tools, and constraints.',
+    'engage.e2t':'Focused Diagnostic','engage.e2d':'We determine whether AI can realistically improve the workflow and what should be tested first.',
+    'engage.e3t':'Rapid Prototype or Build','engage.e3d':'When it makes sense, we scope a practical implementation with clear deliverables and agreed fees before work starts.',
+    'engage.e4t':'Measure & Expand','engage.e4d':'If it creates value, we improve adoption, automate more of the process, or extend the solution.',
+    'engage.note':'The goal is to avoid expensive AI experimentation for its own sake. Start small enough to learn quickly, but important enough to matter.',
+
 
     'services.eyebrow':'WHAT WE DO','services.title':'AI should improve the business — not become another expensive IT project.','services.subtitle':'We focus on high-value use cases, fast implementation, and measurable operating impact.',
     'services.s1t':'AI Business Audit','services.s1d':'Identify where AI can remove friction, reduce cost, accelerate decisions, and improve customer experience.',
@@ -1559,7 +1816,7 @@ const translations = {
     'why.eyebrow':'WHY GALOREGROWTH.AI','why.title':'Business first. AI second.','why.subtitle':'Technology only matters when it improves decisions, productivity, growth, or customer experience.','why.w1t':'Outcome Focused','why.w1d':'Every engagement starts with the business result, not the tool.','why.w2t':'Built for Change','why.w2d':'We avoid unnecessary lock-in so your AI stack can evolve as the market changes.','why.w3t':'Operator Mindset','why.w3d':'Strategy is connected to implementation, workflow design, and real operating constraints.',
     'about.eyebrow':'FOUNDER','about.title':'Enterprise rigor. Founder agility. Real-world AI execution.','about.quicktitle':'Principal AI Solutions Architect & Founder','about.quickbio':'Guno Sutiono pairs Fortune 500 enterprise integration rigor with the agile execution of a serial founder. Formerly a Division Managing Director at Adobe, founder of an acquired mobile software consultancy, and co-founder of a brokerage with 500+ licensed agents—where he deployed custom ChatGPT capabilities to the entire field just 20 days after release—Guno knows how to turn cutting-edge technology into immediate operational leverage. At GaloreGrowth.ai, he curates, tests, and assembles premier AI solutions into modular growth stacks, enabling businesses to automate outreach, qualify leads, and optimize ad creative with zero technical overhead.','about.expand':'Read full bio','about.collapse':'Show less','about.longtitle':'Founder & Chief AI Solutions Architect','about.longp1':'Business owners don’t need to become AI engineers to grow—they need an experienced guide who understands enterprise systems, business economics, and real-world execution. Operating with an Andersen Consulting-style strategic mindset, Guno Sutiono curates, vets, and assembles the world’s leading AI technologies into modular growth engines that drive revenue quickly, effortlessly, and without the technical headache.','about.b1':'<strong>Enterprise Integration at Scale:</strong> Former Division Managing Director at Fortune 500 tech giant Adobe, spearheading complex enterprise integration services for major corporations.','about.b2':'<strong>Proven Founder & Exit:</strong> Founded a mobile software consulting firm delivering mission-critical applications across diverse commercial industries, successfully leading the company through an acquisition by a larger enterprise after five years.','about.b3':"<strong>Operational Scale & Lightning Speed:</strong> Co-founded a life insurance brokerage supporting more than 500 licensed agents, architecting the entire backend operational infrastructure. When ChatGPT was publicly unveiled, Guno integrated generative AI capabilities directly into the agents' native mobile app within 20 days—providing field agents with free, immediate AI-powered productivity long before the rest of the industry caught up.",'about.longp2':'As a Certified Financial Planner (CFP®) and Chartered Financial Consultant (ChFC®), Guno approaches AI adoption with strict financial discipline. At GaloreGrowth.ai, he eliminates the trial and error of modern AI, orchestrating best-in-class tools—from autonomous voice agents that cold call and qualify prospects to generative content pipelines that slash customer acquisition costs—integrated into existing business processes one high-ROI module at a time.','about.role':'Principal AI Solutions Architect • Founder','about.t1':'Former Adobe Division Managing Director','about.t2':'Founder with Successful Exit','about.t3':'500+ Agent Platform Builder','about.t4':'CFP® • ChFC®',
     'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
-    'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. We’ll help identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
+    'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us what you’re trying to improve. The form is right here — we’ll use the first conversation to identify where AI can make a practical difference.','contact.note':'Initial consultation • 30 minutes • Business-focused',
     'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation','form.sending':'Sending…','form.success':'Thank you. Your consultation request has been sent.','form.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','form.verify':'Please complete the security check and try again.','form.successTitle':'Request received','form.successBody':'Thank you. Your consultation request is safely in our inbox. We’ll review it and follow up at the email address you provided.','form.again':'Send another request',
     'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'A clearer compass for today’s business landscape.','podcast.body':'We are building a video podcast featuring industry leaders and business owners who can speak candidly about what is working, what is changing, and what is difficult right now. The goal is to give our audience a more useful map of today’s business world — and practical insight for navigating it.','podcast.featureTitle':'Samuel Hung: Planning the AI-era One Person Company','podcast.featureBody':'In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.','podcast.readMore':'Read more','podcast.readLess':'Show less','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','guest.verify':'Please complete the security check and try again.','guest.successTitle':'Guest interest received','guest.successBody':'Thank you for sharing your story. We’ll review your submission and reach out if it is a fit for an upcoming conversation.','guest.again':'Submit another',
     'footer.tagline':'AI for measurable business growth.'
@@ -1592,6 +1849,33 @@ const translations = {
     'operator.tool3t':'P&C 线上申请与报价','operator.tool3d':'把传统来回沟通的保险申请与询价流程，变成线上引导式体验。','operator.tool3o':'更少摩擦，更快报价。',
     'operator.tool4t':'Agent 工作流 AI 智能助理','operator.tool4d':'帮助一线 Agent 快速处理日常工作流程、任务与信息查找。','operator.tool4o':'少找资料，多留时间给客户。',
     'operator.tool5t':'退休 Guaranteed Income 计算器','operator.tool5d':'把退休收入假设转化成更直观的保证收入规划结果。','operator.tool5o':'复杂规划，更容易看懂。',
+    'operator.industryNote':'<strong>这五个例子来自我最熟悉的行业。</strong> 但方法并不只适用于保险——同样的 AI 实施思路可以迁移到专业服务、教育、销售团队、运营流程，以及各种由企业主亲自经营的公司。',
+    'cases.eyebrow':'真实项目 • 真实业务问题',
+    'cases.title':'AI 的价值，在于它改变了什么事情变得可能。',
+    'cases.subtitle':'这些不是概念 Demo，而是 AI 如何真正带来影响力、机会、学习方式和新商业模式的例子。',
+    'cases.c1tag':'AI 分身 • 内容 → 商业机会',
+    'cases.c1title':'从 AI 理财内容，到一个真实的高价值陌生市场客户。',
+    'cases.c1body':'我开始利用 AI 分身持续发布理财知识短视频，不需要每天亲自拍摄，也能稳定出片。开始大约一周后，北京方面的中央电视台财商频道便主动联系，希望进一步采访；不到两个月，其中一条短视频获得明显传播，并带来一家此前与我完全没有业务往来的企业主动咨询。更特别的是，对方本身就是一家研发 AI 技术、服务某商业领域的科技公司。最终，这次完全来自内容的陌生市场机会，转化成了一项真实咨询项目——协助该公司规划 Buy-Sell Agreement（股东买卖协议）。',
+    'cases.c1m1a':'约 1 周','cases.c1m1b':'中央电视台财商频道主动联系采访',
+    'cases.c1m2a':'不到 2 个月','cases.c1m2b':'爆款短视频带来陌生市场主动咨询',
+    'cases.c1m3a':'真实项目','cases.c1m3b':'一家 AI 技术公司成为企业咨询客户',
+    'cases.c1result':'<strong>它证明了：</strong> AI 内容不只是让你多出片。用对方法，它可以建立专业影响力、触达原本不存在的市场，并把注意力转化成真实业务。',
+    'cases.c2tag':'AI 分身 • 教育应用',
+    'cases.c2title':'一天的 AI 分身课，延伸出新的幼儿教育与家长课程构想。',
+    'cases.c2body':'我线下开了一天的实战课程，教大家如何利用 AI 分身制作短视频。一位幼儿园院长参加后，很快就开始把方法应用到情景式儿童教育内容中。她现在还希望进一步和我探讨合作，设计面向家长的课程，让家长与孩子一起制作短视频，把学习内容变得更有参与感，也更容易被儿童理解和记住。',
+    'cases.c2m1a':'1 天','cases.c2m1b':'AI 分身短视频实战课程',
+    'cases.c2m2a':'马上落地','cases.c2m2b':'开始制作情景式儿童教育内容',
+    'cases.c2m3a':'新合作机会','cases.c2m3b':'探讨家长与儿童短视频课程',
+    'cases.c2result':'<strong>学员反馈：</strong> 她认为课程的具体可用性与性价比，明显超过她过去向其他老师学习的体验。',
+    'engage.eyebrow':'我们怎样开始合作',
+    'engage.title':'先解决一个真实问题。证明价值。再扩大有效的部分。',
+    'engage.subtitle':'你不需要一开始就承诺一个庞大的 AI 转型项目。多数合作会先从一个具体业务问题和一个可以衡量的下一步开始。',
+    'engage.e1t':'30 分钟 AI 现实诊断','engage.e1d':'先了解你的瓶颈、目标、现有工具、预算和现实限制。',
+    'engage.e2t':'聚焦诊断','engage.e2d':'判断 AI 是否真的适合这个问题，以及最值得先测试的部分是什么。',
+    'engage.e3t':'快速原型或实施','engage.e3d':'如果值得做，我们会先定义清楚交付范围和费用，再开始实际建设。',
+    'engage.e4t':'衡量与扩展','engage.e4d':'如果创造了价值，再优化使用方式、自动化更多流程，或扩大到其他环节。',
+    'engage.note':'目标不是为了 AI 而做 AI，而是尽量用较小、较快的方式验证一个真正值得解决的问题。',
+
 
     'services.eyebrow':'我们的服务','services.title':'AI 应该改善业务，而不是变成另一个昂贵的 IT 项目。','services.subtitle':'我们专注高价值场景、快速实施和可衡量的业务成果。',
     'services.s1t':'AI 业务审计','services.s1d':'找出 AI 最能减少摩擦、降低成本、加快决策并改善客户体验的环节。',
@@ -1697,8 +1981,34 @@ if (videoSoundToggle) {
   });
 }
 
+
+function syncCoreSectionVisibility() {
+  const desktop = window.matchMedia('(min-width: 901px)').matches;
+  ['servicesDetail','approachDetail','whyDetail'].forEach(id => {
+    const detail = document.getElementById(id);
+    const btn = document.querySelector('[data-collapse-target="' + id + '"]');
+    if (!detail || !btn) return;
+
+    if (desktop) {
+      detail.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+    } else {
+      // On mobile, retain the user's current choice if already interacted with.
+      if (!btn.dataset.userToggled) {
+        detail.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+  refreshSectionToggleText();
+}
+
+syncCoreSectionVisibility();
+window.addEventListener('resize', syncCoreSectionVisibility);
+
 document.querySelectorAll('[data-collapse-target]').forEach(btn => {
   btn.addEventListener('click', () => {
+    btn.dataset.userToggled = 'true';
     const detail = document.getElementById(btn.dataset.collapseTarget);
     const opening = btn.getAttribute('aria-expanded') !== 'true';
     btn.setAttribute('aria-expanded', String(opening));
