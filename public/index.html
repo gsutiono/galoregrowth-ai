@@ -250,6 +250,216 @@ html:not([lang="zh-CN"]) .legal-zh { display: none; }
 .video-sound-toggle { position:absolute; z-index:4; top:20px; right:20px; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.18); background:rgba(6,8,13,.68); backdrop-filter:blur(12px); color:white; display:grid; place-items:center; cursor:pointer; transition:.2s ease; box-shadow:0 10px 28px rgba(0,0,0,.28); }
 .video-sound-toggle:hover { transform:scale(1.06); background:rgba(16,20,30,.82); }
 .video-sound-toggle svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+/* Operator perspective: founder empathy + five real tools */
+.operator-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 28%, rgba(88,216,255,.08), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.012));
+  border-top: 1px solid rgba(255,255,255,.055);
+  border-bottom: 1px solid rgba(255,255,255,.055);
+}
+.operator-layout {
+  display: grid;
+  grid-template-columns: minmax(0,1.05fr) minmax(420px,.95fr);
+  gap: 54px;
+  align-items: start;
+}
+.operator-copy { max-width: 650px; }
+.operator-copy h2 {
+  margin: 8px 0 20px;
+  max-width: 720px;
+}
+.operator-copy p {
+  color: #c7ccdc;
+  margin: 0 0 17px;
+}
+.operator-copy .operator-breakthrough {
+  color: white;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+.operator-questions {
+  margin: 22px 0;
+  padding: 18px 20px;
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 16px 16px 0;
+  background: rgba(88,216,255,.055);
+  color: white;
+  font-weight: 750;
+}
+.operator-mission {
+  margin-top: 23px;
+  padding: 20px;
+  border: 1px solid rgba(242,202,122,.18);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(242,202,122,.07), rgba(255,255,255,.025));
+}
+.operator-mission strong {
+  color: var(--gold);
+}
+.operator-pain-title {
+  margin: 28px 0 10px;
+  color: white;
+  font-weight: 800;
+}
+.operator-pains {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+}
+.operator-pains li {
+  position: relative;
+  padding-left: 23px;
+  color: #bec4d7;
+}
+.operator-pains li::before {
+  content: "•";
+  position: absolute;
+  left: 4px;
+  top: -1px;
+  color: var(--cyan);
+  font-size: 1.25rem;
+}
+.operator-cta-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.operator-cta-note {
+  color: #8f96ab;
+  font-size: .84rem;
+}
+
+.operator-tools-wrap {
+  position: sticky;
+  top: 104px;
+}
+.operator-tools-intro {
+  margin-bottom: 14px;
+  color: #d9deed;
+  font-size: .92rem;
+}
+.operator-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+.operator-tool-card {
+  min-width: 0;
+  min-height: 178px;
+  padding: 19px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+  box-shadow: 0 18px 50px rgba(0,0,0,.18);
+}
+.operator-tool-card:last-child {
+  grid-column: 1 / -1;
+  min-height: 150px;
+}
+.operator-tool-icon {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  color: #79d8ff;
+  background: rgba(88,216,255,.085);
+  border: 1px solid rgba(88,216,255,.14);
+}
+.operator-tool-icon svg {
+  width: 21px;
+  height: 21px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.operator-tool-card h3 {
+  margin: 0 0 7px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+.operator-tool-card p {
+  margin: 0;
+  color: #aeb5c9;
+  font-size: .86rem;
+  line-height: 1.48;
+}
+.operator-tool-outcome {
+  display: block;
+  margin-top: 10px;
+  color: var(--gold);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.operator-mobile-hint {
+  display: none;
+  margin: 0 0 11px;
+  color: #7f879b;
+  font-size: .78rem;
+}
+
+@media (max-width: 900px) {
+  .operator-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .operator-tools-wrap {
+    position: static;
+  }
+  .operator-tools {
+    display: flex;
+    gap: 13px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(88,216,255,.35) transparent;
+    padding: 2px 8vw 12px 0;
+    margin-right: -20px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .operator-tools::-webkit-scrollbar { height: 5px; }
+  .operator-tools::-webkit-scrollbar-thumb {
+    background: rgba(88,216,255,.30);
+    border-radius: 999px;
+  }
+  .operator-tool-card,
+  .operator-tool-card:last-child {
+    grid-column: auto;
+    flex: 0 0 min(84vw, 330px);
+    min-height: 174px;
+    scroll-snap-align: start;
+  }
+  .operator-mobile-hint {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .operator-layout { gap: 25px; }
+  .operator-copy h2 { font-size: clamp(2rem, 10vw, 2.7rem); }
+  .operator-questions { padding: 16px 17px; }
+  .operator-mission { padding: 17px; }
+  .operator-tools { padding-right: 12vw; }
+  .operator-tool-card,
+  .operator-tool-card:last-child {
+    flex-basis: 84vw;
+  }
+  .operator-cta-wrap .btn { width: 100%; }
+  .operator-cta-note { width: 100%; }
+}
+
 .section-toggle-wrap { margin-top:24px; }
 .section-toggle { min-height:44px; padding:0 18px; border-radius:12px; border:1px solid rgba(88,216,255,.26); background:rgba(88,216,255,.08); color:#dff7ff; font-weight:700; cursor:pointer; transition:.2s ease; }
 .section-toggle:hover { transform:translateY(-2px); background:rgba(88,216,255,.13); }
@@ -754,6 +964,91 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
       </div>
     </section>
 
+
+    <section class="section operator-section" id="operator-perspective">
+      <div class="shell operator-layout">
+        <div class="operator-copy reveal">
+          <div class="eyebrow" data-i18n="operator.eyebrow">AN OPERATOR'S PERSPECTIVE</div>
+          <h2 data-i18n="operator.title">I’m a business owner too. I know the constraint.</h2>
+
+          <p data-i18n="operator.p1">For the past five years, I’ve been building technology systems and automation for my own businesses — constantly fighting the same two constraints most owners face: not enough time and not enough budget.</p>
+
+          <p class="operator-breakthrough" data-i18n="operator.p2">Then AI changed the equation. Last week, I was able to build useful business tools largely on my own — work that once could have required a development team, months of effort, and a budget I simply would not have approved.</p>
+
+          <div class="operator-questions" data-i18n="operator.questions">I’m not here to sell the idea of AI. I use it inside real businesses, so I understand the questions that matter: Which tools? How much? Will it fit what I already have? And will it actually pay back?</div>
+
+          <div class="operator-mission">
+            <p data-i18n="operator.mission"><strong>My mission is simple:</strong> take what I’ve learned building, testing, and deploying AI in real operating businesses and put that experience directly to work for you — choosing the combinations that solve real problems with lower cost, higher efficiency, and visible business value.</p>
+          </div>
+
+          <div class="operator-pain-title" data-i18n="operator.painTitle">If any of these sound familiar:</div>
+          <ul class="operator-pains">
+            <li data-i18n="operator.pain1">You have a stack of SaaS subscriptions that promised efficiency but mostly gave you more logins.</li>
+            <li data-i18n="operator.pain2">AI consultants are proposing enterprise budgets and six-month timelines while you need results this quarter.</li>
+            <li data-i18n="operator.pain3">You know AI matters, but new tools appear every week and it is hard to tell what is actually useful.</li>
+            <li data-i18n="operator.pain4">You have tried automation before, but the project stalled because nobody had time to finish the last 20%.</li>
+          </ul>
+
+          <div class="operator-cta-wrap">
+            <a class="btn btn-primary btn-large" href="#contact" data-i18n="operator.cta">Book a 30-Minute AI Reality Check</a>
+            <span class="operator-cta-note" data-i18n="operator.ctaNote">No AI buzzwords. We’ll look at your actual business.</span>
+          </div>
+        </div>
+
+        <div class="operator-tools-wrap reveal delay-1">
+          <p class="operator-tools-intro" data-i18n="operator.toolsIntro">Five tools I recently built for real operating needs:</p>
+          <p class="operator-mobile-hint" data-i18n="operator.swipeHint">Swipe to see all five →</p>
+
+          <div class="operator-tools" aria-label="Five real AI-enabled business tools">
+            <article class="operator-tool-card">
+              <div class="operator-tool-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16"/><path d="M6 16V8h4v8M14 16V4h4v12"/><path d="M5 5l4-2 4 2 4-2 2 1"/></svg>
+              </div>
+              <h3 data-i18n="operator.tool1t">Team Override Earnings Calculator</h3>
+              <p data-i18n="operator.tool1d">Automates complex hierarchy, override, and compensation calculations.</p>
+              <span class="operator-tool-outcome" data-i18n="operator.tool1o">Less spreadsheet work. Fewer payout errors.</span>
+            </article>
+
+            <article class="operator-tool-card">
+              <div class="operator-tool-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/><path d="M3 20h18"/><path d="M15 8l2-2 2 2"/></svg>
+              </div>
+              <h3 data-i18n="operator.tool2t">Agent Promotion Tracker & Dashboard</h3>
+              <p data-i18n="operator.tool2d">Shows current status, promotion requirements, and the gap to the next level.</p>
+              <span class="operator-tool-outcome" data-i18n="operator.tool2o">Clear targets. Faster coaching.</span>
+            </article>
+
+            <article class="operator-tool-card">
+              <div class="operator-tool-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5z"/><path d="M8 7h8M8 11h5"/><path d="M9 17l2 2 4-5"/></svg>
+              </div>
+              <h3 data-i18n="operator.tool3t">P&amp;C Online Application & Quote</h3>
+              <p data-i18n="operator.tool3d">Moves insurance intake and quoting from manual back-and-forth into a guided online flow.</p>
+              <span class="operator-tool-outcome" data-i18n="operator.tool3o">Less friction. Faster quoting.</span>
+            </article>
+
+            <article class="operator-tool-card">
+              <div class="operator-tool-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="13" rx="3"/><path d="M9 11h.01M15 11h.01M9 15h6M12 3v3"/></svg>
+              </div>
+              <h3 data-i18n="operator.tool4t">AI Agent Workflow Assistant</h3>
+              <p data-i18n="operator.tool4d">A smart field assistant that helps agents navigate everyday workflows and tasks.</p>
+              <span class="operator-tool-outcome" data-i18n="operator.tool4o">Less searching. More selling time.</span>
+            </article>
+
+            <article class="operator-tool-card">
+              <div class="operator-tool-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9 9.5c0-1 1.2-1.8 3-1.8s3 .8 3 2-1.2 1.8-3 1.8-3 .8-3 2 1.2 2 3 2 3-.8 3-1.8"/></svg>
+              </div>
+              <h3 data-i18n="operator.tool5t">Guaranteed Retirement Income Calculator</h3>
+              <p data-i18n="operator.tool5d">Turns retirement-income assumptions into a clearer guaranteed-income planning view.</p>
+              <span class="operator-tool-outcome" data-i18n="operator.tool5o">Complex planning made easier to understand.</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section shell" id="services">
       <div class="section-heading reveal">
         <div class="eyebrow" data-i18n="services.eyebrow">WHAT WE DO</div>
@@ -1190,6 +1485,27 @@ const translations = {
     'hero.anxiety':'AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.',
     'hero.cta1':'Book an AI Growth Consultation','hero.cta2':'Explore Services','hero.note':'AI is the vehicle. Business transformation is the destination.','hero.videoLabel':'AI BUSINESS TRANSFORMATION','hero.videoTag':'10-SECOND STORY','collapse.servicesOpen':'Explore services','collapse.servicesClose':'Hide services','collapse.approachOpen':'See how we work','collapse.approachClose':'Hide details','collapse.whyOpen':'Why GaloreGrowth.ai','collapse.whyClose':'Hide details','collapse.contactOpen':'Open consultation form','collapse.contactClose':'Close form','sound.on':'Turn sound on','sound.off':'Mute sound',
     'trust.1a':'Practical AI','trust.1b':'Focused on business outcomes','trust.2a':'Tool-Agnostic','trust.2b':'Use what works best','trust.3a':'Executive-Level','trust.3b':'Strategy to implementation','trust.4a':'Built to Evolve','trust.4b':'Designed for rapid AI change',
+    'operator.eyebrow':"AN OPERATOR'S PERSPECTIVE",
+    'operator.title':'I’m a business owner too. I know the constraint.',
+    'operator.p1':'For the past five years, I’ve been building technology systems and automation for my own businesses — constantly fighting the same two constraints most owners face: not enough time and not enough budget.',
+    'operator.p2':'Then AI changed the equation. Last week, I was able to build useful business tools largely on my own — work that once could have required a development team, months of effort, and a budget I simply would not have approved.',
+    'operator.questions':'I’m not here to sell the idea of AI. I use it inside real businesses, so I understand the questions that matter: Which tools? How much? Will it fit what I already have? And will it actually pay back?',
+    'operator.mission':'<strong>My mission is simple:</strong> take what I’ve learned building, testing, and deploying AI in real operating businesses and put that experience directly to work for you — choosing the combinations that solve real problems with lower cost, higher efficiency, and visible business value.',
+    'operator.painTitle':'If any of these sound familiar:',
+    'operator.pain1':'You have a stack of SaaS subscriptions that promised efficiency but mostly gave you more logins.',
+    'operator.pain2':'AI consultants are proposing enterprise budgets and six-month timelines while you need results this quarter.',
+    'operator.pain3':'You know AI matters, but new tools appear every week and it is hard to tell what is actually useful.',
+    'operator.pain4':'You have tried automation before, but the project stalled because nobody had time to finish the last 20%.',
+    'operator.cta':'Book a 30-Minute AI Reality Check',
+    'operator.ctaNote':'No AI buzzwords. We’ll look at your actual business.',
+    'operator.toolsIntro':'Five tools I recently built for real operating needs:',
+    'operator.swipeHint':'Swipe to see all five →',
+    'operator.tool1t':'Team Override Earnings Calculator','operator.tool1d':'Automates complex hierarchy, override, and compensation calculations.','operator.tool1o':'Less spreadsheet work. Fewer payout errors.',
+    'operator.tool2t':'Agent Promotion Tracker & Dashboard','operator.tool2d':'Shows current status, promotion requirements, and the gap to the next level.','operator.tool2o':'Clear targets. Faster coaching.',
+    'operator.tool3t':'P&C Online Application & Quote','operator.tool3d':'Moves insurance intake and quoting from manual back-and-forth into a guided online flow.','operator.tool3o':'Less friction. Faster quoting.',
+    'operator.tool4t':'AI Agent Workflow Assistant','operator.tool4d':'A smart field assistant that helps agents navigate everyday workflows and tasks.','operator.tool4o':'Less searching. More selling time.',
+    'operator.tool5t':'Guaranteed Retirement Income Calculator','operator.tool5d':'Turns retirement-income assumptions into a clearer guaranteed-income planning view.','operator.tool5o':'Complex planning made easier to understand.',
+
     'services.eyebrow':'WHAT WE DO','services.title':'AI should improve the business — not become another expensive IT project.','services.subtitle':'We focus on high-value use cases, fast implementation, and measurable operating impact.',
     'services.s1t':'AI Business Audit','services.s1d':'Identify where AI can remove friction, reduce cost, accelerate decisions, and improve customer experience.',
     'services.s2t':'AI Workflow Automation','services.s2d':'Automate repetitive work across sales, operations, finance, support, and internal knowledge processes.',
@@ -1215,6 +1531,27 @@ const translations = {
     'hero.anxiety':'AI 正在重新定义竞争速度。很多企业还在试验时，另一些企业已经用 AI 更快获客、即时回应客户、大规模个性化营销，并减少运营瓶颈。AI 本身不是终点；真正拉开差距的，是谁能更快、更有效地把 AI 转化为业务能力。每多等一个月，差距都可能继续扩大。',
     'hero.cta1':'预约 AI 增长咨询','hero.cta2':'查看服务','hero.note':'AI 是载具，业务转型才是终点。','hero.videoLabel':'AI 商业转型','hero.videoTag':'10 秒故事','collapse.servicesOpen':'查看服务详情','collapse.servicesClose':'收起服务','collapse.approachOpen':'查看我们如何实施','collapse.approachClose':'收起详情','collapse.whyOpen':'为什么选择 GaloreGrowth.ai','collapse.whyClose':'收起详情','collapse.contactOpen':'展开咨询表格','collapse.contactClose':'收起表格','sound.on':'打开声音','sound.off':'静音',
     'trust.1a':'实用 AI','trust.1b':'以业务成果为核心','trust.2a':'工具中立','trust.2b':'选择最适合的方案','trust.3a':'管理层视角','trust.3b':'从战略到实施','trust.4a':'持续进化','trust.4b':'适应 AI 的高速变化',
+    'operator.eyebrow':'一线经营者视角',
+    'operator.title':'同样是企业主，我懂你的难处。',
+    'operator.p1':'过去五年，我一直在为自己的公司搭建技术系统和自动化流程，也一直在和两个现实问题打仗：时间不够，经费不够。',
+    'operator.p2':'然后 AI 改变了这场游戏。就在最近，我一个人就陆续做出了五个真正解决业务问题的工具——过去这些往往需要一个开发团队、几个月时间和一笔不小的预算。',
+    'operator.questions':'我不是来卖 AI 概念的。我每天都在真实企业环境里测试它，所以我懂你真正担心的是什么：选哪个工具？花多少钱？能不能接进现有流程？最后到底能不能回本？',
+    'operator.mission':'<strong>我的使命很简单：</strong>把我在真实企业里搭建、测试和使用 AI 的经验，直接交给你——不是让你追逐每周出现的新工具，而是帮你找到真正能解决问题的组合：低成本、高效率、回报看得见。',
+    'operator.painTitle':'如果你也有这些症状：',
+    'operator.pain1':'SaaS 订阅买了一堆，承诺提高效率，最后只是多了几个登录账号。',
+    'operator.pain2':'AI 咨询公司一开口就是企业级预算、半年实施周期，但你这个季度就想看到结果。',
+    'operator.pain3':'明知道 AI 很重要，但新工具每周都在出现，根本不知道哪个真正有用。',
+    'operator.pain4':'以前试过自动化，最后因为没人有时间完成最后那 20%，项目不了了之。',
+    'operator.cta':'预约 30 分钟 AI 现实诊断',
+    'operator.ctaNote':'不讲 AI 大词，只看你的真实业务。',
+    'operator.toolsIntro':'最近，我亲自做出的五个实用业务工具：',
+    'operator.swipeHint':'左右滑动查看五个工具 →',
+    'operator.tool1t':'团队 Override 收益计算器','operator.tool1d':'自动处理复杂的层级、Override 与结算收益计算。','operator.tool1o':'少做表格，减少结算错误。',
+    'operator.tool2t':'Agent 晋升追踪与 Dashboard','operator.tool2d':'清楚显示当前状态、晋升条件，以及距离下一级还差什么。','operator.tool2o':'目标更清晰，辅导更直接。',
+    'operator.tool3t':'P&C 线上申请与报价','operator.tool3d':'把传统来回沟通的保险申请与询价流程，变成线上引导式体验。','operator.tool3o':'更少摩擦，更快报价。',
+    'operator.tool4t':'Agent 工作流 AI 智能助理','operator.tool4d':'帮助一线 Agent 快速处理日常工作流程、任务与信息查找。','operator.tool4o':'少找资料，多留时间给客户。',
+    'operator.tool5t':'退休 Guaranteed Income 计算器','operator.tool5d':'把退休收入假设转化成更直观的保证收入规划结果。','operator.tool5o':'复杂规划，更容易看懂。',
+
     'services.eyebrow':'我们的服务','services.title':'AI 应该改善业务，而不是变成另一个昂贵的 IT 项目。','services.subtitle':'我们专注高价值场景、快速实施和可衡量的业务成果。',
     'services.s1t':'AI 业务审计','services.s1d':'找出 AI 最能减少摩擦、降低成本、加快决策并改善客户体验的环节。',
     'services.s2t':'AI 工作流自动化','services.s2d':'把销售、运营、财务、客服及内部知识流程中的重复工作自动化。',
