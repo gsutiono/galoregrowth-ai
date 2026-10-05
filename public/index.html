@@ -223,6 +223,25 @@ html:not([lang="zh-CN"]) .legal-zh { display: none; }
 @media (max-width: 960px) {
   .menu-toggle { display: inline-flex; }
 }
+
+@media (max-width: 900px) {
+  .operator-layout,
+  .operator-copy,
+  .operator-copy p,
+  .operator-copy li,
+  .operator-mission,
+  .operator-questions {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .operator-copy p,
+  .operator-copy li,
+  .operator-questions,
+  .operator-mission {
+    overflow-wrap: break-word;
+  }
+}
+
 @media (max-width: 640px) {
   .footer-links, .footer-contact { justify-content: center; }
   .legal-modal { padding: 10px; }
@@ -417,16 +436,25 @@ html:not([lang="zh-CN"]) .legal-zh { display: none; }
   }
   .operator-tools-wrap {
     position: static;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
   .operator-tools {
     display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     gap: 13px;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
     scrollbar-width: thin;
     scrollbar-color: rgba(88,216,255,.35) transparent;
-    padding: 2px 8vw 12px 0;
-    margin-right: -20px;
+    padding: 2px 10vw 12px 1px;
+    margin: 0;
     -webkit-overflow-scrolling: touch;
   }
   .operator-tools::-webkit-scrollbar { height: 5px; }
@@ -437,9 +465,19 @@ html:not([lang="zh-CN"]) .legal-zh { display: none; }
   .operator-tool-card,
   .operator-tool-card:last-child {
     grid-column: auto;
-    flex: 0 0 min(84vw, 330px);
+    flex: 0 0 min(80vw, 320px);
+    width: min(80vw, 320px);
+    max-width: min(80vw, 320px);
+    min-width: 0;
     min-height: 174px;
     scroll-snap-align: start;
+  }
+  .operator-tool-card h3,
+  .operator-tool-card p,
+  .operator-tool-outcome {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
   }
   .operator-mobile-hint {
     display: block;
@@ -454,7 +492,9 @@ html:not([lang="zh-CN"]) .legal-zh { display: none; }
   .operator-tools { padding-right: 12vw; }
   .operator-tool-card,
   .operator-tool-card:last-child {
-    flex-basis: 84vw;
+    flex-basis: 80vw;
+    width: 80vw;
+    max-width: 80vw;
   }
   .operator-cta-wrap .btn { width: 100%; }
   .operator-cta-note { width: 100%; }
