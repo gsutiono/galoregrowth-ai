@@ -618,6 +618,10 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 
 
 /* Conversion proof + engagement model */
+.cta-qualifier{margin:10px auto 0;max-width:680px;color:#9fa8bb;font-size:.82rem;line-height:1.5;text-align:center}
+.tool-context{margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07);color:#7f899f;font-size:.72rem;line-height:1.45}
+.engagement-price{margin-top:10px;color:var(--gold);font-size:.78rem;font-weight:800;letter-spacing:.02em}
+
 .case-study-section {
   background:
     radial-gradient(circle at 10% 15%, rgba(88,216,255,.07), transparent 30%),
@@ -1147,9 +1151,10 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         <p class="hero-lead" data-i18n="hero.lead">Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.</p>
         <p class="hero-anxiety" data-i18n="hero.anxiety">AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary consultation-cta" href="#contact" data-i18n="hero.cta1">Book an AI Growth Consultation</a>
+          <a class="btn btn-primary consultation-cta" href="#contact" data-i18n="hero.cta1">Book a Free 30-Min AI Audit Call</a>
           <a class="btn btn-secondary" href="#services" data-i18n="hero.cta2">Explore Services</a>
         </div>
+<p class="cta-qualifier" data-i18n="cta.qualifier">Bring one real business problem. We’ll explore what AI can realistically improve — and whether it’s worth doing.</p>
         <div class="hero-note" data-i18n="hero.note">AI is the vehicle. Business transformation is the destination.</div>
       </div>
 
@@ -1205,7 +1210,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           </ul>
 
           <div class="operator-cta-wrap">
-            <a class="btn btn-primary btn-large" href="#contact" data-i18n="operator.cta">Book a 30-Minute AI Reality Check</a>
+            <a class="btn btn-primary btn-large" href="#contact" data-i18n="operator.cta">Book a Free 30-Min AI Audit Call</a>
             <span class="operator-cta-note" data-i18n="operator.ctaNote">No AI buzzwords. We’ll look at your actual business.</span>
           </div>
         </div>
@@ -1275,7 +1280,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <span class="preview-chip" data-i18n="preview.services2">Workflow automation</span>
           <span class="preview-chip" data-i18n="preview.services3">AI shorts & outreach</span>
         </div>
-        <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="servicesDetail" aria-expanded="false"><span data-i18n="collapse.servicesOpen">Explore services</span><span class="chevron">⌄</span></button></div>
+        <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="servicesDetail" aria-expanded="true"><span data-i18n="collapse.servicesOpen">Explore services</span><span class="chevron">⌄</span></button></div>
       </div>
 
       <div id="servicesDetail" class="card-grid service-grid collapsible-detail" hidden>
@@ -1319,6 +1324,25 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
       </div>
     </section>
 
+    <section class="section engagement-section" id="engagement">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div class="eyebrow" data-i18n="engage.eyebrow">HOW ENGAGEMENTS WORK</div>
+          <h2 data-i18n="engage.title">Start with one real problem. Prove value. Expand what works.</h2>
+          <p data-i18n="engage.subtitle">You do not need to commit to a giant AI transformation before knowing whether it works. Most engagements begin with a focused business problem and a measurable next step.</p>
+        </div>
+
+        <div class="engagement-grid">
+          <article class="engagement-card"><span>01</span><h3 data-i18n="engage.e1t">Free 30-Min AI Audit Call</h3><p data-i18n="engage.e1d">Bring one real business problem. We identify the bottleneck, desired outcome, current tools, and practical constraints.</p><div class="engagement-price" data-i18n="engage.price1"></div></article>
+          <article class="engagement-card"><span>02</span><h3 data-i18n="engage.e2t">Focused Diagnostic</h3><p data-i18n="engage.e2d">For problems that need deeper analysis, we map the workflow, identify the highest-value opportunities, and recommend what to test first.</p><div class="engagement-price" data-i18n="engage.price2"></div></article>
+          <article class="engagement-card"><span>03</span><h3 data-i18n="engage.e3t">Rapid Prototype / Implementation</h3><p data-i18n="engage.e3d">When the opportunity is clear, we scope a practical build with defined deliverables, timeline, and agreed project fee before work begins.</p><div class="engagement-price" data-i18n="engage.price3"></div></article>
+          <article class="engagement-card"><span>04</span><h3 data-i18n="engage.e4t">Optimize / Ongoing Support</h3><p data-i18n="engage.e4d">If the first implementation creates value, we can iterate, add new workflows, or provide ongoing AI operations support.</p><div class="engagement-price" data-i18n="engage.price4"></div></article>
+        </div>
+
+        <p class="engagement-note" data-i18n="engage.note">No giant transformation contract is required to begin. Diagnostic, implementation, and ongoing-support fees are scoped to the business problem and agreed before work starts.</p>
+      </div>
+    </section>
+
     <section class="section section-dark" id="approach">
       <div class="shell split-layout">
         <div class="section-heading reveal">
@@ -1329,9 +1353,9 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
             <span class="preview-chip" data-i18n="preview.approach2">Assemble the right tools</span>
             <span class="preview-chip" data-i18n="preview.approach3">Implement, measure, scale</span>
           </div>
-          <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="approachDetail" aria-expanded="false"><span data-i18n="collapse.approachOpen">See how we work</span><span class="chevron">⌄</span></button></div>
+          <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="approachDetail" aria-expanded="true"><span data-i18n="collapse.approachOpen">See how we work</span><span class="chevron">⌄</span></button></div>
         </div>
-        <div id="approachDetail" class="collapsible-detail" hidden>
+        <div id="approachDetail" class="collapsible-detail">
           <p data-i18n="approach.body">The market now produces powerful new models, platforms, and automation tools at extraordinary speed. Instead of spending heavily to recreate capabilities that already exist, we help you assemble the right solutions around your business needs.</p>
           <div class="steps reveal delay-1">
           <div class="step"><span>01</span><div><h3 data-i18n="approach.p1t">Discover</h3><p data-i18n="approach.p1d">Find the highest-value problems and opportunities.</p></div></div>
@@ -1381,25 +1405,6 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
       </div>
     </section>
 
-    <section class="section engagement-section" id="engagement">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <div class="eyebrow" data-i18n="engage.eyebrow">HOW ENGAGEMENTS WORK</div>
-          <h2 data-i18n="engage.title">Start with one real problem. Prove value. Expand what works.</h2>
-          <p data-i18n="engage.subtitle">You do not need to commit to a giant AI transformation before knowing whether it works. Most engagements begin with a focused business problem and a measurable next step.</p>
-        </div>
-
-        <div class="engagement-grid">
-          <article class="engagement-card"><span>01</span><h3 data-i18n="engage.e1t">30-Minute Reality Check</h3><p data-i18n="engage.e1d">We identify the bottleneck, desired business result, current tools, and constraints.</p></article>
-          <article class="engagement-card"><span>02</span><h3 data-i18n="engage.e2t">Focused Diagnostic</h3><p data-i18n="engage.e2d">We determine whether AI can realistically improve the workflow and what should be tested first.</p></article>
-          <article class="engagement-card"><span>03</span><h3 data-i18n="engage.e3t">Rapid Prototype or Build</h3><p data-i18n="engage.e3d">When it makes sense, we scope a practical implementation with clear deliverables and agreed fees before work starts.</p></article>
-          <article class="engagement-card"><span>04</span><h3 data-i18n="engage.e4t">Measure & Expand</h3><p data-i18n="engage.e4d">If it creates value, we improve adoption, automate more of the process, or extend the solution.</p></article>
-        </div>
-
-        <p class="engagement-note" data-i18n="engage.note">The goal is to avoid expensive AI experimentation for its own sake. Start small enough to learn quickly, but important enough to matter.</p>
-      </div>
-    </section>
-
     <section class="section shell" id="why">
       <div class="section-heading center reveal">
         <div class="eyebrow" data-i18n="why.eyebrow">WHY GALOREGROWTH.AI</div>
@@ -1410,7 +1415,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
           <span class="preview-chip" data-i18n="preview.why2">Tool-agnostic</span>
           <span class="preview-chip" data-i18n="preview.why3">Operator-led</span>
         </div>
-        <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="whyDetail" aria-expanded="false"><span data-i18n="collapse.whyOpen">Why GaloreGrowth.ai</span><span class="chevron">⌄</span></button></div>
+        <div class="section-toggle-wrap"><button class="section-toggle" type="button" data-collapse-target="whyDetail" aria-expanded="true"><span data-i18n="collapse.whyOpen">Why GaloreGrowth.ai</span><span class="chevron">⌄</span></button></div>
       </div>
       <div id="whyDetail" class="why-grid collapsible-detail" hidden>
         <article class="why-card reveal"><div class="why-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-5 4 3 7-9"/><path d="M15 7h5v5"/></svg></div><h3 data-i18n="why.w1t">Outcome Focused</h3><p data-i18n="why.w1d">Every engagement starts with the business result, not the tool.</p></article>
@@ -1754,7 +1759,7 @@ const translations = {
     'hero.title':'Turn AI into <span>real business growth.</span>',
     'hero.lead':'Your business doesn’t need more AI — it needs more customers, more revenue, and less friction. Whether the target is 10 more qualified leads a week, faster follow-up, lower acquisition cost, or a path toward 2× revenue, GaloreGrowth.ai starts with the business result and builds the right growth system around it.',
     'hero.anxiety':'AI is changing the competitive clock. While many companies are still experimenting, others are already using it to prospect faster, respond instantly, personalize at scale, and operate with fewer bottlenecks. AI itself is not the destination — but the companies that apply it most effectively will pull away faster. Every month you wait, the gap can widen.',
-    'hero.cta1':'Book an AI Growth Consultation','hero.cta2':'Explore Services','hero.note':'AI is the vehicle. Business transformation is the destination.','hero.videoLabel':'AI BUSINESS TRANSFORMATION','hero.videoTag':'10-SECOND STORY','collapse.servicesOpen':'Explore services','collapse.servicesClose':'Hide services','collapse.approachOpen':'See how we work','collapse.approachClose':'Hide details','collapse.whyOpen':'Why GaloreGrowth.ai','collapse.whyClose':'Hide details','collapse.contactOpen':'Open consultation form','collapse.contactClose':'Close form','sound.on':'Turn sound on','sound.off':'Mute sound',
+    'hero.cta1':'Book a Free 30-Min AI Audit Call','hero.cta2':'Explore Services','hero.note':'AI is the vehicle. Business transformation is the destination.','hero.videoLabel':'AI BUSINESS TRANSFORMATION','hero.videoTag':'10-SECOND STORY','collapse.servicesOpen':'Explore services','collapse.servicesClose':'Hide services','collapse.approachOpen':'See how we work','collapse.approachClose':'Hide details','collapse.whyOpen':'Why GaloreGrowth.ai','collapse.whyClose':'Hide details','collapse.contactOpen':'Open consultation form','collapse.contactClose':'Close form','sound.on':'Turn sound on','sound.off':'Mute sound',
     'trust.1a':'Practical AI','trust.1b':'Focused on business outcomes','trust.2a':'Tool-Agnostic','trust.2b':'Use what works best','trust.3a':'Executive-Level','trust.3b':'Strategy to implementation','trust.4a':'Built to Evolve','trust.4b':'Designed for rapid AI change',
     'operator.eyebrow':"AN OPERATOR'S PERSPECTIVE",
     'operator.title':'I’m a business owner too. I know the constraint.',
@@ -1767,7 +1772,7 @@ const translations = {
     'operator.pain2':'AI consultants are proposing enterprise budgets and six-month timelines while you need results this quarter.',
     'operator.pain3':'You know AI matters, but new tools appear every week and it is hard to tell what is actually useful.',
     'operator.pain4':'You have tried automation before, but the project stalled because nobody had time to finish the last 20%.',
-    'operator.cta':'Book a 30-Minute AI Reality Check',
+    'operator.cta':'Book a Free 30-Min AI Audit Call',
     'operator.ctaNote':'No AI buzzwords. We’ll look at your actual business.',
     'operator.toolsIntro':'Five tools I recently built for real operating needs:',
     'operator.swipeHint':'Swipe to see all five →',
@@ -1776,7 +1781,15 @@ const translations = {
     'operator.tool3t':'P&C Online Application & Quote','operator.tool3d':'Moves insurance intake and quoting from manual back-and-forth into a guided online flow.','operator.tool3o':'Less friction. Faster quoting.',
     'operator.tool4t':'AI Agent Workflow Assistant','operator.tool4d':'A smart field assistant that helps agents navigate everyday workflows and tasks.','operator.tool4o':'Less searching. More selling time.',
     'operator.tool5t':'Guaranteed Retirement Income Calculator','operator.tool5d':'Turns retirement-income assumptions into a clearer guaranteed-income planning view.','operator.tool5o':'Complex planning made easier to understand.',
-    'operator.industryNote':'<strong>These examples come from industries I know deeply.</strong> The implementation method is not insurance-specific — the same approach applies to professional services, education, sales organizations, operations, and other owner-led businesses.',
+    
+    'cta.qualifier':'Bring one real business problem. We’ll explore what AI can realistically improve — and whether it’s worth doing.',
+    'operator.tool1context':'Financial services distribution • compensation & hierarchy operations',
+    'operator.tool2context':'Financial services distribution • agent performance & promotion management',
+    'operator.tool3context':'Insurance intake automation • transferable to any service business with manual intake',
+    'operator.tool4context':'Field sales workflow • transferable to teams that spend too much time searching and coordinating',
+    'operator.tool5context':'Retirement planning • turning complex assumptions into a clearer client decision experience',
+    'engage.price1':'Free','engage.price2':'Scoped to complexity','engage.price3':'Project-based scope & fee','engage.price4':'Optional ongoing engagement',
+'operator.industryNote':'<strong>These examples come from industries I know deeply.</strong> The implementation method is not insurance-specific — the same approach applies to professional services, education, sales organizations, operations, and other owner-led businesses.',
     'cases.eyebrow':'REAL WORK • REAL BUSINESS PROBLEMS',
     'cases.title':'AI matters when it changes what becomes possible.',
     'cases.subtitle':'These are not hypothetical demos. They are examples of AI being used to create reach, opportunity, learning, and new business models.',
@@ -1797,11 +1810,11 @@ const translations = {
     'engage.eyebrow':'HOW ENGAGEMENTS WORK',
     'engage.title':'Start with one real problem. Prove value. Expand what works.',
     'engage.subtitle':'You do not need to commit to a giant AI transformation before knowing whether it works. Most engagements begin with a focused business problem and a measurable next step.',
-    'engage.e1t':'30-Minute Reality Check','engage.e1d':'We identify the bottleneck, desired business result, current tools, and constraints.',
-    'engage.e2t':'Focused Diagnostic','engage.e2d':'We determine whether AI can realistically improve the workflow and what should be tested first.',
-    'engage.e3t':'Rapid Prototype or Build','engage.e3d':'When it makes sense, we scope a practical implementation with clear deliverables and agreed fees before work starts.',
-    'engage.e4t':'Measure & Expand','engage.e4d':'If it creates value, we improve adoption, automate more of the process, or extend the solution.',
-    'engage.note':'The goal is to avoid expensive AI experimentation for its own sake. Start small enough to learn quickly, but important enough to matter.',
+    'engage.e1t':'Free 30-Min AI Audit Call','engage.e1d':'Bring one real business problem. We identify the bottleneck, desired outcome, current tools, and practical constraints.',
+    'engage.e2t':'Focused Diagnostic','engage.e2d':'For problems that need deeper analysis, we map the workflow, identify the highest-value opportunities, and recommend what to test first.',
+    'engage.e3t':'Rapid Prototype / Implementation','engage.e3d':'When the opportunity is clear, we scope a practical build with defined deliverables, timeline, and agreed project fee before work begins.',
+    'engage.e4t':'Optimize / Ongoing Support','engage.e4d':'If the first implementation creates value, we can iterate, add new workflows, or provide ongoing AI operations support.',
+    'engage.note':'No giant transformation contract is required to begin. Diagnostic, implementation, and ongoing-support fees are scoped to the business problem and agreed before work starts.',
 
 
     'services.eyebrow':'WHAT WE DO','services.title':'AI should improve the business — not become another expensive IT project.','services.subtitle':'We focus on high-value use cases, fast implementation, and measurable operating impact.',
@@ -1827,7 +1840,7 @@ const translations = {
     'hero.title':'让 AI 变成<span>真正的业务增长。</span>',
     'hero.lead':'你的企业不需要更多 AI，而是需要更多客户、更高收入和更少业务摩擦。无论目标是每周多 10 个合格线索、更快跟进、更低获客成本，还是朝营收翻倍迈进，GaloreGrowth.ai 都从业务结果出发，再围绕这个结果组合最合适的增长系统。',
     'hero.anxiety':'AI 正在重新定义竞争速度。很多企业还在试验时，另一些企业已经用 AI 更快获客、即时回应客户、大规模个性化营销，并减少运营瓶颈。AI 本身不是终点；真正拉开差距的，是谁能更快、更有效地把 AI 转化为业务能力。每多等一个月，差距都可能继续扩大。',
-    'hero.cta1':'预约 AI 增长咨询','hero.cta2':'查看服务','hero.note':'AI 是载具，业务转型才是终点。','hero.videoLabel':'AI 商业转型','hero.videoTag':'10 秒故事','collapse.servicesOpen':'查看服务详情','collapse.servicesClose':'收起服务','collapse.approachOpen':'查看我们如何实施','collapse.approachClose':'收起详情','collapse.whyOpen':'为什么选择 GaloreGrowth.ai','collapse.whyClose':'收起详情','collapse.contactOpen':'展开咨询表格','collapse.contactClose':'收起表格','sound.on':'打开声音','sound.off':'静音',
+    'hero.cta1':'预约免费 30 分钟 AI 诊断','hero.cta2':'查看服务','hero.note':'AI 是载具，业务转型才是终点。','hero.videoLabel':'AI 商业转型','hero.videoTag':'10 秒故事','collapse.servicesOpen':'查看服务详情','collapse.servicesClose':'收起服务','collapse.approachOpen':'查看我们如何实施','collapse.approachClose':'收起详情','collapse.whyOpen':'为什么选择 GaloreGrowth.ai','collapse.whyClose':'收起详情','collapse.contactOpen':'展开咨询表格','collapse.contactClose':'收起表格','sound.on':'打开声音','sound.off':'静音',
     'trust.1a':'实用 AI','trust.1b':'以业务成果为核心','trust.2a':'工具中立','trust.2b':'选择最适合的方案','trust.3a':'管理层视角','trust.3b':'从战略到实施','trust.4a':'持续进化','trust.4b':'适应 AI 的高速变化',
     'operator.eyebrow':'一线经营者视角',
     'operator.title':'同样是企业主，我懂你的难处。',
@@ -1840,7 +1853,7 @@ const translations = {
     'operator.pain2':'AI 咨询公司一开口就是企业级预算、半年实施周期，但你这个季度就想看到结果。',
     'operator.pain3':'明知道 AI 很重要，但新工具每周都在出现，根本不知道哪个真正有用。',
     'operator.pain4':'以前试过自动化，最后因为没人有时间完成最后那 20%，项目不了了之。',
-    'operator.cta':'预约 30 分钟 AI 现实诊断',
+    'operator.cta':'预约免费 30 分钟 AI 诊断',
     'operator.ctaNote':'不讲 AI 大词，只看你的真实业务。',
     'operator.toolsIntro':'最近，我亲自做出的五个实用业务工具：',
     'operator.swipeHint':'左右滑动查看五个工具 →',
@@ -1849,7 +1862,15 @@ const translations = {
     'operator.tool3t':'P&C 线上申请与报价','operator.tool3d':'把传统来回沟通的保险申请与询价流程，变成线上引导式体验。','operator.tool3o':'更少摩擦，更快报价。',
     'operator.tool4t':'Agent 工作流 AI 智能助理','operator.tool4d':'帮助一线 Agent 快速处理日常工作流程、任务与信息查找。','operator.tool4o':'少找资料，多留时间给客户。',
     'operator.tool5t':'退休 Guaranteed Income 计算器','operator.tool5d':'把退休收入假设转化成更直观的保证收入规划结果。','operator.tool5o':'复杂规划，更容易看懂。',
-    'operator.industryNote':'<strong>这五个例子来自我最熟悉的行业。</strong> 但方法并不只适用于保险——同样的 AI 实施思路可以迁移到专业服务、教育、销售团队、运营流程，以及各种由企业主亲自经营的公司。',
+    
+    'cta.qualifier':'带着一个真实业务问题来。我们一起判断 AI 能改善什么，以及这件事到底值不值得做。',
+    'operator.tool1context':'金融服务销售组织 • 层级与收益结算运营',
+    'operator.tool2context':'金融服务销售组织 • Agent 绩效与晋升管理',
+    'operator.tool3context':'保险申请自动化 • 同样适用于任何仍靠人工 intake 的服务型企业',
+    'operator.tool4context':'一线销售工作流 • 同样适用于大量时间耗在查找资料与协调任务的团队',
+    'operator.tool5context':'退休规划 • 把复杂假设转化成更容易理解的客户决策体验',
+    'engage.price1':'免费','engage.price2':'按问题复杂度报价','engage.price3':'按项目范围报价','engage.price4':'按需要持续合作',
+'operator.industryNote':'<strong>这五个例子来自我最熟悉的行业。</strong> 但方法并不只适用于保险——同样的 AI 实施思路可以迁移到专业服务、教育、销售团队、运营流程，以及各种由企业主亲自经营的公司。',
     'cases.eyebrow':'真实项目 • 真实业务问题',
     'cases.title':'AI 的价值，在于它改变了什么事情变得可能。',
     'cases.subtitle':'这些不是概念 Demo，而是 AI 如何真正带来影响力、机会、学习方式和新商业模式的例子。',
@@ -1870,11 +1891,11 @@ const translations = {
     'engage.eyebrow':'我们怎样开始合作',
     'engage.title':'先解决一个真实问题。证明价值。再扩大有效的部分。',
     'engage.subtitle':'你不需要一开始就承诺一个庞大的 AI 转型项目。多数合作会先从一个具体业务问题和一个可以衡量的下一步开始。',
-    'engage.e1t':'30 分钟 AI 现实诊断','engage.e1d':'先了解你的瓶颈、目标、现有工具、预算和现实限制。',
-    'engage.e2t':'聚焦诊断','engage.e2d':'判断 AI 是否真的适合这个问题，以及最值得先测试的部分是什么。',
-    'engage.e3t':'快速原型或实施','engage.e3d':'如果值得做，我们会先定义清楚交付范围和费用，再开始实际建设。',
-    'engage.e4t':'衡量与扩展','engage.e4d':'如果创造了价值，再优化使用方式、自动化更多流程，或扩大到其他环节。',
-    'engage.note':'目标不是为了 AI 而做 AI，而是尽量用较小、较快的方式验证一个真正值得解决的问题。',
+    'engage.e1t':'免费 30 分钟 AI 诊断','engage.e1d':'带着一个真实业务问题来。我们先了解瓶颈、目标、现有工具与现实限制。',
+    'engage.e2t':'深度聚焦诊断','engage.e2d':'如果问题需要进一步分析，我们会梳理流程、找出最高价值机会，并建议最值得先验证的部分。',
+    'engage.e3t':'快速原型 / 项目实施','engage.e3d':'机会明确后，我们先定义交付范围、时间和项目费用，再开始实际建设。',
+    'engage.e4t':'优化 / 持续支持','engage.e4d':'如果第一阶段创造了价值，再继续优化、增加新流程，或提供持续的 AI 运营支持。',
+    'engage.note':'不需要一开始就签一个庞大的 AI 转型项目。诊断、实施和持续支持都会根据实际问题确定范围与费用，并在开始前讲清楚。',
 
 
     'services.eyebrow':'我们的服务','services.title':'AI 应该改善业务，而不是变成另一个昂贵的 IT 项目。','services.subtitle':'我们专注高价值场景、快速实施和可衡量的业务成果。',
@@ -1983,28 +2004,16 @@ if (videoSoundToggle) {
 
 
 function syncCoreSectionVisibility() {
-  const desktop = window.matchMedia('(min-width: 901px)').matches;
   ['servicesDetail','approachDetail','whyDetail'].forEach(id => {
-    const detail = document.getElementById(id);
-    const btn = document.querySelector('[data-collapse-target="' + id + '"]');
-    if (!detail || !btn) return;
-
-    if (desktop) {
-      detail.hidden = false;
-      btn.setAttribute('aria-expanded', 'true');
-    } else {
-      // On mobile, retain the user's current choice if already interacted with.
-      if (!btn.dataset.userToggled) {
-        detail.hidden = true;
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    }
+    const detail=document.getElementById(id);
+    const btn=document.querySelector('[data-collapse-target="' + id + '"]');
+    if(!detail || !btn || btn.dataset.userToggled) return;
+    detail.hidden=false;
+    btn.setAttribute('aria-expanded','true');
   });
   refreshSectionToggleText();
 }
-
 syncCoreSectionVisibility();
-window.addEventListener('resize', syncCoreSectionVisibility);
 
 document.querySelectorAll('[data-collapse-target]').forEach(btn => {
   btn.addEventListener('click', () => {
