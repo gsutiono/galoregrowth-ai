@@ -67,7 +67,11 @@ button, input, textarea { font: inherit; }
 .desktop-nav a:hover { color: white; }
 .header-actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
 
-.language-toggle { border: 1px solid var(--line); background: rgba(255,255,255,.04); color: white; border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+.language-selector { display:flex; align-items:center; gap:3px; padding:3px; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.04); flex-shrink:0; }
+.language-option { border:0; background:transparent; color:#b9c9d9; border-radius:9px; padding:8px 11px; font:inherit; font-size:.86rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+.language-option:hover { color:white; background:rgba(255,255,255,.08); }
+.language-option.is-active { color:#071522; background:var(--cyan); box-shadow:0 2px 10px rgba(88,216,255,.22); }
+@media(max-width:420px){ .language-option{padding:7px 9px;font-size:.8rem;} }
 
 .menu-toggle {
   display: none;
@@ -1105,6 +1109,9 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 .form-status.sending, .guest-status.sending { color:#c9cde0; }
 
 </style>
+<style id="juno-stage-style">
+.juno-stage{margin:48px 0 34px;border:1px solid #365473;border-radius:24px;padding:clamp(18px,3vw,36px);background:linear-gradient(130deg,#101e30,#0c1524 65%,#172b3c);color:#f4f8ff;box-shadow:0 24px 65px #0003}.juno-stage *{box-sizing:border-box}.juno-stage .js-top{display:flex;gap:22px;align-items:center;flex-wrap:wrap}.juno-stage .js-image{width:130px;height:130px;border-radius:19px;object-fit:cover}.juno-stage .js-topcopy{flex:1;min-width:190px}.juno-stage h3{font-size:clamp(25px,3vw,37px);margin:8px 0}.juno-stage p{color:#b9c8d9;line-height:1.6}.juno-stage .js-tag{color:#82cbe9;font-size:12px;letter-spacing:2px;font-weight:700}.juno-stage .js-choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}.juno-stage .js-choice{border:1px solid #385570;border-radius:17px;background:#172b40;padding:18px;min-width:0}.juno-stage .js-choice h4{color:white;margin:0 0 7px;font-size:19px}.juno-stage .js-choice p{font-size:14px;margin:0 0 15px}.juno-stage button{cursor:pointer;border-radius:11px;border:1px solid #4d7893;background:#1d425d;color:white;padding:11px 15px;font-weight:700}.juno-stage button:hover{background:#286181}.juno-stage button:focus-visible{outline:3px solid #90d6f5;outline-offset:3px}.juno-stage .js-note{font-size:12px;color:#b7c6d5;margin-top:14px}.juno-stage .js-chat{margin-top:18px;border:1px solid #34516b;border-radius:16px;padding:18px;background:#0b1827}.juno-stage .js-chat[hidden],.juno-stage .js-live[hidden]{display:none}.juno-stage .js-msg{padding:13px 15px;border-radius:13px;background:#1a344b;margin:12px 0;max-width:85%;font-size:14px;line-height:1.6}.juno-stage .js-msg.user{background:#28536a;margin-left:auto}.juno-stage .js-entry{display:flex;gap:9px;align-items:center;margin-top:12px}.juno-stage input{flex:1;min-width:0;border:1px solid #3d5e76;background:#101f31;color:white;border-radius:10px;padding:13px}.juno-stage .js-voice{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:#bdd1df;font-size:13px}.juno-stage .js-clip{background:#12253a;border:1px dashed #486681;border-radius:13px;padding:25px;text-align:center;margin-top:12px}.juno-stage .js-clip video{width:100%;max-height:260px;border-radius:12px}.juno-stage .js-live{margin-top:18px}.juno-stage .js-plans{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.juno-stage .js-plans span{padding:12px;border:1px solid #47617c;border-radius:11px;color:#e8f4fa}.juno-stage .js-status{color:#c5d5e4;font-size:13px;min-height:20px}.juno-stage .js-back{background:transparent;margin-bottom:10px}@media(max-width:620px){.juno-stage .js-choices{grid-template-columns:1fr}.juno-stage .js-image{width:92px;height:92px}.juno-stage .js-entry{flex-wrap:wrap}.juno-stage .js-entry input{flex-basis:100%}}
+</style>
 </head>
 <body>
   <div class="bg-orb orb-a"></div>
@@ -1126,7 +1133,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
     </nav>
 
     <div class="header-actions">
-      <button id="languageToggle" class="language-toggle" type="button" aria-label="Switch language">中文</button>
+      <div id="languageSelector" class="language-selector" role="group" aria-label="Website language"><button class="language-option is-active" type="button" data-language="en" aria-pressed="true">EN</button><button class="language-option" type="button" data-language="zh" aria-pressed="false">中文</button></div>
       <a class="btn btn-small btn-primary consultation-cta" href="#contact" data-i18n="nav.cta">Book a Consultation</a>
       <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -1408,6 +1415,13 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
         </div>
 
 
+<div class="juno-stage" id="junoStage" data-stage-preview="true">
+ <div class="js-top"><img class="js-image" src="assets/guno-portrait.png" alt="Founder portrait placeholder, not Juno avatar"><div class="js-topcopy"><div class="js-tag" data-i18n="juno.eyebrow">INTRODUCING JUNO · INTERACTIVE PREVIEW</div><h3 data-i18n="juno.title">Meet Juno</h3><p data-i18n="juno.intro">A thoughtful AI business host for podcast stories, business challenges, and conversations worth having.</p></div></div>
+ <div class="js-choices"><div class="js-choice"><h4 data-i18n="juno.freeTitle">Chat with Juno · Free</h4><p data-i18n="juno.freeBody">Speak or type anytime. Juno replies in text, with the first five minutes of voice replies complimentary.</p><button type="button" id="junoChatOpen" data-i18n="juno.start">Explore free chat</button></div><div class="js-choice"><h4 data-i18n="juno.liveTitle">Juno Live · Face to Face</h4><p data-i18n="juno.liveBody">Watch Juno's personal invitation, then choose a prepaid live-avatar conversation.</p><button type="button" id="junoLiveOpen" data-i18n="juno.watch">Explore LiveAvatar</button></div></div>
+ <div class="js-chat" id="junoChat" hidden><button class="js-back" type="button" id="junoChatBack" data-i18n="juno.back">← Back</button><div class="js-voice"><strong data-i18n="juno.freeMode">Free conversation · UI demonstration</strong><span data-i18n="juno.voicePolicy">Voice replies: 5:00 included · Microphone input stays available</span></div><div id="junoMessages" aria-live="polite"><div class="js-msg" data-i18n="juno.greeting">Hello, I'm Juno. Are you interested in sharing a podcast story, discussing a business challenge, or simply exploring?</div></div><div class="js-entry"><input id="junoDraft" maxlength="300" data-juno-placeholder="true" placeholder="Type a message…" aria-label="Chat message"><button type="button" id="junoMic" aria-label="Voice input">🎙</button><button type="button" id="junoSend" data-i18n="juno.send">Send</button></div><p class="js-status" id="junoStatus" data-i18n="juno.demoNotice">UI preview only. No AI connection, voice billing, or data submission is enabled.</p></div>
+ <div class="js-live" id="junoLive" hidden><button class="js-back" type="button" id="junoLiveBack" data-i18n="juno.back">← Back</button><div class="js-clip"><strong data-i18n="juno.clipTitle">Juno's Invitation Video</strong><p data-i18n="juno.clipBody">Your actual Juno promotional clip will appear here after you provide it.</p></div><div class="js-plans"><span>5 min · $2.99</span><span>10 min · $4.99</span></div><p data-i18n="juno.pricing">Illustrative pricing only. Checkout is disabled until real costs and Stripe are configured.</p></div>
+ <p class="js-note" data-i18n="juno.staging">STAGING UI PREVIEW — Juno agent, ElevenLabs, LiveAvatar and payments are not connected. Existing forms remain available for layout testing.</p>
+</div>
         <div class="podcast-topics-toggle-wrap reveal">
           <button class="section-toggle" type="button" data-collapse-target="podcastTopicsDetail" aria-expanded="false">
             <span data-i18n="collapse.podcastTopicsOpen">Explore podcast themes</span><span class="chevron">⌄</span>
@@ -1729,6 +1743,25 @@ const translations = {
     'cta.eyebrow':'START WITH THE RIGHT QUESTION','cta.title':'Where can AI create the most value in your business right now?','cta.body':'A focused conversation can usually reveal the first few places where AI can reduce friction, improve productivity, or create new growth.','cta.button':'Book a Consultation',
     'contact.eyebrow':"LET'S TALK",'contact.title':'Build an AI advantage without wasting time or capital.','contact.body':'Tell us the workflow, bottleneck, or growth opportunity you want to improve. We’ll start by asking whether the right AI solution already exists.','contact.note':'Initial consultation • 30 minutes • Business-focused',
     'form.name':'Name','form.email':'Email','form.company':'Company','form.challenge':'What would you like AI to improve?','form.submit':'Request Consultation','form.sending':'Sending…','form.success':'Thank you. Your consultation request has been sent.','form.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','form.verify':'Please complete the security check and try again.','form.successTitle':'Request received','form.successBody':'Thank you. Your consultation request is safely in our inbox. We’ll review it and follow up at the email address you provided.','form.again':'Send another request',
+    'juno.eyebrow':"INTRODUCING JUNO · INTERACTIVE PREVIEW",
+    'juno.title':"Meet Juno",
+    'juno.intro':"A thoughtful AI business host for podcast stories, business challenges, and conversations worth having.",
+    'juno.freeTitle':"Chat with Juno · Free",
+    'juno.freeBody':"Speak or type anytime. Juno replies in text, with the first five minutes of voice replies complimentary.",
+    'juno.start':"Explore free chat",
+    'juno.liveTitle':"Juno Live · Face to Face",
+    'juno.liveBody':"Watch Juno’s personal invitation, then choose a prepaid live-avatar conversation.",
+    'juno.watch':"Explore LiveAvatar",
+    'juno.back':"← Back",
+    'juno.freeMode':"Free conversation · UI demonstration",
+    'juno.voicePolicy':"Voice replies: 5:00 included · Microphone input stays available",
+    'juno.greeting':"Hello, I’m Juno. Are you interested in sharing a podcast story, discussing a business challenge, or simply exploring?",
+    'juno.send':"Send",
+    'juno.demoNotice':"UI preview only. No AI connection, voice billing, or data submission is enabled.",
+    'juno.clipTitle':"Juno’s Invitation Video",
+    'juno.clipBody':"Your actual Juno promotional clip will appear here after you provide it.",
+    'juno.pricing':"Illustrative pricing only. Checkout is disabled until real costs and Stripe are configured.",
+    'juno.staging':"STAGING UI PREVIEW — Juno agent, ElevenLabs, LiveAvatar and payments are not connected. Existing forms remain available for layout testing.",
     'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'Where business relationships become our AI market intelligence.','podcast.body':'The GaloreGrowth.ai podcast is part of our discovery engine. Conversations with business owners and operators reveal real problems, priorities, and opportunities. Conversations across the AI ecosystem help us stay close to emerging capabilities. We build trust through the conversation first — and only pursue business when there is a genuine fit.','podcast.featureTitle':'Samuel Hung: Planning the AI-era One Person Company','podcast.featureBody':'In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.','podcast.readMore':'Read more','podcast.readLess':'Show less','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','guest.verify':'Please complete the security check and try again.','guest.successTitle':'Guest interest received','guest.successBody':'Thank you for sharing your story. We’ll review your submission and reach out if it is a fit for an upcoming conversation.','guest.again':'Submit another',
     'footer.tagline':'AI for measurable business growth.',
     // v10.2 positioning overrides
@@ -1840,6 +1873,25 @@ const translations = {
     'cta.eyebrow':'先问对问题','cta.title':'AI 现在能在哪些地方为你的业务创造最大价值？','cta.body':'一次聚焦的讨论，通常就能找出 AI 最先应该解决的几个高价值环节。','cta.button':'预约咨询',
     'contact.eyebrow':'联系我们','contact.title':'告诉我们你的业务问题','contact.body':'告诉我们你想改善的流程、瓶颈或增长机会。我们第一步会先问：市场上是不是已经有合适的 AI 方案？','contact.note':'首次咨询 • 30 分钟 • 聚焦业务',
     'form.name':'姓名','form.email':'邮箱','form.company':'公司','form.challenge':'你希望 AI 改善什么？','form.submit':'申请咨询','form.sending':'发送中…','form.success':'谢谢，你的咨询申请已经发送。','form.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','form.verify':'请先完成安全验证后再提交。','form.successTitle':'申请已收到','form.successBody':'谢谢。你的咨询申请已经安全进入我们的邮箱，我们会查看内容，并通过你填写的邮箱与你联系。','form.again':'再提交一份',
+    'juno.eyebrow':"认识 JUNO · 互动界面预览",
+    'juno.title':"认识 Juno",
+    'juno.intro':"一位儒雅、专业的 AI 商业主持人，与你探讨播客故事、企业挑战及值得分享的话题。",
+    'juno.freeTitle':"与 Juno 聊天 · 免费",
+    'juno.freeBody':"随时语音或文字输入。Juno 始终以文字回复，前五分钟还提供免费语音回复。",
+    'juno.start':"体验免费聊天界面",
+    'juno.liveTitle':"Juno Live · 面对面交流",
+    'juno.liveBody':"先观看 Juno 亲自录制的邀请视频，再选择预付费实时数字人聊天。",
+    'juno.watch':"了解 LiveAvatar",
+    'juno.back':"← 返回",
+    'juno.freeMode':"免费聊天 · 界面演示",
+    'juno.voicePolicy':"语音回复含 5:00 免费额度 · 麦克风输入始终开放",
+    'juno.greeting':"你好，我是 Juno。你想分享播客故事、讨论企业挑战，还是随意聊聊？",
+    'juno.send':"发送",
+    'juno.demoNotice':"目前仅为界面预览，尚未接入 AI、语音计费或资料提交。",
+    'juno.clipTitle':"Juno 的亲自邀请视频",
+    'juno.clipBody':"提供真实 Juno 宣传片后，将在这里展示。",
+    'juno.pricing':"价格仅供展示；真实成本及 Stripe 配置完成前不开放付款。",
+    'juno.staging':"测试版界面 — 尚未连接 Juno Agent、ElevenLabs、LiveAvatar 或付款。原有表格仅供版面测试。",
     'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'让商业关系，成为我们理解 AI 市场的情报网络。','podcast.body':'GaloreGrowth.ai 的播客也是我们的发现引擎。与企业主和运营者的对话，让我们听见真实问题、优先级与机会；与 AI 生态的持续交流，则帮助我们贴近不断出现的新能力。先通过对话建立信任，只有真正适合时，商业合作才自然发生。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'在这段访谈中，中国企业顾问与导师、畅销书作者洪豪泽（Samuel Hung）谈 AI 崛起如何改变创业方式，以及他为何正在帮助企业家规划 OPC（One Person Company，一人公司）。洪老师长期专注于销售技巧、团队建设与企业辅导，并活跃于演讲与培训领域。访谈进一步讨论：当 AI 把过去需要多人协作的工作逐步自动化，一个创业者如何把个人专业能力、AI 工具、流程与商业模式重新组合，形成更轻、更快、更具杠杆效应的公司结构；同时也探讨哪些能力仍必须由人来判断、沟通、建立信任与领导。重点不是为了用 AI 而用 AI，而是如何用 AI 重新设计一家真正围绕商业价值、可持续经营的 OPC。','podcast.readMore':'展开访谈介绍','podcast.readLess':'收起介绍','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向','guest.sending':'发送中…','guest.success':'谢谢，你的播客嘉宾申请已经发送。','guest.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','guest.verify':'请先完成安全验证后再提交。','guest.successTitle':'嘉宾申请已收到','guest.successBody':'谢谢你分享自己的故事。我们会审核申请，如果适合未来的访谈主题，会与你联系。','guest.again':'再提交一份',
     'footer.tagline':'用 AI 创造可衡量的业务增长。',
     // v10.4 positioning overrides
@@ -1861,7 +1913,7 @@ const translations = {
 };
 
 let currentLang = 'en';
-const toggle = document.getElementById('languageToggle');
+const languageOptions = [...document.querySelectorAll('[data-language]')];
 const bioToggle = document.getElementById('bioToggle');
 const bioDetail = document.getElementById('bioDetail');
 const heroVideo = document.getElementById('heroVideo');
@@ -1918,7 +1970,7 @@ function applyLanguage(lang) {
     const value = translations[lang][key];
     if (value !== undefined) el.innerHTML = value;
   });
-  toggle.textContent = lang === 'en' ? '中文' : 'EN';
+  languageOptions.forEach(button => { const selected = button.dataset.language === lang; button.classList.toggle('is-active', selected); button.setAttribute('aria-pressed', String(selected)); });
   refreshBioToggleText();
   refreshSectionToggleText();
   refreshSoundButton();
@@ -1932,7 +1984,7 @@ function applyLanguage(lang) {
   }
 }
 
-toggle.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'zh' : 'en'));
+languageOptions.forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language))); 
 
 if (videoSoundToggle) {
   videoSoundToggle.addEventListener('click', () => {
@@ -2276,5 +2328,6 @@ if (podcastInterviewMore && podcastInterviewDescription) {
 }
 
 </script>
+<script id="juno-stage-script">(()=>{const root=document.getElementById('junoStage');if(!root)return;const el=id=>document.getElementById(id);const chat=el('junoChat'),live=el('junoLive');el('junoChatOpen').onclick=()=>{chat.hidden=false;live.hidden=true;chat.scrollIntoView({behavior:'smooth',block:'nearest'})};el('junoLiveOpen').onclick=()=>{live.hidden=false;chat.hidden=true;live.scrollIntoView({behavior:'smooth',block:'nearest'})};el('junoChatBack').onclick=()=>chat.hidden=true;el('junoLiveBack').onclick=()=>live.hidden=true;const tr=(en,zh)=>document.documentElement.lang?.startsWith('zh')?zh:en;const send=()=>{const input=el('junoDraft');const value=input.value.trim();if(!value)return;const msg=document.createElement('div');msg.className='js-msg user';msg.textContent=value;el('junoMessages').appendChild(msg);input.value='';el('junoStatus').textContent=tr('This is a design preview; Juno is not yet connected.','目前是界面预览，Juno 尚未连接。')};el('junoSend').onclick=send;el('junoDraft').addEventListener('keydown',e=>{if(e.key==='Enter')send()});el('junoMic').onclick=()=>{const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SpeechRecognition){el('junoStatus').textContent=tr('Browser speech recognition is unavailable. Use your keyboard or device dictation.','浏览器不支持语音识别，请使用键盘或设备语音输入。');return}const recognition=new SpeechRecognition();recognition.lang=document.documentElement.lang?.startsWith('zh')?'zh-CN':'en-US';recognition.onresult=e=>{el('junoDraft').value=e.results[0][0].transcript;el('junoStatus').textContent=tr('Voice transcribed. Review and press Send.','语音已转为文字，请确认后发送。')};recognition.onerror=()=>{el('junoStatus').textContent=tr('Microphone unavailable. Please type instead.','麦克风不可用，请改用文字。')};try{recognition.start();el('junoStatus').textContent=tr('Listening…','正在聆听…')}catch(e){el('junoStatus').textContent=tr('Could not start microphone.','无法启动麦克风。')}}})();</script>
 </body>
 </html>
