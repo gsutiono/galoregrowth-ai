@@ -1,0 +1,1 @@
+STAGING ONLY — extract the public/ folder and upload these three files to the same paths on the staging branch of gsutiono/galoregrowth-ai. Do NOT upload this text file. Existing public/galoregrowth-podcast-preview.mp4 must remain in place. Do NOT modify main or production. A commit on staging should trigger deployment automatically.
