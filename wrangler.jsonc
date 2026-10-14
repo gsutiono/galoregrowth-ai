@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "galoregrowth-ai",
+  "name": "galoregrowth-ai-stage",
   "main": "src/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
@@ -8,21 +8,9 @@
     "binding": "ASSETS",
     "run_worker_first": [
       "/api/*",
-      "/admin/*"
+      "/admin/*",\n      "/podcast/*"
     ]
   },
-  "send_email": [
-    {
-      "name": "EMAIL",
-      "destination_address": "guno@galoregrowth.ai"
-    }
-  ],
-  "analytics_engine_datasets": [
-    {
-      "binding": "LEADS_ANALYTICS",
-      "dataset": "galoregrowth_leads"
-    }
-  ],
   "observability": {
     "enabled": true
   }
