@@ -61,6 +61,37 @@
       "featured": true,
       "status": "coming-soon",
       "type": "Full Episode"
+    },
+    {
+      "id": "clip-samuel-hung",
+      "slug": "samuel-hung-interview-promo",
+      "title": {
+        "en": "Samuel Hung Interview — Promo",
+        "zh": "Samuel Hung 访谈预告"
+      },
+      "description": {
+        "en": "A short promotional interview featuring Samuel Hung.",
+        "zh": "Samuel Hung 访谈宣传短片。"
+      },
+      "episodeNumber": null,
+      "series": "The GaloreGrowth Podcast",
+      "category": "short-clips",
+      "tags": [
+        "Samuel Hung",
+        "Interview",
+        "Promo"
+      ],
+      "guest": {
+        "name": "Samuel Hung"
+      },
+      "publishedDate": null,
+      "duration": "0:43",
+      "thumbnail": "/podcast/media/samuel-hung-poster.jpg",
+      "videoUrl": "/galoregrowth-podcast-preview.mp4",
+      "videoProvider": "html5",
+      "featured": false,
+      "status": "published",
+      "type": "Short Clip"
     }
   ]
 }
