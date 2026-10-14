@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "episodes": [
+    {
+      "id": "ep-000",
+      "slug": "meet-juno",
+      "title": {
+        "en": "Meet Juno",
+        "zh": "认识 Juno"
+      },
+      "description": {
+        "en": "Meet Juno, the AI business journalist behind The GaloreGrowth Podcast. Discover his personality, his creator, and a preview of his first interview.",
+        "zh": "认识 The GaloreGrowth Podcast 的 AI 商业记者 Juno，了解他的个性、创作者，以及首场访谈的预告。"
+      },
+      "episodeNumber": 0,
+      "series": "The GaloreGrowth Podcast",
+      "category": "behind-the-scenes",
+      "tags": [
+        "Juno",
+        "AI Host",
+        "Introduction"
+      ],
+      "guest": null,
+      "publishedDate": null,
+      "duration": "2:23",
+      "thumbnail": "/podcast/media/meet-juno-poster.jpg",
+      "videoUrl": "https://media.galoregrowth.ai/meet-juno.MP4",
+      "videoProvider": "html5",
+      "featured": true,
+      "status": "published",
+      "type": "Behind the Scenes / Introduction"
+    },
+    {
+      "id": "ep-001",
+      "slug": "juno-interviews-guno",
+      "title": {
+        "en": "Juno Interviews Guno",
+        "zh": "Juno 专访 Guno"
+      },
+      "description": {
+        "en": "Juno sits down with GaloreGrowth.ai founder Guno Sutiono for a conversation about business, AI, and the future of growth.",
+        "zh": "Juno 将与 GaloreGrowth.ai 创始人 Guno Sutiono 对谈商业、人工智能与未来增长。"
+      },
+      "episodeNumber": 1,
+      "series": "The GaloreGrowth Podcast",
+      "category": "full-episodes",
+      "tags": [
+        "Founder",
+        "Business",
+        "AI"
+      ],
+      "guest": {
+        "name": "Guno Sutiono",
+        "role": "Founder, GaloreGrowth.ai"
+      },
+      "publishedDate": null,
+      "duration": null,
+      "thumbnail": "/podcast/media/episode-1-poster.svg",
+      "videoUrl": null,
+      "videoProvider": "html5",
+      "featured": true,
+      "status": "coming-soon",
+      "type": "Full Episode"
+    }
+  ]
+}

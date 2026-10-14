@@ -8,7 +8,7 @@
     "binding": "ASSETS",
     "run_worker_first": [
       "/api/*",
-      "/admin/*"
+      "/admin/*",\n      "/podcast/*"
     ]
   },
   "observability": {
