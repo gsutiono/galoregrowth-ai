@@ -832,7 +832,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 }
 .podcast-hero {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
+  grid-template-columns: 1fr;
   gap: 46px;
   align-items: center;
 }
@@ -1417,40 +1417,9 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
             <p data-i18n="podcast.body">The GaloreGrowth.ai podcast is part of our discovery engine. Conversations with business owners and operators reveal real problems, priorities, and opportunities. Conversations across the AI ecosystem help us stay close to emerging capabilities. We build trust through the conversation first — and only pursue business when there is a genuine fit.</p>
           </div>
 
-          <div class="podcast-feature reveal delay-1">
-            <div class="podcast-screen" aria-label="Podcast interview with Samuel Hung">
-              <div class="podcast-video-wrap">
-                <video id="podcastInterviewVideo" class="podcast-video" playsinline preload="metadata" poster="galoregrowth-podcast-poster.jpg">
-                  <source src="galoregrowth-podcast-preview.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <button id="podcastPlayOverlay" class="podcast-play-overlay" type="button" aria-label="Play interview">
-                  <span class="podcast-play-button" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M8.5 6.2v11.6L18 12 8.5 6.2Z" fill="currentColor"/>
-                    </svg>
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div class="podcast-feature-copy">
-              <h3 data-i18n="podcast.featureTitle">Samuel Hung: Planning the AI-era One Person Company</h3>
-              <div id="podcastInterviewDescription" class="podcast-interview-description is-collapsed">
-                <p class="podcast-interview-text" data-i18n="podcast.featureBody">In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.</p>
-                <button id="podcastInterviewMore" class="podcast-interview-more" type="button" aria-expanded="false" data-i18n="podcast.readMore">Read more</button>
-              </div>
-            </div>
-          </div>
         </div>
 
 
-<div class="juno-stage" id="junoStage" data-stage-preview="true">
- <div class="js-top"><img class="js-image" src="assets/guno-portrait.png" alt="Founder portrait placeholder, not Juno avatar"><div class="js-topcopy"><div class="js-tag" data-i18n="juno.eyebrow">INTRODUCING JUNO · INTERACTIVE PREVIEW</div><h3 data-i18n="juno.title">Meet Juno</h3><p data-i18n="juno.intro">A thoughtful AI business host for podcast stories, business challenges, and conversations worth having.</p></div></div>
- <div class="js-choices"><div class="js-choice"><h4 data-i18n="juno.freeTitle">Chat with Juno · Free</h4><p data-i18n="juno.freeBody">Speak or type anytime. Juno replies in text, with the first five minutes of voice replies complimentary.</p><button type="button" id="junoChatOpen" data-i18n="juno.start">Explore free chat</button></div><div class="js-choice"><h4 data-i18n="juno.liveTitle">Juno Live · Face to Face</h4><p data-i18n="juno.liveBody">Watch Juno's personal invitation, then choose a prepaid live-avatar conversation.</p><button type="button" id="junoLiveOpen" data-i18n="juno.watch">Explore LiveAvatar</button></div></div>
- <div class="js-chat" id="junoChat" hidden><button class="js-back" type="button" id="junoChatBack" data-i18n="juno.back">← Back</button><div class="js-voice"><strong data-i18n="juno.freeMode">Free conversation · UI demonstration</strong><span data-i18n="juno.voicePolicy">Voice replies: 5:00 included · Microphone input stays available</span></div><div id="junoMessages" aria-live="polite"><div class="js-msg" data-i18n="juno.greeting">Hello, I'm Juno. Are you interested in sharing a podcast story, discussing a business challenge, or simply exploring?</div></div><div class="js-entry"><input id="junoDraft" maxlength="300" data-juno-placeholder="true" placeholder="Type a message…" aria-label="Chat message"><button type="button" id="junoMic" aria-label="Voice input">🎙</button><button type="button" id="junoSend" data-i18n="juno.send">Send</button></div><p class="js-status" id="junoStatus" data-i18n="juno.demoNotice">UI preview only. No AI connection, voice billing, or data submission is enabled.</p></div>
- <div class="js-live" id="junoLive" hidden><button class="js-back" type="button" id="junoLiveBack" data-i18n="juno.back">← Back</button><div class="js-clip"><strong data-i18n="juno.clipTitle">Juno's Invitation Video</strong><p data-i18n="juno.clipBody">Your actual Juno promotional clip will appear here after you provide it.</p></div><div class="js-plans"><span>5 min · $2.99</span><span>10 min · $4.99</span></div><p data-i18n="juno.pricing">Illustrative pricing only. Checkout is disabled until real costs and Stripe are configured.</p></div>
- <p class="js-note" data-i18n="juno.staging">STAGING UI PREVIEW — Juno agent, ElevenLabs, LiveAvatar and payments are not connected. Existing forms remain available for layout testing.</p>
-</div>
         <section id="podcastLibrary" aria-label="Podcast episode library">
           <div id="plList">
             <div class="pl-head"><div><div class="pl-kicker" id="plKicker">THE GALOREGROWTH PODCAST</div><h3 id="plHeading">Featured Episodes</h3><p id="plSubheading">Explore our conversations about business and AI.</p></div><div class="pl-arrows"><button class="pl-arrow" id="plPrev" type="button" aria-label="Previous episode">←</button><button class="pl-arrow" id="plNext" type="button" aria-label="Next episode">→</button></div></div>
@@ -1516,6 +1485,14 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
             </form>
           </div>
         </div>
+
+<div class="juno-stage" id="junoStage" data-stage-preview="true">
+ <div class="js-top"><img class="js-image" src="assets/guno-portrait.png" alt="Founder portrait placeholder, not Juno avatar"><div class="js-topcopy"><div class="js-tag" data-i18n="juno.eyebrow">INTRODUCING JUNO · INTERACTIVE PREVIEW</div><h3 data-i18n="juno.title">Meet Juno</h3><p data-i18n="juno.intro">A thoughtful AI business host for podcast stories, business challenges, and conversations worth having.</p></div></div>
+ <div class="js-choices"><div class="js-choice"><h4 data-i18n="juno.freeTitle">Chat with Juno · Free</h4><p data-i18n="juno.freeBody">Speak or type anytime. Juno replies in text, with the first five minutes of voice replies complimentary.</p><button type="button" id="junoChatOpen" data-i18n="juno.start">Explore free chat</button></div><div class="js-choice"><h4 data-i18n="juno.liveTitle">Juno Live · Face to Face</h4><p data-i18n="juno.liveBody">Watch Juno's personal invitation, then choose a prepaid live-avatar conversation.</p><button type="button" id="junoLiveOpen" data-i18n="juno.watch">Explore LiveAvatar</button></div></div>
+ <div class="js-chat" id="junoChat" hidden><button class="js-back" type="button" id="junoChatBack" data-i18n="juno.back">← Back</button><div class="js-voice"><strong data-i18n="juno.freeMode">Free conversation · UI demonstration</strong><span data-i18n="juno.voicePolicy">Voice replies: 5:00 included · Microphone input stays available</span></div><div id="junoMessages" aria-live="polite"><div class="js-msg" data-i18n="juno.greeting">Hello, I'm Juno. Are you interested in sharing a podcast story, discussing a business challenge, or simply exploring?</div></div><div class="js-entry"><input id="junoDraft" maxlength="300" data-juno-placeholder="true" placeholder="Type a message…" aria-label="Chat message"><button type="button" id="junoMic" aria-label="Voice input">🎙</button><button type="button" id="junoSend" data-i18n="juno.send">Send</button></div><p class="js-status" id="junoStatus" data-i18n="juno.demoNotice">UI preview only. No AI connection, voice billing, or data submission is enabled.</p></div>
+ <div class="js-live" id="junoLive" hidden><button class="js-back" type="button" id="junoLiveBack" data-i18n="juno.back">← Back</button><div class="js-clip"><strong data-i18n="juno.clipTitle">Juno's Invitation Video</strong><p data-i18n="juno.clipBody">Your actual Juno promotional clip will appear here after you provide it.</p></div><div class="js-plans"><span>5 min · $2.99</span><span>10 min · $4.99</span></div><p data-i18n="juno.pricing">Illustrative pricing only. Checkout is disabled until real costs and Stripe are configured.</p></div>
+ <p class="js-note" data-i18n="juno.staging">STAGING UI PREVIEW — Juno agent, ElevenLabs, LiveAvatar and payments are not connected. Existing forms remain available for layout testing.</p>
+</div>
       </div>
     </section>
 
