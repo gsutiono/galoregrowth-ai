@@ -110,5 +110,11 @@ export default { async fetch(request,env){
   if(url.pathname==="/api/health") return json({ok:true,service:"GaloreGrowth.ai",emailBinding:Boolean(env.EMAIL),analyticsBinding:Boolean(env.LEADS_ANALYTICS),turnstileConfigured:Boolean(env.TURNSTILE_SITE_KEY&&env.TURNSTILE_SECRET_KEY),adminAnalyticsConfigured:Boolean(env.CF_ACCOUNT_ID&&env.CF_ANALYTICS_TOKEN&&env.ADMIN_PASSWORD)});
   if(url.pathname==="/admin/leads"||url.pathname==="/admin/leads/") { if(!adminAuthorized(request,env)) return unauthorized(); return new Response(dashboardHTML(),{headers:{"content-type":"text/html; charset=UTF-8","cache-control":"no-store"}}); }
   if(url.pathname==="/api/admin/stats") { if(!adminAuthorized(request,env)) return unauthorized(); try{return json(await adminStats(env));}catch(e){console.error(e);return json({error:e.message},500);} }
+  // Serve the existing SPA shell for shareable podcast detail URLs only.
+  // All existing API/admin routes and static assets retain their behavior.
+  if(request.method==="GET" && /^\/podcast\/[a-z0-9-]+\/?$/i.test(url.pathname)) {
+    const shell=new URL("/index.html",request.url);
+    return env.ASSETS.fetch(new Request(shell.toString(),request));
+  }
   return env.ASSETS.fetch(request);
 }};
