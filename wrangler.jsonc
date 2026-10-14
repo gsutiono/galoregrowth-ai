@@ -14,5 +14,6 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  “previews”: {}
 }
