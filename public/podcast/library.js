@@ -38,7 +38,16 @@ function renderDetail(e){
  $("plShare").onclick=async()=>{const link=location.href;try{if(navigator.share)await navigator.share({title:val(e.title),url:link});else{await navigator.clipboard.writeText(link);$("plShare").textContent=t("copied")}}catch{}};
  document.title=val(e.title)+" — The GaloreGrowth Podcast";
 }
+function stopEpisodePlayback(){
+ // Pause native videos before removing their sources.
+ $("plDetail").querySelectorAll("video").forEach(video=>{
+  try { video.pause(); video.removeAttribute("src"); video.querySelectorAll("source").forEach(source=>source.removeAttribute("src")); video.load(); } catch (_) {}
+ });
+ // Removing the iframe unloads Cloudflare Stream and stops its audio.
+ $("plDetail").querySelectorAll("iframe").forEach(frame=>frame.remove());
+}
 function renderRoute(){
+ stopEpisodePlayback();
  const match=location.pathname.match(/^\/podcast\/([a-z0-9-]+)\/?$/i);
  const e=match?episodes.find(x=>x.slug===decodeURIComponent(match[1])):null;
  if(e){renderDetail(e);el.scrollIntoView({block:"start",behavior:"instant"});}
