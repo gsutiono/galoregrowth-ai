@@ -34,12 +34,12 @@
       "id": "ep-001",
       "slug": "juno-interviews-guno",
       "title": {
-        "en": "Juno Interviews Guno",
-        "zh": "Juno 专访 Guno"
+        "en": "The Man Behind Juno",
+        "zh": "Juno 背后的男人"
       },
       "description": {
-        "en": "Juno sits down with GaloreGrowth.ai founder Guno Sutiono for a conversation about business, AI, and the future of growth.",
-        "zh": "Juno 将与 GaloreGrowth.ai 创始人 Guno Sutiono 对谈商业、人工智能与未来增长。"
+        "en": "Juno interviews his creator, GaloreGrowth.ai founder Guno Sutiono, about four technology revolutions, the opportunities and challenges of AI, and beginning a new entrepreneurial chapter at 62.",
+        "zh": "Juno 专访他的创作者、GaloreGrowth.ai 创始人 Guno Sutiono，畅谈亲历四次科技革命、人工智能带来的机遇与挑战，以及62岁开启创业新篇章的故事。"
       },
       "episodeNumber": 1,
       "series": "The GaloreGrowth Podcast",
@@ -54,12 +54,12 @@
         "role": "Founder, GaloreGrowth.ai"
       },
       "publishedDate": null,
-      "duration": null,
-      "thumbnail": "/podcast/media/episode-1-poster.svg",
-      "videoUrl": null,
-      "videoProvider": "html5",
+      "duration": "13:27",
+      "thumbnail": "https://customer-af9aqhvqtabne3jm.cloudflarestream.com/861f7c42b79650c7f854dcf2a998f223/thumbnails/thumbnail.jpg?time=&height=600",
+      "videoUrl": "https://customer-af9aqhvqtabne3jm.cloudflarestream.com/861f7c42b79650c7f854dcf2a998f223/iframe",
+      "videoProvider": "cloudflare",
       "featured": true,
-      "status": "coming-soon",
+      "status": "published",
       "type": "Full Episode"
     },
     {
