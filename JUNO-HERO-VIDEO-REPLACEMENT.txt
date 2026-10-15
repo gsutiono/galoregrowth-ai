@@ -1,0 +1,8 @@
+JUNO — REPLACEMENT HOMEPAGE HERO VIDEO (not yet generated)
+
+English voiceover (~12–15 seconds, measured delivery):
+“At GaloreGrowth.ai, we solve business challenges through practical AI. Business First. AI Second. AI is the vehicle. Business transformation is the destination.”
+
+Replace public/galoregrowth-hero-en.mp4 with a finished Juno recording. The existing video is preserved until a replacement is provided. For Chinese mode, also replace public/galoregrowth-hero-zh.mp4 with the Chinese-language version when available.
+
+Juno delivery: mature, warm, poised business television host. Minimal natural lip movement, lips fully closed during pauses.
