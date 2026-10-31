@@ -1237,7 +1237,7 @@ html, body { max-width: 100%; overflow-x: clip; }
           </div>
           <div class="hero-podcast-footer">
             <div><span class="hero-podcast-kicker" data-i18n="podcast.latest">LATEST PODCAST EPISODE</span><strong id="heroPodcastTitle">AI in Action: From Vision to Real Impact in Financial Services</strong><p class="hero-podcast-description" id="heroPodcastDescription">Juno talks with Bill Pienias, President of FinFit Life, about turning AI vision into meaningful business impact in financial services.</p></div>
-            <a id="heroPodcastLink" href="/podcast/episode-2" data-i18n="podcast.watchLatest">Watch in Podcast Library →</a>
+            <a id="heroPodcastLink" href="#podcastLibrary" data-i18n="podcast.watchLatest">Watch in Podcast Library →</a>
           </div>
         </div>
       </div>
@@ -2283,7 +2283,7 @@ if (podcastInterviewMore && podcastInterviewDescription) {
    const zh=document.documentElement.lang.toLowerCase().startsWith('zh');
    const choose=()=>{const local=document.documentElement.lang.toLowerCase().startsWith('zh');document.getElementById('heroPodcastTitle').textContent=(local?latest.title.zh:latest.title.en)||latest.title.en;document.getElementById('heroPodcastDescription').textContent=(local?latest.description?.zh:latest.description?.en)||latest.description?.en||'';};
    choose(); new MutationObserver(choose).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-   document.getElementById('heroPodcastLink').href='/podcast/'+encodeURIComponent(latest.slug);
+   document.getElementById('heroPodcastLink').href='#podcastLibrary';
    playerUrl=latest.videoUrl.split('?')[0];update();
  }).catch(err=>{console.warn('Podcast library unavailable; showing Episode 2 fallback',err);update();});
 })();

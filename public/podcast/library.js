@@ -14,11 +14,38 @@ const esc = x => String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">
 const text = x => esc(val(x));
 const date = d => d ? new Date(d+"T12:00:00").toLocaleDateString(lang==="zh"?"zh-CN":"en-US",{year:"numeric",month:"short",day:"numeric"}) : "";
 const urlFor = e => "/podcast/"+encodeURIComponent(e.slug);
+// Resolve missing duration from Cloudflare's public HLS playlist, where permitted by CORS.
+// Never substitute a guessed runtime; retain a graceful fallback when access is denied.
+async function resolveDuration(e){
+ if(e.duration || e.videoProvider!=="cloudflare" || !e.videoUrl) return;
+ try {
+  const m=e.videoUrl.match(/^(https:\/\/[^/]+\/[^/]+)\/iframe/);
+  if(!m)return;
+  const root=m[1];
+  const pull=async url=>{const r=await fetch(url,{mode:"cors",signal:AbortSignal.timeout(7000)});if(!r.ok)throw Error("Playlist HTTP "+r.status);return r.text()};
+  const master=await pull(root+"/manifest/video.m3u8");
+  let playlist=master;
+  if(master.includes("#EXT-X-STREAM-INF")){
+    const lines=master.split(/\r?\n/);
+    const idx=lines.findIndex(line=>line.startsWith("#EXT-X-STREAM-INF"));
+    const variant=lines.slice(idx+1).find(line=>line.trim()&&!line.startsWith("#"));
+    if(!variant)return;
+    playlist=await pull(new URL(variant,root+"/manifest/video.m3u8").href);
+  }
+  const samples=[...playlist.matchAll(/^#EXTINF:([\d.]+)/gm)];
+  if(!samples.length)return;
+  const secs=Math.round(samples.reduce((n,x)=>n+Number(x[1]),0));
+  if(!Number.isFinite(secs)||secs<1)return;
+  e.duration=Math.floor(secs/3600)?`${Math.floor(secs/3600)}:${String(Math.floor(secs%3600/60)).padStart(2,"0")}:${String(secs%60).padStart(2,"0")}`:`${Math.floor(secs/60)}:${String(secs%60).padStart(2,"0")}`;
+  renderRoute();
+ }catch(err){console.debug("Video duration lookup not available",err);}
+}
+
 const isReady = e => e.status==="published" && !!e.videoUrl;
 const category = e => e.category==="full-episodes"?t("full"):e.category==="short-clips"?t("short"):t("behind");
 const thumb = e => `<img class="pl-thumb" loading="lazy" src="${esc(e.thumbnail||"/podcast/media/episode-1-poster.svg")}" alt="${text(e.title)}">`;
 function card(e,featured=false){
- return `<article class="${featured?"pl-feature":"pl-card"}"><a href="${urlFor(e)}" data-pl-route="${esc(e.slug)}">${thumb(e)}<div class="pl-pill">${esc(category(e))}${!isReady(e)?" · "+t("soon"):""}</div><h4>${text(e.title)}</h4></a><div class="pl-meta">${e.episodeNumber!=null?"EP "+String(e.episodeNumber).padStart(2,"0")+" · ":""}${esc(e.duration||"")}${e.publishedDate?" · "+date(e.publishedDate):""}</div><p>${text(e.description)}</p></article>`;
+ return `<article class="${featured?"pl-feature":"pl-card"}"><a href="${urlFor(e)}" data-pl-route="${esc(e.slug)}">${thumb(e)}<div class="pl-pill">${esc(category(e))}${!isReady(e)?" · "+t("soon"):""}</div><h4>${text(e.title)}</h4></a><div class="pl-meta">${e.episodeNumber!=null?"EP "+String(e.episodeNumber).padStart(2,"0")+(e.duration?" · ":""):""}${esc(e.duration||"")}${e.publishedDate?" · "+date(e.publishedDate):""}</div><p>${text(e.description)}</p></article>`;
 }
 function renderList(){
  $("plHeading").textContent=t("featured");$("plSubheading").textContent=t("intro");$("plSearch").placeholder=t("search");
@@ -70,5 +97,6 @@ observer.observe(document.documentElement,{attributes:true,attributeFilter:["lan
 document.querySelectorAll("[data-lang]").forEach(x=>x.addEventListener("click",()=>setTimeout(()=>{lang=language();renderRoute();},0)));
 fetch("/podcast/episodes.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Episode data unavailable");return r.json()}).then(data=>{
  episodes=Array.isArray(data.episodes)?data.episodes:[];lang=language();renderRoute();
+ episodes.forEach(resolveDuration);
 }).catch(()=>{$("plGrid").innerHTML='<p class="pl-empty">Podcast data could not be loaded. / 节目数据加载失败。</p>';});
 })();
