@@ -1174,15 +1174,23 @@ html, body { max-width: 100%; overflow-x: clip; }
 .hero-podcast-player { position:relative; z-index:1; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#060a12; }
  .hero-podcast-player iframe, .hero-podcast-player #heroPodcastPlayer { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .hero-podcast-audio-row { position:relative; z-index:2; display:flex; align-items:center; gap:10px; padding:10px 4px 0; min-height:52px; }
-.hero-podcast-controls { display:flex; align-items:center; gap:9px; width:100%; color:#fff; }
+.hero-podcast-controls { display:flex; flex-direction:column; align-items:stretch; gap:6px; width:100%; color:#fff; }
+.hero-podcast-scrub-row { display:flex; align-items:center; gap:12px; width:100%; min-width:0; }
+.hero-podcast-actions-row { display:flex; align-items:center; gap:12px; width:100%; min-width:0; }
+.hero-podcast-actions-row .hero-podcast-yt-link { margin-left:auto; }
+.hero-podcast-actions-row .hero-podcast-volume { width:clamp(84px,30%,170px); flex:0 1 170px; min-width:65px; }
+.hero-podcast-scrub-row .hero-podcast-progress { flex:1 1 auto; min-width:0; }
 .hero-podcast-controls button { flex-shrink:0; cursor:pointer; }
 .hero-podcast-play { border:0; background:transparent; color:#fff; font-size:22px; width:36px; height:40px; }
 .hero-podcast-progress { flex:1; min-width:40px; }
 .hero-podcast-volume { width:clamp(64px,18%,115px); flex-shrink:0; }
 .hero-podcast-controls input[type=range] { accent-color:#4dd6f7; height:22px; cursor:pointer; }
 .hero-podcast-time { font-size:11px; font-variant-numeric:tabular-nums; white-space:nowrap; color:#d4d9e3; }
+ .hero-podcast-cc { flex-shrink:0; width:36px; height:32px; display:grid; place-items:center; border:1px solid #657186; border-radius:8px; background:transparent; color:#d4d9e3; font-size:13px; font-weight:750; letter-spacing:.02em; }
+.hero-podcast-cc[aria-pressed="true"] { color:#4dd6f7; border-color:#4dd6f7; box-shadow:inset 0 -2px 0 #4dd6f7; }
+.hero-podcast-cc:focus-visible { outline:2px solid #4dd6f7; outline-offset:2px; }
 .hero-podcast-yt-link { display:grid; place-items:center; font-size:18px; text-decoration:none; color:white; width:34px; height:34px; border:1px solid #657186; border-radius:9px; }
-@media(max-width:420px){ .hero-podcast-controls {gap:5px;} .hero-podcast-time{font-size:10px;} .hero-podcast-volume{width:58px;} .hero-podcast-audio{width:34px;height:34px;} }
+@media(max-width:420px){ .hero-podcast-controls {gap:5px;} .hero-podcast-scrub-row {gap:8px;} .hero-podcast-actions-row {gap:7px;} .hero-podcast-time{font-size:10px;} .hero-podcast-actions-row .hero-podcast-volume{min-width:55px; flex-basis:85px;} .hero-podcast-audio{width:34px;height:34px;} }
 .hero-podcast-audio { position:relative; width:40px; height:40px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.32); border-radius:50%; background:rgba(4,11,25,.75); color:#fff; padding:0; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.35); }
 .hero-podcast-audio:focus-visible { outline:3px solid #4dd6f7; outline-offset:3px; }
 .hero-podcast-audio svg { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; pointer-events:none; }
@@ -1252,14 +1260,19 @@ html, body { max-width: 100%; overflow-x: clip; }
           </div>
           <div class="hero-podcast-audio-row">
             <div class="hero-podcast-controls" aria-label="Podcast player controls">
-              <button class="hero-podcast-play" id="heroPodcastPlay" type="button" aria-label="Play">▶</button>
-              <input class="hero-podcast-progress" id="heroPodcastSeek" type="range" min="0" max="1000" value="0" aria-label="Seek video" />
-              <span class="hero-podcast-time" id="heroPodcastTime">0:00 / 27:34</span>
-              <button class="hero-podcast-audio" id="heroPodcastAudio" type="button" aria-label="Turn sound on" aria-pressed="false" title="Turn sound on" hidden>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="audio-cross" d="m16.5 9 5 6m0-6-5 6"/></svg>
-              </button>
-              <input class="hero-podcast-volume" id="heroPodcastVolume" type="range" min="0" max="100" value="50" aria-label="Volume" />
-              <a class="hero-podcast-yt-link" id="heroPodcastYouTube" href="https://youtu.be/VmiSflOgXeU" target="_blank" rel="noopener noreferrer" aria-label="Open on YouTube" title="Full YouTube controls">↗</a>
+              <div class="hero-podcast-scrub-row">
+                <input class="hero-podcast-progress" id="heroPodcastSeek" type="range" min="0" max="1000" value="0" aria-label="Seek video" />
+                <span class="hero-podcast-time" id="heroPodcastTime">0:00 / 27:34</span>
+              </div>
+              <div class="hero-podcast-actions-row">
+                <button class="hero-podcast-play" id="heroPodcastPlay" type="button" aria-label="Play">▶</button>
+                <button class="hero-podcast-audio" id="heroPodcastAudio" type="button" aria-label="Turn sound on" aria-pressed="false" title="Turn sound on" hidden>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="audio-cross" d="m16.5 9 5 6m0-6-5 6"/></svg>
+                </button>
+                <input class="hero-podcast-volume" id="heroPodcastVolume" type="range" min="0" max="100" value="50" aria-label="Volume" />
+                <button class="hero-podcast-cc" id="heroPodcastCC" type="button" aria-label="Turn captions on" aria-pressed="false" title="Captions">CC</button>
+                <a class="hero-podcast-yt-link" id="heroPodcastYouTube" href="https://youtu.be/VmiSflOgXeU" target="_blank" rel="noopener noreferrer" aria-label="Open on YouTube" title="Full YouTube controls">↗</a>
+              </div>
             </div>
           </div>
           <div class="hero-podcast-footer">
@@ -2302,10 +2315,34 @@ if (podcastInterviewMore && podcastInterviewDescription) {
  const seek=document.getElementById('heroPodcastSeek');
  const time=document.getElementById('heroPodcastTime');
  const youtube=document.getElementById('heroPodcastYouTube');
+ const captionsButton=document.getElementById('heroPodcastCC');
  if(!shell||!audio)return;
  const localize=()=>document.documentElement.lang?.toLowerCase().startsWith('zh');
  let visible=false,player=null,ready=false,videoId='VmiSflOgXeU',apiStarted=false;
  let syncTimer=null, draggingSeek=false, draggingVolume=false;
+ let captionsRequested=false;
+ // YouTube does not currently guarantee an embedded captions toggle via its
+ // documented player API. These track commands are best-effort only.
+ function applyCaptions(){
+   if(!ready||!player)return;
+   try{
+     if(typeof player.setOption==='function'){
+       player.setOption('captions','track',captionsRequested?{languageCode:'en'}:{});
+     }
+   }catch(e){console.debug('YouTube captions setting unavailable',e);}
+ }
+ function syncCaptionsButton(){
+   if(!captionsButton)return;
+   const on=captionsRequested;
+   captionsButton.setAttribute('aria-pressed',String(on));
+   captionsButton.setAttribute('aria-label',localize()?(on?'关闭字幕':'开启字幕'):(on?'Turn captions off':'Turn captions on'));
+   captionsButton.title=localize()?(on?'字幕：开启（YouTube 可能覆盖）':'字幕：关闭（YouTube 可能覆盖）'):(on?'Captions requested on (YouTube may override)':'Captions requested off (YouTube may override)');
+ }
+ captionsButton?.addEventListener('click',()=>{
+   captionsRequested=!captionsRequested;
+   applyCaptions();syncCaptionsButton();
+ });
+ syncCaptionsButton();
  const formatSeconds=s=>{if(!Number.isFinite(s)||s<0)return '0:00';s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
  // YouTube's IFrame API has no volumechange event. Poll the real player state
  // so changes made with YouTube's own mute button or volume slider are reflected.
@@ -2341,6 +2378,7 @@ if (podcastInterviewMore && podcastInterviewDescription) {
    // Set mute before starting automatic playback.
    player.mute();
    ready=true;
+   applyCaptions();syncCaptionsButton();
    syncAudio();
    updatePlayback();
    if(!syncTimer)syncTimer=window.setInterval(syncAudio,300);
@@ -2404,9 +2442,10 @@ if (podcastInterviewMore && podcastInterviewDescription) {
    if(player||!window.YT?.Player)return;
    player=new YT.Player('heroPodcastPlayer',{
      videoId,
-     playerVars:{autoplay:0,mute:1,playsinline:1,controls:0,rel:0,enablejsapi:1,origin:location.origin},
+     playerVars:{autoplay:0,mute:1,playsinline:1,controls:0,rel:0,cc_load_policy:0,enablejsapi:1,origin:location.origin},
      events:{
        onReady,
+       onApiChange:applyCaptions,
        onStateChange:()=>syncAudio(),
        onError:(e)=>console.warn('YouTube player error',e.data)
      }
@@ -2415,7 +2454,7 @@ if (podcastInterviewMore && podcastInterviewDescription) {
  syncAudio();
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;updatePlayback();},{threshold:0.35}).observe(shell);
  document.addEventListener('visibilitychange',updatePlayback);
- new MutationObserver(syncAudio).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+ new MutationObserver(()=>{syncAudio();syncCaptionsButton()}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
  fetch('/podcast/episodes.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Podcast metadata');return r.json()}).then(data=>{
    const latest=(data.episodes||[]).filter(e=>e.category==='full-episodes'&&e.status==='published'&&e.videoProvider==='youtube'&&e.videoUrl).sort((a,b)=>(b.episodeNumber??0)-(a.episodeNumber??0))[0];
    if(latest){
