@@ -1020,7 +1020,7 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
 .footer-logo { width: 34px; height: 34px; object-fit: contain; border-radius: 10px; }
 .footer-inner strong { color: white; margin-right: 12px; }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: .09s; }
 .delay-2 { transition-delay: .18s; }
@@ -1139,6 +1139,33 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
  #junoStage .js-fullscreen .js-entry{flex-wrap:nowrap}
  #junoStage .js-fullscreen .js-entry input{flex-basis:auto;width:0}
  #junoStage .js-fullscreen .js-entry button{padding:12px 10px}
+}
+</style>
+<style id="mobile-recovery">
+/* Production mobile recovery: content must remain readable without JavaScript. */
+html, body { max-width: 100%; overflow-x: clip; }
+.site-header { min-width: 0; }
+.brand, .brand-text, .header-actions { min-width: 0; }
+.brand-text { overflow-wrap: normal; white-space: nowrap; }
+.hero > *, .hero-media, .hero-copy { min-width: 0; }
+.hero-podcast-shell { max-width: 100%; }
+@media (max-width: 960px) {
+ .site-header { display: flex; justify-content: space-between; gap: 8px; }
+ .header-actions { margin-left: auto; flex: 0 0 auto; }
+ .menu-toggle { display: flex; flex: 0 0 42px; }
+ .brand { flex: 0 1 auto; overflow: hidden; gap: 7px; }
+ .brand-text { font-size: clamp(.73rem, 3vw, .98rem); letter-spacing: -.035em; }
+ .brand-logo { width: 34px; height: 34px; flex-shrink: 0; }
+ .language-selector { gap: 0; padding: 2px; }
+ .language-option { font-size: .75rem; padding: 6px 7px; }
+ .hero-podcast-shell { width: 100%; }
+}
+@media (max-width: 370px) {
+ .site-header { padding: 10px 8px; gap: 5px; }
+ .brand-logo { width: 29px; height: 29px; }
+ .brand-text { font-size: .69rem; }
+ .language-option { font-size: .69rem; padding: 5px; }
+ .menu-toggle { width: 34px; height: 34px; flex-basis: 34px; }
 }
 </style>
 <link rel="stylesheet" href="/podcast/library.css" />
