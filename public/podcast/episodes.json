@@ -24,8 +24,8 @@
       "publishedDate": null,
       "duration": "2:23",
       "thumbnail": "/podcast/media/meet-juno-poster.jpg",
-      "videoUrl": "https://media.galoregrowth.ai/meet-juno.MP4",
-      "videoProvider": "html5",
+      "videoUrl": "https://www.youtube.com/watch?v=FwL0n8lLAkM",
+      "videoProvider": "youtube",
       "featured": true,
       "status": "published",
       "type": "Behind the Scenes / Introduction"
@@ -56,8 +56,8 @@
       "publishedDate": null,
       "duration": "13:27",
       "thumbnail": "https://customer-af9aqhvqtabne3jm.cloudflarestream.com/861f7c42b79650c7f854dcf2a998f223/thumbnails/thumbnail.jpg?time=&height=600",
-      "videoUrl": "https://customer-af9aqhvqtabne3jm.cloudflarestream.com/861f7c42b79650c7f854dcf2a998f223/iframe",
-      "videoProvider": "cloudflare",
+      "videoUrl": "https://www.youtube.com/watch?v=FTfP8KkNCo4",
+      "videoProvider": "youtube",
       "featured": true,
       "status": "published",
       "type": "Full Episode"
@@ -90,8 +90,8 @@
       "publishedDate": "2026-10-30",
       "duration": "27:34",
       "thumbnail": "/podcast/media/episode-2-ai-in-action.jpg",
-      "videoUrl": "https://customer-af9aqhvqtabne3jm.cloudflarestream.com/08ea43126162dedacfa6c8887076f156/iframe",
-      "videoProvider": "cloudflare",
+      "videoUrl": "https://www.youtube.com/watch?v=VmiSflOgXeU",
+      "videoProvider": "youtube",
       "featured": true,
       "status": "published",
       "type": "Full Episode"
