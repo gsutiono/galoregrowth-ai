@@ -1204,6 +1204,27 @@ html, body { max-width: 100%; overflow-x: clip; }
 .hero-podcast-footer a { color:var(--cyan); text-decoration:underline; text-underline-offset:4px; font-size:.85rem; font-weight:700; }
 @media(max-width:700px){.hero-podcast-shell{width:min(530px,94vw)} .hero-podcast-footer{padding:14px 8px 8px}}
 </style>
+<style id="mobile-brand-intro-2026">
+.mobile-brand-intro {display:none}
+@media(max-width:640px){
+ .hero.shell {padding-top:18px;gap:12px;display:flex;flex-direction:column}
+ .mobile-brand-intro {display:block;order:0;padding:2px 7px 6px;max-width:560px}
+ .mobile-brand-intro .intro-eyebrow {font-weight:800;letter-spacing:.11em;font-size:.65rem;color:#62d9f8;margin-bottom:5px}
+ .mobile-brand-intro h2 {font-size:clamp(1.45rem,6.3vw,2rem);letter-spacing:-.035em;color:white;margin:0 0 5px;line-height:1.15}
+ .mobile-brand-intro h2 em {font-style:normal;color:#4dd6f7}
+ .mobile-brand-intro p {font-size:.84rem;line-height:1.38;color:#cbd5e1;margin:0 0 9px}
+ .mobile-brand-intro .intro-links {display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:.78rem;font-weight:700}
+ .mobile-brand-intro .intro-primary {color:#071723;background:#4dd6f7;border-radius:20px;padding:8px 12px;text-decoration:none}
+ .mobile-brand-intro .intro-secondary {color:#83def5;text-decoration:none}
+ .hero .hero-media {order:1;width:100%}
+ .hero .hero-copy {order:2}
+ .hero-podcast-footer .hero-podcast-description:not(.expanded) {display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ .hero-podcast-more {display:inline-block!important;margin:4px 0 0;align-self:start;font-size:.77rem;color:#82ddf6;background:none;border:0;text-decoration:underline;cursor:pointer;padding:3px 0}
+ .hero-podcast-footer {gap:8px}
+}
+@media(min-width:641px){.hero-podcast-more{display:none!important}}
+html[lang="zh-CN"] .intro-en, html:not([lang="zh-CN"]) .intro-zh {display:none}
+</style>
 </head>
 <body>
   <div class="bg-orb orb-a"></div>
@@ -1240,6 +1261,11 @@ html, body { max-width: 100%; overflow-x: clip; }
 
   <main id="top">
     <section class="hero shell">
+      <div class="mobile-brand-intro" aria-label="GaloreGrowth.ai business introduction">
+        <div class="intro-en"><div class="intro-eyebrow">AI BUSINESS CONSULTING</div><h2>Business First. <em>AI Second.</em></h2><p>We help businesses turn AI into measurable growth, efficiency, and real-world results.</p><div class="intro-links"><a class="intro-primary" href="#why">Explore Our Services</a><a class="intro-secondary" href="#heroPodcastShell">Latest Podcast ↓</a></div></div>
+        <div class="intro-zh" lang="zh-CN"><div class="intro-eyebrow">企业 AI 顾问服务</div><h2>业务优先，<em>AI 其次。</em></h2><p>帮助企业把 AI 转化为可衡量的增长、效率与实际成果。</p><div class="intro-links"><a class="intro-primary" href="#why">了解我们的服务</a><a class="intro-secondary" href="#heroPodcastShell">最新播客 ↓</a></div></div>
+      </div>
+
       <div class="hero-copy reveal">
         <div class="eyebrow" data-i18n="hero.eyebrow">BUSINESS GROWTH • POWERED BY AI</div>
         <h1 data-i18n="hero.title">Stop Guessing Which AI Tools <span>Will Fill Your Pipeline</span></h1>
@@ -1276,7 +1302,7 @@ html, body { max-width: 100%; overflow-x: clip; }
             </div>
           </div>
           <div class="hero-podcast-footer">
-            <div><span class="hero-podcast-kicker" data-i18n="podcast.latest">LATEST PODCAST EPISODE</span><strong id="heroPodcastTitle">AI in Action: From Vision to Real Impact in Financial Services</strong><p class="hero-podcast-description" id="heroPodcastDescription">Juno talks with Bill Pienias, President of FinFit Life, about turning AI vision into meaningful business impact in financial services.</p></div>
+            <div><span class="hero-podcast-kicker" data-i18n="podcast.latest">LATEST PODCAST EPISODE</span><strong id="heroPodcastTitle">AI in Action: From Vision to Real Impact in Financial Services</strong><p class="hero-podcast-description" id="heroPodcastDescription">Juno talks with Bill Pienias, President of FinFit Life, about turning AI vision into meaningful business impact in financial services.</p><button id="heroPodcastMore" class="hero-podcast-more" type="button" aria-expanded="false">Read more</button></div>
             <a id="heroPodcastLink" href="#podcastLibrary" data-i18n="podcast.watchLatest">Watch in Podcast Library →</a>
           </div>
         </div>
@@ -2320,6 +2346,7 @@ if (podcastInterviewMore && podcastInterviewDescription) {
  const localize=()=>document.documentElement.lang?.toLowerCase().startsWith('zh');
  let visible=false,player=null,ready=false,videoId='VmiSflOgXeU',apiStarted=false;
  let syncTimer=null, draggingSeek=false, draggingVolume=false;
+ let lastNonzeroVolume=50;
  let captionsRequested=false;
  // YouTube does not currently guarantee an embedded captions toggle via its
  // documented player API. These track commands are best-effort only.
@@ -2362,7 +2389,9 @@ if (podcastInterviewMore && podcastInterviewDescription) {
    audio.disabled=!ready;
    if(ready){
      try{
-       if(!draggingVolume) volume.value=String(player.getVolume());
+       const actualVolume=Number(player.getVolume());
+       if(!silent && actualVolume>0)lastNonzeroVolume=actualVolume;
+       if(!draggingVolume) volume.value=String(silent?0:actualVolume);
        const duration=player.getDuration()||1654;
        const current=player.getCurrentTime()||0;
        if(!draggingSeek)seek.value=String(Math.round(current/duration*1000));
@@ -2410,7 +2439,10 @@ if (podcastInterviewMore && podcastInterviewDescription) {
  volume.addEventListener('input',()=>{
    if(!ready)return;
    const val=Number(volume.value);
-   try{player.setVolume(val);if(val===0)player.mute();else player.unMute();}catch(e){}
+   try{
+     if(val>0){lastNonzeroVolume=val;player.setVolume(val);player.unMute();}
+     else{player.mute();}
+   }catch(e){}
    draggingVolume=false;syncAudio();
  });
  volume.addEventListener('change',()=>{draggingVolume=false;syncAudio();});
@@ -2418,11 +2450,12 @@ if (podcastInterviewMore && podcastInterviewDescription) {
    if(!ready||!player)return;
    try{
      if(isSilent()){
-       // Preserve the user's slider setting; only restore a nonzero level if
-       // they previously moved the native volume slider all the way to zero.
-       if(player.getVolume()===0)player.setVolume(50);
+       // Restore the last nonzero user-selected volume after a simple mute.
+       player.setVolume(lastNonzeroVolume);
        player.unMute();
      }else{
+       const currentVolume=Number(player.getVolume());
+       if(currentVolume>0)lastNonzeroVolume=currentVolume;
        player.mute();
      }
    }catch(e){console.warn('YouTube audio control failed',e)}
@@ -2464,6 +2497,13 @@ if (podcastInterviewMore && podcastInterviewDescription) {
    }
    document.getElementById('heroPodcastLink').href='#podcastLibrary';
  }).catch(err=>console.warn('Podcast metadata unavailable, using Episode 2 fallback',err)).finally(loadYouTubeAPI);
+})();
+</script>
+<script id="mobile-podcast-readmore">
+(()=>{const button=document.getElementById('heroPodcastMore'),desc=document.getElementById('heroPodcastDescription');if(!button||!desc)return;
+const label=()=>{const zh=document.documentElement.lang==='zh-CN';button.textContent=desc.classList.contains('expanded')?(zh?'收起':'Read less'):(zh?'展开介绍':'Read more')};
+button.addEventListener('click',()=>{desc.classList.toggle('expanded');button.setAttribute('aria-expanded',String(desc.classList.contains('expanded')));label()});
+new MutationObserver(label).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});label();
 })();
 </script>
 </body>
