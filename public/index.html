@@ -1141,7 +1141,19 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
  #junoStage .js-fullscreen .js-entry button{padding:12px 10px}
 }
 </style>
-<link rel="stylesheet" href="/podcast/library.css" />\n</head>
+<link rel="stylesheet" href="/podcast/library.css" />\n<style id="hero-latest-podcast-style">
+.hero-podcast-shell { width:min(590px,100%); padding:10px; }
+.hero-podcast-player { position:relative; z-index:1; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#060a12; }
+.hero-podcast-player iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.hero-podcast-footer { position:relative; z-index:2; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:16px 10px 8px; }
+.hero-podcast-footer div { display:grid; gap:4px; }
+.hero-podcast-description { color:#cbd5e1; font-size:.82rem; line-height:1.55; max-width:47ch; margin:5px 0 0; }
+.hero-podcast-kicker { font-size:.72rem; color:var(--cyan); font-weight:700; letter-spacing:.08em; }
+.hero-podcast-footer strong { font-size:1rem; color:#fff; }
+.hero-podcast-footer a { color:var(--cyan); text-decoration:underline; text-underline-offset:4px; font-size:.85rem; font-weight:700; }
+@media(max-width:700px){.hero-podcast-shell{width:min(530px,94vw)} .hero-podcast-footer{padding:14px 8px 8px}}
+</style>
+</head>
 <body>
   <div class="bg-orb orb-a"></div>
   <div class="bg-orb orb-b"></div>
@@ -1191,17 +1203,13 @@ h1 span { background: linear-gradient(100deg, #fff 10%, #b4c7ff 40%, #65dbff 75%
       </div>
 
       <div class="hero-media reveal delay-1">
-        <div class="hero-video-shell">
-          <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="GaloreGrowth.ai AI business transformation short video">
-            <source id="heroVideoSource" src="galoregrowth-hero-en.mp4" type="video/mp4">
-          </video>
-          <button id="videoSoundToggle" class="video-sound-toggle" type="button" aria-label="Turn sound on" title="Turn sound on">
-            <svg id="soundIconMuted" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6.5 9H3v6h3.5L11 19z"/><path d="M16 9l5 6M21 9l-5 6"/></svg>
-            <svg id="soundIconOn" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M11 5L6.5 9H3v6h3.5L11 19z"/><path d="M15 9.5a4 4 0 010 5M17.5 7a7 7 0 010 10"/></svg>
-          </button>
-          <div class="video-caption">
-            <strong data-i18n="hero.videoLabel">BUSINESS FIRST. AI SECOND.</strong>
-            <span data-i18n="hero.videoTag">AI IS THE VEHICLE. BUSINESS TRANSFORMATION IS THE DESTINATION.</span>
+        <div class="hero-video-shell hero-podcast-shell" id="heroPodcastShell">
+          <div class="hero-podcast-player">
+            <iframe id="heroPodcastPlayer" title="Latest GaloreGrowth podcast episode" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <div class="hero-podcast-footer">
+            <div><span class="hero-podcast-kicker" data-i18n="podcast.latest">LATEST PODCAST EPISODE</span><strong id="heroPodcastTitle">AI in Action: From Vision to Real Impact in Financial Services</strong><p class="hero-podcast-description" id="heroPodcastDescription">Juno talks with Bill Pienias, President of FinFit Life, about turning AI vision into meaningful business impact in financial services.</p></div>
+            <a id="heroPodcastLink" href="/podcast/episode-2" data-i18n="podcast.watchLatest">Watch in Podcast Library →</a>
           </div>
         </div>
       </div>
@@ -1694,7 +1702,7 @@ const translations = {
     'juno.clipBody':"Your actual Juno promotional clip will appear here after you provide it.",
     'juno.pricing':"Illustrative pricing only. Checkout is disabled until real costs and Stripe are configured.",
     'juno.staging':"STAGING UI PREVIEW — Juno agent, ElevenLabs, LiveAvatar and payments are not connected. Existing forms remain available for layout testing.",
-    'podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'Where business relationships become our AI market intelligence.','podcast.body':'The GaloreGrowth.ai podcast is part of our discovery engine. Conversations with business owners and operators reveal real problems, priorities, and opportunities. Conversations across the AI ecosystem help us stay close to emerging capabilities. We build trust through the conversation first — and only pursue business when there is a genuine fit.','podcast.featureTitle':'Samuel Hung: Planning the AI-era One Person Company','podcast.featureBody':'In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.','podcast.readMore':'Read more','podcast.readLess':'Show less','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','guest.verify':'Please complete the security check and try again.','guest.successTitle':'Guest interest received','guest.successBody':'Thank you for sharing your story. We’ll review your submission and reach out if it is a fit for an upcoming conversation.','guest.again':'Submit another',
+    'podcast.latest':'LATEST PODCAST EPISODE','podcast.watchLatest':'Watch in Podcast Library →','podcast.badge':'Coming Soon • Leadership Podcast','podcast.eyebrow':'GALOREGROWTH.AI BUSINESS PODCAST','podcast.title':'Where business relationships become our AI market intelligence.','podcast.body':'The GaloreGrowth.ai podcast is part of our discovery engine. Conversations with business owners and operators reveal real problems, priorities, and opportunities. Conversations across the AI ecosystem help us stay close to emerging capabilities. We build trust through the conversation first — and only pursue business when there is a genuine fit.','podcast.featureTitle':'Samuel Hung: Planning the AI-era One Person Company','podcast.featureBody':'In this conversation, China business advisor and mentor Samuel Hung explores how the rise of AI is reshaping entrepreneurship — and why he is now helping founders plan for the OPC (One Person Company) model. A bestselling author, sales strategist, team-building expert and speaker, Hung shares how entrepreneurs can combine personal expertise, AI tools, automation and business design to create a leaner company with greater individual leverage. The discussion also looks at what should remain human: judgment, communication, trust and leadership. The goal is not AI for its own sake, but a practical OPC built around real business value.','podcast.readMore':'Read more','podcast.readLess':'Show less','podcast.c1t':'Success Patterns','podcast.c1d':'How leaders create momentum, make decisions, and build durable advantage.','podcast.c2t':'Real Challenges','podcast.c2d':'Honest conversations about pressure, uncertainty, talent, capital, competition, and change.','podcast.c3t':'A Better Business Compass','podcast.c3d':'Context and perspective to help owners decide what matters — and what to ignore.','podcast.guestEyebrow':'SHARE YOUR STORY','podcast.guestTitle':'Would you like to be a future podcast guest?','podcast.guestBody':'We want experienced business owners and industry leaders with useful lessons, strong points of view, and honest stories about success, setbacks, and navigating change.','collapse.podcastTopicsOpen':'Explore podcast themes','collapse.podcastTopicsClose':'Hide podcast themes','collapse.guestOpen':'Apply to be a guest','collapse.guestClose':'Close guest form','guest.name':'Name','guest.email':'Email','guest.company':'Company','guest.title':'Title / Role','guest.industry':'Industry','guest.link':'Website / LinkedIn','guest.story':'What business lesson, success, challenge, or point of view would you like to share?','guest.submit':'Submit Guest Interest','guest.sending':'Sending…','guest.success':'Thank you. Your podcast guest interest has been sent.','guest.error':'We could not send your request. Please email guno@galoregrowth.ai directly.','guest.verify':'Please complete the security check and try again.','guest.successTitle':'Guest interest received','guest.successBody':'Thank you for sharing your story. We’ll review your submission and reach out if it is a fit for an upcoming conversation.','guest.again':'Submit another',
     'footer.tagline':'AI for measurable business growth.',
     // v10.2 positioning overrides
     'operator.title':'The first question should be: does the right tool already exist?',
@@ -1824,7 +1832,7 @@ const translations = {
     'juno.clipBody':"提供真实 Juno 宣传片后，将在这里展示。",
     'juno.pricing':"价格仅供展示；真实成本及 Stripe 配置完成前不开放付款。",
     'juno.staging':"测试版界面 — 尚未连接 Juno Agent、ElevenLabs、LiveAvatar 或付款。原有表格仅供版面测试。",
-    'podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'让商业关系，成为我们理解 AI 市场的情报网络。','podcast.body':'GaloreGrowth.ai 的播客也是我们的发现引擎。与企业主和运营者的对话，让我们听见真实问题、优先级与机会；与 AI 生态的持续交流，则帮助我们贴近不断出现的新能力。先通过对话建立信任，只有真正适合时，商业合作才自然发生。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'在这段访谈中，中国企业顾问与导师、畅销书作者洪豪泽（Samuel Hung）谈 AI 崛起如何改变创业方式，以及他为何正在帮助企业家规划 OPC（One Person Company，一人公司）。洪老师长期专注于销售技巧、团队建设与企业辅导，并活跃于演讲与培训领域。访谈进一步讨论：当 AI 把过去需要多人协作的工作逐步自动化，一个创业者如何把个人专业能力、AI 工具、流程与商业模式重新组合，形成更轻、更快、更具杠杆效应的公司结构；同时也探讨哪些能力仍必须由人来判断、沟通、建立信任与领导。重点不是为了用 AI 而用 AI，而是如何用 AI 重新设计一家真正围绕商业价值、可持续经营的 OPC。','podcast.readMore':'展开访谈介绍','podcast.readLess':'收起介绍','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向','guest.sending':'发送中…','guest.success':'谢谢，你的播客嘉宾申请已经发送。','guest.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','guest.verify':'请先完成安全验证后再提交。','guest.successTitle':'嘉宾申请已收到','guest.successBody':'谢谢你分享自己的故事。我们会审核申请，如果适合未来的访谈主题，会与你联系。','guest.again':'再提交一份',
+    'podcast.latest':'最新播客节目','podcast.watchLatest':'进入播客专区观看 →','podcast.badge':'即将推出 • 商业领袖播客','podcast.eyebrow':'GALOREGROWTH.AI 商业播客','podcast.title':'让商业关系，成为我们理解 AI 市场的情报网络。','podcast.body':'GaloreGrowth.ai 的播客也是我们的发现引擎。与企业主和运营者的对话，让我们听见真实问题、优先级与机会；与 AI 生态的持续交流，则帮助我们贴近不断出现的新能力。先通过对话建立信任，只有真正适合时，商业合作才自然发生。','podcast.featureTitle':'未来每一期完整访谈都会在这里播放。','podcast.featureBody':'在这段访谈中，中国企业顾问与导师、畅销书作者洪豪泽（Samuel Hung）谈 AI 崛起如何改变创业方式，以及他为何正在帮助企业家规划 OPC（One Person Company，一人公司）。洪老师长期专注于销售技巧、团队建设与企业辅导，并活跃于演讲与培训领域。访谈进一步讨论：当 AI 把过去需要多人协作的工作逐步自动化，一个创业者如何把个人专业能力、AI 工具、流程与商业模式重新组合，形成更轻、更快、更具杠杆效应的公司结构；同时也探讨哪些能力仍必须由人来判断、沟通、建立信任与领导。重点不是为了用 AI 而用 AI，而是如何用 AI 重新设计一家真正围绕商业价值、可持续经营的 OPC。','podcast.readMore':'展开访谈介绍','podcast.readLess':'收起介绍','podcast.c1t':'成功模式','podcast.c1d':'了解优秀领导者如何创造动能、做出决策并建立长期优势。','podcast.c2t':'真实挑战','podcast.c2d':'坦诚讨论压力、不确定性、人才、资本、竞争与转型。','podcast.c3t':'更好的商业指南针','podcast.c3d':'帮助企业主看清什么真正重要，以及哪些噪音可以忽略。','podcast.guestEyebrow':'分享你的故事','podcast.guestTitle':'你愿意成为我们未来的播客嘉宾吗？','podcast.guestBody':'我们希望邀请有实战经验的企业主与行业领袖，分享真正有价值的经验、鲜明观点，以及关于成功、挫折和应对变化的真实故事。','collapse.podcastTopicsOpen':'展开播客主题','collapse.podcastTopicsClose':'收起播客主题','collapse.guestOpen':'申请成为嘉宾','collapse.guestClose':'收起嘉宾表格','guest.name':'姓名','guest.email':'邮箱','guest.company':'公司','guest.title':'职务 / 角色','guest.industry':'行业','guest.link':'网站 / LinkedIn','guest.story':'你最希望分享哪一个商业经验、成功、挑战或观点？','guest.submit':'提交嘉宾意向','guest.sending':'发送中…','guest.success':'谢谢，你的播客嘉宾申请已经发送。','guest.error':'暂时无法发送，请直接邮件至 guno@galoregrowth.ai。','guest.verify':'请先完成安全验证后再提交。','guest.successTitle':'嘉宾申请已收到','guest.successBody':'谢谢你分享自己的故事。我们会审核申请，如果适合未来的访谈主题，会与你联系。','guest.again':'再提交一份',
     'footer.tagline':'用 AI 创造可衡量的业务增长。',
     // v10.4 positioning overrides
     'hero.lead':'我们帮助年营收 $1M+ 的企业和代理机构找到并部署合适的 AI 工具，用于获取潜在客户、自动化冷启动外联、AI 陌生电话和更高效的招募——无需被厂商噪音干扰，也不必浪费时间反复试错。',
@@ -1848,11 +1856,6 @@ let currentLang = 'en';
 const languageOptions = [...document.querySelectorAll('[data-language]')];
 const bioToggle = document.getElementById('bioToggle');
 const bioDetail = document.getElementById('bioDetail');
-const heroVideo = document.getElementById('heroVideo');
-const heroVideoSource = document.getElementById('heroVideoSource');
-const videoSoundToggle = document.getElementById('videoSoundToggle');
-const soundIconMuted = document.getElementById('soundIconMuted');
-const soundIconOn = document.getElementById('soundIconOn');
 const menuToggle = document.getElementById('menuToggle');
 const mobileNav = document.getElementById('mobileNav');
 const contactFormDetail = document.getElementById('contactFormDetail');
@@ -1882,17 +1885,6 @@ function refreshSectionToggleText() {
   });
 }
 
-function refreshSoundButton() {
-  if (!videoSoundToggle || !heroVideo) return;
-  const muted = heroVideo.muted;
-  soundIconMuted.hidden = !muted;
-  soundIconOn.hidden = muted;
-  const key = muted ? 'sound.on' : 'sound.off';
-  const label = translations[currentLang][key];
-  videoSoundToggle.setAttribute('aria-label', label);
-  videoSoundToggle.setAttribute('title', label);
-}
-
 function applyLanguage(lang) {
   currentLang = lang;
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
@@ -1905,29 +1897,13 @@ function applyLanguage(lang) {
   languageOptions.forEach(button => { const selected = button.dataset.language === lang; button.classList.toggle('is-active', selected); button.setAttribute('aria-pressed', String(selected)); });
   refreshBioToggleText();
   refreshSectionToggleText();
-  refreshSoundButton();
 
-  const nextVideo = lang === 'zh' ? 'galoregrowth-hero-zh.mp4' : 'galoregrowth-hero-en.mp4';
-  if (heroVideoSource && heroVideoSource.getAttribute('src') !== nextVideo) {
-    heroVideoSource.setAttribute('src', nextVideo);
-    heroVideo.load();
-    const playPromise = heroVideo.play();
-    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
-  }
+
 }
 
 languageOptions.forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language))); 
 
-if (videoSoundToggle) {
-  videoSoundToggle.addEventListener('click', () => {
-    heroVideo.muted = !heroVideo.muted;
-    refreshSoundButton();
-    if (!heroVideo.muted) {
-      const p = heroVideo.play();
-      if (p && typeof p.catch === 'function') p.catch(() => {});
-    }
-  });
-}
+
 
 
 function syncCoreSectionVisibility() {
@@ -2261,5 +2237,28 @@ if (podcastInterviewMore && podcastInterviewDescription) {
 
 </script>
 <script id="juno-stage-script">(()=>{const root=document.getElementById('junoStage');if(!root)return;const el=id=>document.getElementById(id);const chat=el('junoChat'),live=el('junoLive');el('junoChatOpen').onclick=()=>{chat.hidden=false;live.hidden=true;chat.classList.add('js-fullscreen');live.classList.remove('js-fullscreen');document.body.style.overflow='hidden';el('junoDraft').focus({preventScroll:true})};el('junoLiveOpen').onclick=()=>{live.hidden=false;chat.hidden=true;live.classList.add('js-fullscreen');chat.classList.remove('js-fullscreen');document.body.style.overflow='hidden'};const close=()=>{chat.hidden=true;live.hidden=true;chat.classList.remove('js-fullscreen');live.classList.remove('js-fullscreen');document.body.style.overflow=''};el('junoChatBack').onclick=close;el('junoLiveBack').onclick=close;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(!chat.hidden||!live.hidden))close()});const tr=(en,zh)=>document.documentElement.lang?.startsWith('zh')?zh:en;const send=()=>{const input=el('junoDraft');const value=input.value.trim();if(!value)return;const msg=document.createElement('div');msg.className='js-msg user';msg.textContent=value;el('junoMessages').appendChild(msg);input.value='';el('junoStatus').textContent=tr('This is a design preview; Juno is not yet connected.','目前是界面预览，Juno 尚未连接。')};el('junoSend').onclick=send;el('junoDraft').addEventListener('keydown',e=>{if(e.key==='Enter')send()});el('junoMic').onclick=()=>{const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SpeechRecognition){el('junoStatus').textContent=tr('Browser speech recognition is unavailable. Use your keyboard or device dictation.','浏览器不支持语音识别，请使用键盘或设备语音输入。');return}const recognition=new SpeechRecognition();recognition.lang=document.documentElement.lang?.startsWith('zh')?'zh-CN':'en-US';recognition.onresult=e=>{el('junoDraft').value=e.results[0][0].transcript;el('junoStatus').textContent=tr('Voice transcribed. Review and press Send.','语音已转为文字，请确认后发送。')};recognition.onerror=()=>{el('junoStatus').textContent=tr('Microphone unavailable. Please type instead.','麦克风不可用，请改用文字。')};try{recognition.start();el('junoStatus').textContent=tr('Listening…','正在聆听…')}catch(e){el('junoStatus').textContent=tr('Could not start microphone.','无法启动麦克风。')}}})();</script>
-<script defer src="/podcast/library.js"></script>\n</body>
+<script defer src="/podcast/library.js"></script>
+<script id="hero-latest-podcast-script">
+(()=>{
+ const frame=document.getElementById('heroPodcastPlayer'),shell=document.getElementById('heroPodcastShell');
+ if(!frame||!shell)return;
+ let playerUrl='',visible=false;
+ const update=()=>{
+   const target=visible&&document.visibilityState==='visible'&&playerUrl?playerUrl+'?autoplay=true&muted=true&loop=true':'';
+   if(frame.getAttribute('src')!==(target||'about:blank'))frame.setAttribute('src',target||'about:blank');
+ };
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;update()},{threshold:0.35}).observe(shell);
+ document.addEventListener('visibilitychange',update);
+ fetch('/podcast/episodes.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Podcast metadata');return r.json()}).then(data=>{
+   const latest=(data.episodes||[]).filter(e=>e.category==='full-episodes'&&e.status==='published'&&e.videoProvider==='cloudflare'&&e.videoUrl).sort((a,b)=>(b.episodeNumber??0)-(a.episodeNumber??0))[0];
+   if(!latest)return;
+   const zh=document.documentElement.lang.toLowerCase().startsWith('zh');
+   const choose=()=>{const local=document.documentElement.lang.toLowerCase().startsWith('zh');document.getElementById('heroPodcastTitle').textContent=(local?latest.title.zh:latest.title.en)||latest.title.en;document.getElementById('heroPodcastDescription').textContent=(local?latest.description?.zh:latest.description?.en)||latest.description?.en||'';};
+   choose(); new MutationObserver(choose).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+   document.getElementById('heroPodcastLink').href='/podcast/'+encodeURIComponent(latest.slug);
+   playerUrl=latest.videoUrl.split('?')[0];update();
+ }).catch(()=>{document.getElementById('heroPodcastTitle').textContent='Latest podcast episode';});
+})();
+</script>
+</body>
 </html>

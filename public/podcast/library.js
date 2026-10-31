@@ -24,7 +24,7 @@ function renderList(){
  $("plHeading").textContent=t("featured");$("plSubheading").textContent=t("intro");$("plSearch").placeholder=t("search");
  const fs=[["all","all"],["full-episodes","full"],["short-clips","short"],["behind-the-scenes","behind"]];
  $("plFilters").innerHTML=fs.map(([v,k])=>`<button type="button" class="pl-filter" data-pl-filter="${v}" aria-pressed="${filter===v}">${t(k)}</button>`).join("");
- $("plFeatured").innerHTML=episodes.filter(e=>e.featured).map(e=>card(e,true)).join("");
+ $("plFeatured").innerHTML=episodes.filter(e=>e.featured).sort((a,b)=>(b.episodeNumber??-1)-(a.episodeNumber??-1)).map(e=>card(e,true)).join("");
  const q=query.toLocaleLowerCase();
  const results=episodes.filter(e=>(filter==="all"||e.category===filter)&&(!q||[val(e.title),val(e.description),e.guest?.name||"",e.guest?.role||"",...(e.tags||[])].join(" ").toLocaleLowerCase().includes(q))).sort((a,b)=>(b.publishedDate||"").localeCompare(a.publishedDate||"")||(b.episodeNumber??0)-(a.episodeNumber??0));
  $("plGrid").innerHTML=results.length?results.map(e=>card(e)).join(""):`<p class="pl-empty">${t("empty")}</p>`;

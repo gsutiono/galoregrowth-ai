@@ -63,6 +63,40 @@
       "type": "Full Episode"
     },
     {
+      "id": "ep-002",
+      "slug": "episode-2",
+      "title": {
+        "en": "AI in Action: From Vision to Real Impact in Financial Services",
+        "zh": "AI 实践：从愿景到金融服务的真实影响"
+      },
+      "description": {
+        "en": "What does it take to move AI beyond the buzzwords and create meaningful results in financial services? In Episode 2 of The GaloreGrowth Podcast, AI host Juno sits down with Bill Pienias, President of FinFit Life, to explore the journey from vision to practical impact. The conversation puts the spotlight on real business needs, responsible adoption, and the human judgment required to turn promising technology into lasting value. Join us for a business-focused discussion about the opportunities and questions shaping the next chapter of financial services.",
+        "zh": "人工智能如何超越概念与口号，在金融服务业创造真正有意义的成果？在《The GaloreGrowth Podcast》第二集中，AI 主持人 Juno 对话 FinFit Life 总裁 Bill Pienias，探讨如何从 AI 愿景走向实际应用与商业价值。本集聚焦真实业务需求、审慎采用新技术，以及将技术潜力转化为长期价值所需要的人类判断力。一同思考 AI 为金融服务业带来的机遇，以及企业在迈向下一阶段时值得关注的问题。"
+      },
+      "episodeNumber": 2,
+      "series": "The GaloreGrowth Podcast",
+      "category": "full-episodes",
+      "tags": [
+        "AI",
+        "Financial Services",
+        "Business",
+        "FinFit Life",
+        "Bill Pienias"
+      ],
+      "guest": {
+        "name": "Bill Pienias",
+        "role": "President, FinFit Life"
+      },
+      "publishedDate": "2026-10-30",
+      "duration": null,
+      "thumbnail": "/podcast/media/episode-2-ai-in-action.jpg",
+      "videoUrl": "https://customer-af9aqhvqtabne3jm.cloudflarestream.com/08ea43126162dedacfa6c8887076f156/iframe",
+      "videoProvider": "cloudflare",
+      "featured": true,
+      "status": "published",
+      "type": "Full Episode"
+    },
+    {
       "id": "clip-samuel-hung",
       "slug": "samuel-hung-interview-promo",
       "title": {
