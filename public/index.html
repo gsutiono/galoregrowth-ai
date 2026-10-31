@@ -1172,7 +1172,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 <style id="hero-latest-podcast-style">
 .hero-podcast-shell { width:min(590px,100%); padding:10px; }
 .hero-podcast-player { position:relative; z-index:1; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#060a12; }
- .hero-podcast-player iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+ .hero-podcast-player iframe, .hero-podcast-player #heroPodcastPlayer { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .hero-podcast-audio { position:absolute; z-index:5; right:12px; bottom:12px; display:flex; align-items:center; gap:7px; border:1px solid rgba(255,255,255,.4); border-radius:999px; background:rgba(4,11,25,.86); color:#fff; padding:10px 13px; font:700 13px/1.2 system-ui,sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
 .hero-podcast-audio:focus-visible { outline:3px solid #4dd6f7; outline-offset:3px; }
 .hero-podcast-audio svg { width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
@@ -1237,7 +1237,7 @@ html, body { max-width: 100%; overflow-x: clip; }
       <div class="hero-media reveal delay-1">
         <div class="hero-video-shell hero-podcast-shell" id="heroPodcastShell">
           <div class="hero-podcast-player">
-            <iframe id="heroPodcastPlayer" title="Latest GaloreGrowth podcast episode" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <div id="heroPodcastPlayer" aria-label="Latest GaloreGrowth podcast episode"></div>
             <button class="hero-podcast-audio" id="heroPodcastAudio" type="button" aria-label="Unmute podcast video" aria-pressed="false" title="Unmute podcast video">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="audio-cross" d="m16 9 5 6m0-6-5 6"/></svg><span id="heroPodcastAudioLabel">Unmute</span>
             </button>
@@ -2275,50 +2275,98 @@ if (podcastInterviewMore && podcastInterviewDescription) {
 <script defer src="/podcast/library.js"></script>
 <script id="hero-latest-podcast-script">
 (()=>{
- const frame=document.getElementById('heroPodcastPlayer'),shell=document.getElementById('heroPodcastShell');
- const audio=document.getElementById('heroPodcastAudio'),audioLabel=document.getElementById('heroPodcastAudioLabel');
- if(!frame||!shell||!audio||!audioLabel)return;
- let playerUrl='https://www.youtube-nocookie.com/embed/VmiSflOgXeU',visible=false,muted=true;
+ const shell=document.getElementById('heroPodcastShell');
+ const audio=document.getElementById('heroPodcastAudio');
+ const audioLabel=document.getElementById('heroPodcastAudioLabel');
+ if(!shell||!audio||!audioLabel)return;
  const localize=()=>document.documentElement.lang?.toLowerCase().startsWith('zh');
- const syncAudio=()=>{
-   audioLabel.textContent=muted?(localize()?'开启声音':'Unmute'):(localize()?'静音':'Mute');
-   const action=muted?'Unmute':'Mute';
+ let visible=false,player=null,ready=false,videoId='VmiSflOgXeU',requestedUnmute=false, apiStarted=false;
+ // This controls the actual YouTube player, not merely the button appearance.
+ function isAudible(){
+   try{return ready && player && !player.isMuted();}catch{return false;}
+ }
+ function syncAudio(){
+   const audible=isAudible();
+   audioLabel.textContent=audible?(localize()?'静音':'Mute'):(localize()?'开启声音':'Unmute');
+   const action=audible?'Mute':'Unmute';
    audio.setAttribute('aria-label',action+' podcast video');
-   audio.setAttribute('title',action+' podcast video');
-   audio.setAttribute('aria-pressed',String(!muted));
-   const cross=audio.querySelector('.audio-cross'); if(cross)cross.style.display=muted?'':'none';
- };
- const command=(func)=>{try{frame.contentWindow?.postMessage(JSON.stringify({event:'command',func,args:[]}), 'https://www.youtube-nocookie.com');}catch(e){console.warn('Video audio control unavailable',e);}};
- const update=()=>{
-   const playing=visible&&document.visibilityState==='visible'&&playerUrl;
-   let target='about:blank';
-   if(playing){
-     const videoId=playerUrl.split('/').pop().split('?')[0];
-     target=playerUrl+'?autoplay=1&mute=1&playsinline=1&enablejsapi=1&rel=0&loop=1&playlist='+encodeURIComponent(videoId);
-   }
-   if(frame.getAttribute('src')!==target){
-      muted=true;syncAudio();frame.setAttribute('src',target);
-   }
-   audio.hidden=!playing;
- };
+   audio.title=action+' podcast video';
+   audio.setAttribute('aria-pressed',String(audible));
+   const cross=audio.querySelector('.audio-cross');if(cross)cross.style.display=audible?'none':'';
+   audio.hidden=!ready;
+   audio.disabled=!ready;
+ }
+ function onReady(event){
+   player=event.target;
+   // Mute first, then enable autoplay. Browser autoplay with sound is prohibited.
+   player.mute();
+   player.setVolume(100);
+   ready=true;requestedUnmute=false;
+   syncAudio();
+   updatePlayback();
+ }
+ function updatePlayback(){
+   if(!ready||!player)return;
+   try{
+     if(visible && document.visibilityState==='visible'){
+       // Restore muted state on re-entry, before starting playback.
+       if(!requestedUnmute)player.mute();
+       player.playVideo();
+     } else {
+       player.pauseVideo();
+       player.mute();
+       requestedUnmute=false;
+     }
+   }catch(e){console.warn('YouTube playback update failed',e)}
+   syncAudio();
+ }
  audio.addEventListener('click',()=>{
-   if(!visible||document.visibilityState!=='visible')return;
-   muted=!muted;
-   command(muted?'mute':'unMute');
+   if(!ready||!player)return;
+   try{
+     if(isAudible()){
+       player.mute();requestedUnmute=false;
+     }else{
+       player.unMute();player.setVolume(100);
+       requestedUnmute=!player.isMuted();
+     }
+   }catch(e){console.warn('YouTube audio control failed',e)}
    syncAudio();
  });
+ function loadYouTubeAPI(){
+   if(apiStarted)return;apiStarted=true;
+   if(window.YT?.Player){createPlayer();return;}
+   // The IFrame Player API is the supported control surface for mute/unmute.
+   const prior=window.onYouTubeIframeAPIReady;
+   window.onYouTubeIframeAPIReady=()=>{if(typeof prior==='function')prior();createPlayer();};
+   const script=document.createElement('script');script.src='https://www.youtube.com/iframe_api';
+   script.onerror=()=>console.warn('YouTube player API could not load');
+   document.head.appendChild(script);
+ }
+ function createPlayer(){
+   if(player||!window.YT?.Player)return;
+   player=new YT.Player('heroPodcastPlayer',{
+     videoId,
+     playerVars:{autoplay:0,mute:1,playsinline:1,controls:1,rel:0,enablejsapi:1,origin:location.origin},
+     events:{
+       onReady,
+       onStateChange:()=>syncAudio(),
+       onError:(e)=>console.warn('YouTube player error',e.data)
+     }
+   });
+ }
  syncAudio();
- new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;update()},{threshold:0.35}).observe(shell);
- document.addEventListener('visibilitychange',update);
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;updatePlayback();},{threshold:0.35}).observe(shell);
+ document.addEventListener('visibilitychange',updatePlayback);
  new MutationObserver(syncAudio).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
  fetch('/podcast/episodes.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Podcast metadata');return r.json()}).then(data=>{
-   const latest=(data.episodes||[]).filter(e=>e.category==='full-episodes'&&e.status==='published'&&(e.videoProvider==='cloudflare'||e.videoProvider==='youtube')&&e.videoUrl).sort((a,b)=>(b.episodeNumber??0)-(a.episodeNumber??0))[0];
-   if(!latest)return;
-   const choose=()=>{const zh=localize();document.getElementById('heroPodcastTitle').textContent=(zh?latest.title.zh:latest.title.en)||latest.title.en;document.getElementById('heroPodcastDescription').textContent=(zh?latest.description?.zh:latest.description?.en)||latest.description?.en||'';};
-   choose();new MutationObserver(choose).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+   const latest=(data.episodes||[]).filter(e=>e.category==='full-episodes'&&e.status==='published'&&e.videoProvider==='youtube'&&e.videoUrl).sort((a,b)=>(b.episodeNumber??0)-(a.episodeNumber??0))[0];
+   if(latest){
+     const choose=()=>{const zh=localize();document.getElementById('heroPodcastTitle').textContent=(zh?latest.title.zh:latest.title.en)||latest.title.en;document.getElementById('heroPodcastDescription').textContent=(zh?latest.description?.zh:latest.description?.en)||latest.description?.en||'';};
+     choose();new MutationObserver(choose).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+     try{const url=new URL(latest.videoUrl);videoId=url.searchParams.get('v')||(url.hostname==='youtu.be'?url.pathname.slice(1):url.pathname.split('/').pop())||videoId;}catch{}
+   }
    document.getElementById('heroPodcastLink').href='#podcastLibrary';
-   playerUrl=latest.videoProvider==='youtube'?'https://www.youtube-nocookie.com/embed/'+(new URL(latest.videoUrl).searchParams.get('v')||latest.videoUrl.split('/').pop()):latest.videoUrl.split('?')[0];update();
- }).catch(err=>{console.warn('Podcast library unavailable; showing Episode 2 fallback',err);update();});
+ }).catch(err=>console.warn('Podcast metadata unavailable, using Episode 2 fallback',err)).finally(loadYouTubeAPI);
 })();
 </script>
 </body>
