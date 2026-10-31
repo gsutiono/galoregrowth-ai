@@ -1173,10 +1173,11 @@ html, body { max-width: 100%; overflow-x: clip; }
 .hero-podcast-shell { width:min(590px,100%); padding:10px; }
 .hero-podcast-player { position:relative; z-index:1; width:100%; aspect-ratio:16/9; border-radius:20px; overflow:hidden; background:#060a12; }
  .hero-podcast-player iframe, .hero-podcast-player #heroPodcastPlayer { position:absolute; inset:0; width:100%; height:100%; border:0; }
-.hero-podcast-audio { position:absolute; z-index:5; right:12px; bottom:12px; display:flex; align-items:center; gap:7px; border:1px solid rgba(255,255,255,.4); border-radius:999px; background:rgba(4,11,25,.86); color:#fff; padding:10px 13px; font:700 13px/1.2 system-ui,sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.4); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.hero-podcast-audio { position:absolute; z-index:5; top:12px; right:12px; bottom:auto; width:42px; height:42px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.32); border-radius:50%; background:rgba(4,11,25,.75); color:#fff; padding:0; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.35); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
 .hero-podcast-audio:focus-visible { outline:3px solid #4dd6f7; outline-offset:3px; }
-.hero-podcast-audio svg { width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-@media(max-width:500px){.hero-podcast-audio {right:8px;bottom:8px;padding:9px 11px;font-size:12px}}
+.hero-podcast-audio svg { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; pointer-events:none; }
+.hero-podcast-audio[hidden] { display:none !important; }
+@media(max-width:500px){.hero-podcast-audio {right:8px;top:8px;bottom:auto;width:40px;height:40px}}
 .hero-podcast-footer { position:relative; z-index:2; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; padding:16px 10px 8px; }
 .hero-podcast-footer div { display:grid; gap:4px; }
 .hero-podcast-description { color:#cbd5e1; font-size:.82rem; line-height:1.55; max-width:47ch; margin:5px 0 0; }
@@ -1238,8 +1239,8 @@ html, body { max-width: 100%; overflow-x: clip; }
         <div class="hero-video-shell hero-podcast-shell" id="heroPodcastShell">
           <div class="hero-podcast-player">
             <div id="heroPodcastPlayer" aria-label="Latest GaloreGrowth podcast episode"></div>
-            <button class="hero-podcast-audio" id="heroPodcastAudio" type="button" aria-label="Unmute podcast video" aria-pressed="false" title="Unmute podcast video">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="audio-cross" d="m16 9 5 6m0-6-5 6"/></svg><span id="heroPodcastAudioLabel">Unmute</span>
+            <button class="hero-podcast-audio" id="heroPodcastAudio" type="button" aria-label="Turn sound on" aria-pressed="false" title="Turn sound on" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="audio-cross" d="m16.5 9 5 6m0-6-5 6"/></svg>
             </button>
           </div>
           <div class="hero-podcast-footer">
@@ -2277,45 +2278,44 @@ if (podcastInterviewMore && podcastInterviewDescription) {
 (()=>{
  const shell=document.getElementById('heroPodcastShell');
  const audio=document.getElementById('heroPodcastAudio');
- const audioLabel=document.getElementById('heroPodcastAudioLabel');
- if(!shell||!audio||!audioLabel)return;
+ if(!shell||!audio)return;
  const localize=()=>document.documentElement.lang?.toLowerCase().startsWith('zh');
- let visible=false,player=null,ready=false,videoId='VmiSflOgXeU',requestedUnmute=false, apiStarted=false;
- // This controls the actual YouTube player, not merely the button appearance.
- function isAudible(){
-   try{return ready && player && !player.isMuted();}catch{return false;}
+ let visible=false,player=null,ready=false,videoId='VmiSflOgXeU',apiStarted=false;
+ let syncTimer=null;
+ // YouTube's IFrame API has no volumechange event. Poll the real player state
+ // so changes made with YouTube's own mute button or volume slider are reflected.
+ function isSilent(){
+   try{return !ready || !player || player.isMuted() || player.getVolume()===0;}
+   catch{return true;}
  }
  function syncAudio(){
-   const audible=isAudible();
-   audioLabel.textContent=audible?(localize()?'静音':'Mute'):(localize()?'开启声音':'Unmute');
-   const action=audible?'Mute':'Unmute';
-   audio.setAttribute('aria-label',action+' podcast video');
-   audio.title=action+' podcast video';
-   audio.setAttribute('aria-pressed',String(audible));
-   const cross=audio.querySelector('.audio-cross');if(cross)cross.style.display=audible?'none':'';
+   const silent=isSilent();
+   const action=localize()?(silent?'开启声音':'静音'):(silent?'Turn sound on':'Mute');
+   audio.setAttribute('aria-label',action);
+   audio.title=action;
+   audio.setAttribute('aria-pressed',String(!silent));
+   const cross=audio.querySelector('.audio-cross');
+   if(cross)cross.style.display=silent?'':'none';
    audio.hidden=!ready;
    audio.disabled=!ready;
  }
  function onReady(event){
    player=event.target;
-   // Mute first, then enable autoplay. Browser autoplay with sound is prohibited.
+   // Set mute before starting automatic playback.
    player.mute();
-   player.setVolume(100);
-   ready=true;requestedUnmute=false;
+   ready=true;
    syncAudio();
    updatePlayback();
+   if(!syncTimer)syncTimer=window.setInterval(syncAudio,300);
  }
  function updatePlayback(){
    if(!ready||!player)return;
    try{
      if(visible && document.visibilityState==='visible'){
-       // Restore muted state on re-entry, before starting playback.
-       if(!requestedUnmute)player.mute();
        player.playVideo();
-     } else {
+     }else{
        player.pauseVideo();
        player.mute();
-       requestedUnmute=false;
      }
    }catch(e){console.warn('YouTube playback update failed',e)}
    syncAudio();
@@ -2323,11 +2323,13 @@ if (podcastInterviewMore && podcastInterviewDescription) {
  audio.addEventListener('click',()=>{
    if(!ready||!player)return;
    try{
-     if(isAudible()){
-       player.mute();requestedUnmute=false;
+     if(isSilent()){
+       // Preserve the user's slider setting; only restore a nonzero level if
+       // they previously moved the native volume slider all the way to zero.
+       if(player.getVolume()===0)player.setVolume(50);
+       player.unMute();
      }else{
-       player.unMute();player.setVolume(100);
-       requestedUnmute=!player.isMuted();
+       player.mute();
      }
    }catch(e){console.warn('YouTube audio control failed',e)}
    syncAudio();
